@@ -173,7 +173,7 @@ Model Principles
 Inclusion of publication details depends on an actual RDAP service's data structure and representation choices.
 RDAP output MUST preserve relationship context and MUST NOT combine data from distinct relationships.
 
-Definition (Proposed)
+Definition
 A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to a registered subject and prefixed by the issuing jurisdiction.
 The "publication_state" member MUST be included within relationship entries for which subject data is actually stored and MAY provide publication state for any subset of those fields, including none or all.
 Each publication state MUST contain exactly one enumerated value.
@@ -202,7 +202,7 @@ Enumerated Values
 End of RFC modeling section.
 
 `;
-const verification_state = `Existing verification mechanisms primarily prove operational control of a domain or service endpoint rather than registry-level subject verification. The limitations of these mechanisms include:
+const verification_state = `Existing verification mechanisms primarily demonstrate operational control of a domain or service endpoint rather than verification of the registered subject by the registry. The limitations of these mechanisms include:
 
 1. Verification based on PKI using an SSL/TLS certificate requires a reachable website and does not inherently provide registry-level verification lifecycle information.
 2. Two-way verification using a "/.well-known/" resource requires a reachable website and does not define registry verification lifecycle semantics.
@@ -210,20 +210,22 @@ const verification_state = `Existing verification mechanisms primarily prove ope
 4. Verification using administrative domain email addresses verifies control of domain-associated email addresses and does not provide registry verification lifecycle semantics.
 5. Business E-Wallets may contain overlapping domain claims and are not authoritative sources for domain registration relationships.
 
-Verification Lifecycle (Proposed)
-A registry MAY publish only the verification data necessary to provide a globally unique anchor for subject verification in a globally accessible RDAP verification service.
+Verification Lifecycle
+A registry MAY publish only the verification data necessary to provide a globally unique verification anchor for subject verification in a globally accessible RDAP verification service.
 
-Country-specific web domain services MAY perform periodic operational validation, including DNSSEC and other domain stability checks, and MAY retain historical results for statistical and reporting purposes. Such services provide operational information and do not alter the responsibility for investigating or resolving identified issues, which remains with the responsible organization.
+National or regional web domain services MAY perform periodic operational validation, including DNSSEC and other domain stability checks, and MAY retain historical results for statistical and reporting purposes. Such services provide operational information and do not alter the responsibility for investigating or resolving identified issues, which remains with the responsible organization.
 
-Verification lifecycle members describe the status of subject identifier verification independently of publication state and relationship responsibilities.
+Verification lifecycle members describe the status of subject identifier verification independently of the publication state and the relationship responsibilities.
 
 When a registry performs subject identifier verification, the following members apply.
 
 The "identifier_received_at" member indicates that a subject identifier has been received by the registry for verification.
 
-The "verification_set_at" member indicates that the registry has successfully verified the subject identifier through a verification authority recognized by the registry.
+The "verification_completed_at" member indicates that the registry has successfully verified the subject identifier through a verification authority recognized by the registry.
 
 The "verification_revoked_at" member indicates that a previously successful verification is no longer valid and that the verification status has been revoked. Revocation of verification MUST NOT imply that the associated subject relationship has been removed.
+
+The verification lifecycle records only the registry's verification status of a subject identifier. It does not establish ownership, contractual rights, publication policy, or operational control of the associated domain.
 
 End of RFC modeling section.
 
@@ -294,7 +296,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_postal_code").textContent = "";
 		document.getElementById("registrant_country_name").textContent = "";
 		document.getElementById("registrant_identifier_received_at").textContent = proposed;
-		document.getElementById("registrant_verification_set_at").textContent = proposed;
+		document.getElementById("registrant_verification_completed_at").textContent = proposed;
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrant_remarks").textContent = "";
 		document.getElementById("registrant_data_uri").textContent = proposed;
@@ -308,13 +310,13 @@ function SwitchTranslation(translation)	{
 		document.getElementById("reseller_part").textContent = "";
 		document.getElementById("reseller_subject_identifier").textContent = proposed;
 		document.getElementById("reseller_identifier_received_at").textContent = proposed;
-		document.getElementById("reseller_verification_set_at").textContent = proposed;
+		document.getElementById("reseller_verification_completed_at").textContent = proposed;
 		document.getElementById("reseller_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_part").textContent = "";
 		document.getElementById("registrar_subject_identifier").textContent = proposed;
 		document.getElementById("registrar_email").textContent = "";
 		document.getElementById("registrar_identifier_received_at").textContent = proposed;
-		document.getElementById("registrar_verification_set_at").textContent = proposed;
+		document.getElementById("registrar_verification_completed_at").textContent = proposed;
 		document.getElementById("registrar_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_abuse_part").textContent = "";
 		document.getElementById("registrar_abuse_phone").textContent = "";
@@ -340,7 +342,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("explanation").textContent = "Domein-RDAP-model dat RDAP-gegevens van registry en registrar combineert.";
 		document.getElementById("notices_part").textContent = legacy + accessible;
 		document.getElementById("links_part").textContent = legacy + accessible;
-		document.getElementById("verification_state_part").textContent = "Het volgende model biedt wereldwijde verificatie van domeinsubjecten.";
+		document.getElementById("verification_state_part").textContent = "Het volgende model definieert een levenscyclus voor verificatie van subjecten op registryniveau.";
 		document.getElementById("verification_state").textContent = verification_state;
 		document.getElementById("publication_state_part").textContent = modified + "Het volgende model biedt machineleesbare en mensleesbare zichtbaarheid.";
 		document.getElementById("publication_state").textContent = publication_state;
@@ -391,7 +393,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_postal_code").textContent = "Indexeren op postcode is in de database noodzakelijk. De vCard-array vormt een obstakel.";
 		document.getElementById("registrant_country_name").textContent = "Een openbaar zichtbare landnaam is beperkt tot 'gTLD registrar RDAP' (ontwerpwijziging).";
 		document.getElementById("registrant_identifier_received_at").textContent = proposed + "Na identificatie wordt de subjectidentificatie ter verificatie ontvangen.";
-		document.getElementById("registrant_verification_set_at").textContent = proposed + "De registry verifieert de subjectidentificatie via de landspecifieke webdomeindienst.";
+		document.getElementById("registrant_verification_completed_at").textContent = proposed + "De registry verifieert de subjectidentificatie via de landspecifieke webdomeindienst.";
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "De verificatie van de subjectidentificatie kan worden ingetrokken.";
 		document.getElementById("registrant_remarks").textContent = "Meer informatie. Zie bijvoorbeeld france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
@@ -405,13 +407,13 @@ function SwitchTranslation(translation)	{
 		document.getElementById("reseller_part").textContent = "Verantwoordelijkheden zijn afhankelijk van overeenkomsten en toepasselijke TLD-beleidsregels.";
 		document.getElementById("reseller_subject_identifier").textContent = proposed;
 		document.getElementById("reseller_identifier_received_at").textContent = proposed;
-		document.getElementById("reseller_verification_set_at").textContent = proposed;
+		document.getElementById("reseller_verification_completed_at").textContent = proposed;
 		document.getElementById("reseller_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_part").textContent = "Door het register erkende organisatie in verband met het domeinabonnement.";
 		document.getElementById("registrar_subject_identifier").textContent = proposed
 		document.getElementById("registrar_email").textContent = "Een registrar moet zonder verdere hyperlinks bereikbaar zijn.";
 		document.getElementById("registrar_identifier_received_at").textContent = proposed;
-		document.getElementById("registrar_verification_set_at").textContent = proposed;
+		document.getElementById("registrar_verification_completed_at").textContent = proposed;
 		document.getElementById("registrar_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_abuse_part").textContent = "Biedt contactinformatie voor de registrar of een aangewezen abuse-afhandelaar.";
 		document.getElementById("registrar_abuse_phone").textContent = "Een telefoonnummer moet beginnen met het type. Toegestaan zijn in ieder geval 'voice' en 'fax'.";
@@ -437,7 +439,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("explanation").textContent = "Domain RDAP model combining registry and registrar RDAP data.";
 		document.getElementById("notices_part").textContent = legacy + accessible;
 		document.getElementById("links_part").textContent = legacy + accessible;
-		document.getElementById("verification_state_part").textContent = "The following model provides worldwide domain subject verification.";
+		document.getElementById("verification_state_part").textContent = "The following model defines a registry-level subject verification lifecycle.";
 		document.getElementById("verification_state").textContent = verification_state;		
 		document.getElementById("publication_state_part").textContent = modified + "The following model provides machine-readable and human-readable visibility.";
 		document.getElementById("publication_state").textContent = publication_state;		
@@ -488,7 +490,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_postal_code").textContent = "Indexing by postal code is necessary in the database. The Vcard array is an obstacle.";	
 		document.getElementById("registrant_country_name").textContent = "A publicly visible country name is limited to 'gTLD registrar RDAP' (design change).";
 		document.getElementById("registrant_identifier_received_at").textContent = proposed + "After identification, the subject identifier is received for verification.";
-		document.getElementById("registrant_verification_set_at").textContent = proposed + "The registry verifies the subject identifier through the country-specific web domain service.";
+		document.getElementById("registrant_verification_completed_at").textContent = proposed + "The registry verifies the subject identifier through the country-specific web domain service.";
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "The verification of the subject identifier can be revoked.";
 		document.getElementById("registrant_remarks").textContent = "More information. See for example france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
@@ -502,13 +504,13 @@ function SwitchTranslation(translation)	{
 		document.getElementById("reseller_part").textContent = "Responsibilities depend on agreements and applicable TLD policies.";
 		document.getElementById("reseller_subject_identifier").textContent = proposed;
 		document.getElementById("reseller_identifier_received_at").textContent = proposed;
-		document.getElementById("reseller_verification_set_at").textContent = proposed;
+		document.getElementById("reseller_verification_completed_at").textContent = proposed;
 		document.getElementById("reseller_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_part").textContent = "Organization recognized by the registry in relation to the domain subscription.";
 		document.getElementById("registrar_subject_identifier").textContent = proposed;
 		document.getElementById("registrar_email").textContent = "A registrar needs to be reachable without any further hyperlink.";
 		document.getElementById("registrar_identifier_received_at").textContent = proposed;
-		document.getElementById("registrar_verification_set_at").textContent = proposed;
+		document.getElementById("registrar_verification_completed_at").textContent = proposed;
 		document.getElementById("registrar_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_abuse_part").textContent = "Provides contact information for the registrar or designated abuse handler.";
 		document.getElementById("registrar_abuse_phone").textContent = "A phone number must begin with the type. Allowed are anyway 'voice' and 'fax'.";
@@ -534,7 +536,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("explanation").textContent = "Domain-RDAP-Modell, das RDAP-Daten von Registry und Registrar kombiniert.";
 		document.getElementById("notices_part").textContent = legacy + accessible;
 		document.getElementById("links_part").textContent = legacy + accessible;
-		document.getElementById("verification_state_part").textContent = "Das folgende Modell bietet eine weltweite Verifizierung von Domänensubjekten.";
+		document.getElementById("verification_state_part").textContent = "Das folgende Modell definiert einen Lebenszyklus für die Verifizierung von Subjekten auf Registry-Ebene.";
 		document.getElementById("verification_state").textContent = verification_state;		
 		document.getElementById("publication_state_part").textContent = modified + "Das folgende Modell bietet maschinenlesbare und menschenlesbare Sichtbarkeit.";
 		document.getElementById("publication_state").textContent = publication_state;
@@ -585,7 +587,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_postal_code").textContent = "In der Datenbank ist eine Indizierung nach Postleitzahl erforderlich. Das vCard-Array stellt ein Hindernis dar.";	
 		document.getElementById("registrant_country_name").textContent = "Ein öffentlich sichtbarer Ländername ist auf 'gTLD registrar RDAP' beschränkt (Designänderung).";
 		document.getElementById("registrant_identifier_received_at").textContent = proposed + "Nach der Identifizierung wird die Subjektkennung zur Überprüfung entgegengenommen.";
-		document.getElementById("registrant_verification_set_at").textContent = proposed + "Die Registry verifiziert die Subjektkennung über den länderspezifischen Web-Domain-Dienst.";
+		document.getElementById("registrant_verification_completed_at").textContent = proposed + "Die Registry verifiziert die Subjektkennung über den länderspezifischen Web-Domain-Dienst.";
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "Die Verifizierung der Subjektkennung kann widerrufen werden.";
 		document.getElementById("registrant_remarks").textContent = "Weitere Informationen. Siehe beispielsweise france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
@@ -599,13 +601,13 @@ function SwitchTranslation(translation)	{
 		document.getElementById("reseller_part").textContent = "Die Verantwortlichkeiten hängen von Vereinbarungen und den geltenden TLD-Richtlinien ab.";
 		document.getElementById("reseller_subject_identifier").textContent = proposed;
 		document.getElementById("reseller_identifier_received_at").textContent = proposed;
-		document.getElementById("reseller_verification_set_at").textContent = proposed;
+		document.getElementById("reseller_verification_completed_at").textContent = proposed;
 		document.getElementById("reseller_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_part").textContent = "Organisation, die von der Registry im Zusammenhang mit dem Domain-Abonnement anerkannt ist.";
 		document.getElementById("registrar_subject_identifier").textContent = proposed;
 		document.getElementById("registrar_email").textContent = "Ein Registrar muss ohne weitere Hyperlinks erreichbar sein.";
 		document.getElementById("registrar_identifier_received_at").textContent = proposed;
-		document.getElementById("registrar_verification_set_at").textContent = proposed;
+		document.getElementById("registrar_verification_completed_at").textContent = proposed;
 		document.getElementById("registrar_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_abuse_part").textContent = "Stellt Kontaktinformationen für den Registrar oder eine benannte Stelle zur Bearbeitung von Abuse-Meldungen bereit.";
 		document.getElementById("registrar_abuse_phone").textContent = "Eine Telefonnummer muss mit dem Typ beginnen. Erlaubt sind grundsätzlich 'voice' und 'fax'.";		
@@ -631,7 +633,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("explanation").textContent = "Modèle RDAP de domaine combinant les données RDAP du registre et du registrar.";
 		document.getElementById("notices_part").textContent = legacy + accessible;
 		document.getElementById("links_part").textContent = legacy + accessible;
-		document.getElementById("verification_state_part").textContent = "Le modèle suivant fournit une vérification mondiale des titulaires de domaines.";
+		document.getElementById("verification_state_part").textContent = "Le modèle suivant définit un cycle de vie de vérification des sujets au niveau du registre.";
 		document.getElementById("verification_state").textContent = verification_state;		
 		document.getElementById("publication_state_part").textContent = modified + "Le modèle suivant fournit une visibilité lisible par machine et par l'homme.";
 		document.getElementById("publication_state").textContent = publication_state;
@@ -682,7 +684,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_postal_code").textContent = "L'indexation par code postal est nécessaire dans la base de données. Le tableau de vCard constitue un obstacle.";
 		document.getElementById("registrant_country_name").textContent = "Un nom de pays visible publiquement est limité à 'gTLD registrar RDAP' (changement de conception).";
 		document.getElementById("registrant_identifier_received_at").textContent = proposed + "Après l'identification, l'identifiant du sujet est reçu pour vérification.";
-		document.getElementById("registrant_verification_set_at").textContent = proposed + "Le registre vérifie l'identifiant du sujet par l'intermédiaire du service national de domaine web.";
+		document.getElementById("registrant_verification_completed_at").textContent = proposed + "Le registre vérifie l'identifiant du sujet par l'intermédiaire du service national de domaine web.";
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "La vérification de l'identifiant du sujet peut être révoquée.";
 		document.getElementById("registrant_remarks").textContent = "Plus d'informations. Voir, par exemple, france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
@@ -696,13 +698,13 @@ function SwitchTranslation(translation)	{
 		document.getElementById("reseller_part").textContent = "Les responsabilités dépendent des accords et des politiques TLD applicables.";
 		document.getElementById("reseller_subject_identifier").textContent = proposed;
 		document.getElementById("reseller_identifier_received_at").textContent = proposed;
-		document.getElementById("reseller_verification_set_at").textContent = proposed;
+		document.getElementById("reseller_verification_completed_at").textContent = proposed;
 		document.getElementById("reseller_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_part").textContent = "Organisation reconnue par le registre dans le cadre de l’abonnement du nom de domaine.";
 		document.getElementById("registrar_subject_identifier").textContent = proposed;
 		document.getElementById("registrar_email").textContent = "Un registraire doit être joignable sans lien hypertexte supplémentaire.";
 		document.getElementById("registrar_identifier_received_at").textContent = proposed;
-		document.getElementById("registrar_verification_set_at").textContent = proposed;
+		document.getElementById("registrar_verification_completed_at").textContent = proposed;
 		document.getElementById("registrar_verification_revoked_at").textContent = proposed;
 		document.getElementById("registrar_abuse_part").textContent = "Fournit les coordonnées du bureau d’enregistrement ou du contact abuse désigné.";
 		document.getElementById("registrar_abuse_phone").textContent = "Un numéro de téléphone doit commencer par le type. Sont autorisés de toute façon 'voice' et 'fax'.";
@@ -943,7 +945,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="3919" style="display:none"><td>sponsor_created_at</td><td>'.$data[$pd]['registry']['sponsor']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['created_at'].'</td></tr>';
 	$html_text .= '<tr id="3920" style="display:none"><td>sponsor_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['sponsor']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['latest_data_mutation_at'].'</td></tr>';
 	$html_text .= '<tr id="3921" style="display:none"><td>sponsor_identifier_received_at</td><td>'.$data[$pd]['registry']['sponsor']['identifier_received_at'].'</td><td id="sponsor_identifier_received_at"></td><td>'.$data[$pd]['registrar']['sponsor']['identifier_received_at'].'</td></tr>';
-	$html_text .= '<tr id="3922" style="display:none"><td>sponsor_verification_set_at</td><td>'.$data[$pd]['registry']['sponsor']['verification_set_at'].'</td><td id="sponsor_verification_set_at"></td><td>'.$data[$pd]['registrar']['sponsor']['verification_set_at'].'</td></tr>';
+	$html_text .= '<tr id="3922" style="display:none"><td>sponsor_verification_completed_at</td><td>'.$data[$pd]['registry']['sponsor']['verification_completed_at'].'</td><td id="sponsor_verification_completed_at"></td><td>'.$data[$pd]['registrar']['sponsor']['verification_completed_at'].'</td></tr>';
 	$html_text .= '<tr id="151" style="display:none"><td colspan="2">sponsor_publication_state'.$data[$pd]['registry']['sponsor']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['publication_state'].'</td></tr>';
 	$html_text .= '<tr id="3923" style="display:none"><td>sponsor_remarks</td><td>'.$data[$pd]['registry']['sponsor']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="3924" style="display:none"><td>sponsor_links</td><td colspan="2">'.$data[$pd]['registry']['sponsor']['links'].'</td><td>'.$data[$pd]['registrar']['sponsor']['links'].'</td></tr>';
@@ -971,7 +973,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="4015" style="display:none"><td>registrant_created_at</td><td>'.$data[$pd]['registry']['registrant']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['created_at'].'</td></tr>';
 	$html_text .= '<tr id="4016" style="display:none"><td>registrant_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['registrant']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['latest_data_mutation_at'].'</td></tr>';
 	$html_text .= '<tr id="4017" style="display:none"><td>registrant_identifier_received_at</td><td>'.$data[$pd]['registry']['registrant']['identifier_received_at'].'</td><td id="registrant_identifier_received_at"></td><td>'.$data[$pd]['registrar']['registrant']['identifier_received_at'].'</td></tr>';
-	$html_text .= '<tr id="4018" style="display:none"><td>registrant_verification_set_at</td><td>'.$data[$pd]['registry']['registrant']['verification_set_at'].'</td><td id="registrant_verification_set_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_set_at'].'</td></tr>';
+	$html_text .= '<tr id="4018" style="display:none"><td>registrant_verification_completed_at</td><td>'.$data[$pd]['registry']['registrant']['verification_completed_at'].'</td><td id="registrant_verification_completed_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_completed_at'].'</td></tr>';
 	$html_text .= '<tr id="4019" style="display:none"><td>registrant_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrant']['verification_revoked_at'].'</td><td id="registrant_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_revoked_at'].'</td></tr>';
 	$html_text .= '<tr id="4020" style="display:none"><td>registrant_remarks</td><td>'.$data[$pd]['registry']['registrant']['remarks'].'</td><td id="registrant_remarks"></td><td>'.$data[$pd]['registrar']['registrant']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="4021" style="display:none"><td>registrant_links</td><td colspan="2">'.$data[$pd]['registry']['registrant']['links'].'</td><td>'.$data[$pd]['registrar']['registrant']['links'].'</td></tr>';
@@ -1095,7 +1097,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="5018" style="display:none"><td>reseller_created_at</td><td>'.$data[$pd]['registry']['reseller']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['created_at'].'</td></tr>';
 	$html_text .= '<tr id="5019" style="display:none"><td>reseller_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['reseller']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['latest_data_mutation_at'].'</td></tr>';
 	$html_text .= '<tr id="5020" style="display:none"><td>reseller_identifier_received_at</td><td>'.$data[$pd]['registry']['reseller']['identifier_received_at'].'</td><td id="reseller_identifier_received_at"></td><td>'.$data[$pd]['registrar']['reseller']['identifier_received_at'].'</td></tr>';
-	$html_text .= '<tr id="5021" style="display:none"><td>reseller_verification_set_at</td><td>'.$data[$pd]['registry']['reseller']['verification_set_at'].'</td><td id="reseller_verification_set_at"></td><td>'.$data[$pd]['registrar']['reseller']['verification_set_at'].'</td></tr>';
+	$html_text .= '<tr id="5021" style="display:none"><td>reseller_verification_completed_at</td><td>'.$data[$pd]['registry']['reseller']['verification_completed_at'].'</td><td id="reseller_verification_completed_at"></td><td>'.$data[$pd]['registrar']['reseller']['verification_completed_at'].'</td></tr>';
 	$html_text .= '<tr id="5022" style="display:none"><td>reseller_verification_revoked_at</td><td>'.$data[$pd]['registry']['reseller']['verification_revoked_at'].'</td><td id="reseller_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['reseller']['verification_revoked_at'].'</td></tr>';
 	$html_text .= '<tr id="5023" style="display:none"><td>reseller_remarks</td><td>'.$data[$pd]['registry']['reseller']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="5024" style="display:none"><td>reseller_links</td><td colspan="2">'.$data[$pd]['registry']['reseller']['links'].'</td><td>'.$data[$pd]['registrar']['reseller']['links'].'</td></tr>';
@@ -1124,7 +1126,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="6018" style="display:none"><td>registrar_created_at</td><td>'.$data[$pd]['registry']['registrar']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['created_at'].'</td></tr>';
 	$html_text .= '<tr id="6019" style="display:none"><td>registrar_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['registrar']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['latest_data_mutation_at'].'</td></tr>';
 	$html_text .= '<tr id="6020" style="display:none"><td>registrar_identifier_received_at</td><td>'.$data[$pd]['registry']['registrar']['identifier_received_at'].'</td><td id="registrar_identifier_received_at"></td><td>'.$data[$pd]['registrar']['registrar']['identifier_received_at'].'</td></tr>';
-	$html_text .= '<tr id="6021" style="display:none"><td>registrar_verification_set_at</td><td>'.$data[$pd]['registry']['registrar']['verification_set_at'].'</td><td id="registrar_verification_set_at"></td><td>'.$data[$pd]['registrar']['registrar']['verification_set_at'].'</td></tr>';
+	$html_text .= '<tr id="6021" style="display:none"><td>registrar_verification_completed_at</td><td>'.$data[$pd]['registry']['registrar']['verification_completed_at'].'</td><td id="registrar_verification_completed_at"></td><td>'.$data[$pd]['registrar']['registrar']['verification_completed_at'].'</td></tr>';
 	$html_text .= '<tr id="6022" style="display:none"><td>registrar_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrar']['verification_revoked_at'].'</td><td id="registrar_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrar']['verification_revoked_at'].'</td></tr>';
 	$html_text .= '<tr id="6023" style="display:none"><td>registrar_remarks</td><td>'.$data[$pd]['registry']['registrar']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="6024" style="display:none"><td>registrar_links</td><td colspan="2">'.$data[$pd]['registry']['registrar']['links'].'</td><td>'.$data[$pd]['registrar']['registrar']['links'].'</td></tr>';
@@ -1225,5 +1227,4 @@ function if_filled($inputvalue)	{
 	}
 	return ' (to be empty)';
 }
-
 ?>
