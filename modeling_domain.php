@@ -167,13 +167,13 @@ const publication_state = `Legacy Limitations
 3. Relationship responsibility order is not inherent in RDAP JSON representation.
 4. Contact endpoints may be represented in email fields even when the value is not an email address, resulting in ambiguous semantics and reduced interoperability.
 5. Registry RDAP and registrar RDAP are distinct sources; "Server policy" does not indicate which applies.
-6. Legacy entity-level hyperlinks may not consistently express relationship-specific data visibility.
+6. Legacy subject-level hyperlinks may not consistently express relationship-specific data visibility.
 
 Model Principles
 Inclusion of publication details depends on an actual RDAP service's data structure and representation choices.
 RDAP output MUST preserve relationship context and MUST NOT combine data from distinct relationships.
 
-Definition (Normative)
+Definition (Proposed)
 A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to a registered subject and prefixed by the issuing jurisdiction.
 The "publication_state" member MUST be included within relationship entries for which subject data is actually stored and MAY provide publication state for any subset of those fields, including none or all.
 Each publication state MUST contain exactly one enumerated value.
@@ -210,7 +210,7 @@ const verification_state = `Existing verification mechanisms primarily prove ope
 4. Verification using administrative domain email addresses verifies control of domain-associated email addresses and does not provide registry verification lifecycle semantics.
 5. Business E-Wallets may contain overlapping domain claims and are not authoritative sources for domain registration relationships.
 
-Verification Lifecycle (Normative)
+Verification Lifecycle (Proposed)
 A registry MAY publish only the verification data necessary to provide a globally unique anchor for subject verification in a globally accessible RDAP verification service.
 
 Country-specific web domain services MAY perform periodic operational validation, including DNSSEC and other domain stability checks, and MAY retain historical results for statistical and reporting purposes. Such services provide operational information and do not alter the responsibility for investigating or resolving identified issues, which remains with the responsible organization.
@@ -1225,4 +1225,5 @@ function if_filled($inputvalue)	{
 	}
 	return ' (to be empty)';
 }
-}}?>
+
+?>
