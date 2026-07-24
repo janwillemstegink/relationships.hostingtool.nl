@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 //$_GET['domain'] = 'hostingtool.nl';
 //$_GET['domain'] = 'cyberfusion.nl';
-//$_GET['domain'] = 'münchen.de';
+//$_GET['domain'] = 'mÃ¼nchen.de';
 //$_GET['domain'] = 'example.tel';
 //$_GET['domain'] = 'rdap.org';
 //$_GET['domain'] = 'france.fr';
@@ -13,7 +13,7 @@
 //$_GET['domain'] = 'eurid.eu';
 //$_GET['domain'] = 'denic.de';
 //$_GET['domain'] = 'internet.nl';
-//$_GET['domain'] = 'nic.vermögensberater';
+//$_GET['domain'] = 'nic.vermÃ¶gensberater';
 //$_GET['domain'] = 'teamblue.domains';
 
 if (!empty($_GET['domain']))	{
@@ -191,7 +191,7 @@ function interprete_remark($inputkey, $inputvalue) {
         $out .= '<strong>'.$esc($inputvalue).'</strong> ';
     }
     elseif ($inputkey === 'type' && $inputvalue !== '') {
-        // We'll add a colon, but we’ll also include a cleanup step at the caller to strip it if nothing follows.
+        // We'll add a colon, but weâ€™ll also include a cleanup step at the caller to strip it if nothing follows.
         $out .= '<em>'.$esc($inputvalue).'</em>: ';
     }
     elseif ($inputkey === 'description') {
@@ -1313,24 +1313,13 @@ foreach($obj as $key1 => $value1) {
 			}
 		}
 		if ($key1 == 'redacted')	{
-			//$redacted .= (!empty($value2['name']['description'])) ? "name: " . $value2['name']['description'] : '';
-			//$redacted .= (!empty($value2['name']['type'])) ? "type: " . $value2['name']['type'] : '';
-			//$redacted .= (!empty($value2['method'])) ? " | method: " . $value2['method'] : '';
-			//$redacted .= (!empty($value2['reason']['description'])) ? " | reason: " . $value2['reason']['description'] : '';
 			$parts = [];
 			if (!empty($value2['type'])) { $parts[] = "type: " . $value2['type']; }
-			if (!empty($value2['name']['type'])) { $parts[] = "type: " . $value2['name']['type']; }
+			if (!empty($value2['name']['type'])) { $parts[] = "name.type: " . $value2['name']['type']; }
 			if (!empty($value2['name']['description'])) { $parts[] = "description: " . $value2['name']['description']; }
-   			if (!empty($value2['method'])) { $parts[] = "method: " . $value2['method']; }
-   			if (!empty($value2['reason']['description'])) { $parts[] = "reason: " . $value2['reason']['description']; }
+   			if (!empty($value2['method'])) { $parts[] = "m: " . $value2['method']; }
+   			if (!empty($value2['reason']['description'])) { $parts[] = "r: " . $value2['reason']['description']; }
    			if (!empty($parts)) { $redacted .= implode(' | ', $parts) . "<br />"; }			
-		    //if (!empty($value2['name']['type']) || !empty($value2['name']['description'])) {
-			//	//$notice = 'redacted: name.* &rarr; type (more stable)';
-			//	$notice = 'redacted: name.* ? type (more stable)';
-        	//	if (!str_contains($interface_notice, $notice)) {
-            //		$interface_notice .= $notice . "<br />";
-        	//	}
-    		//}
 		}		
 		foreach($value2 as $key3 => $value3) {
 			if ($key1 == 'notices')	{
@@ -2270,4 +2259,4 @@ $arr['raw_rdap'] = $raw_rdap_data;
 
 return $arr;
 }
-}?>
+?>
