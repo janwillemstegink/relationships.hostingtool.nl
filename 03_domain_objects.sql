@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS subjects (
     subject_created_at TIMESTAMPTZ,
     subject_latest_data_mutation_at TIMESTAMPTZ,
     subject_identifier_received_at TIMESTAMPTZ,
-    subject_verification_set_at TIMESTAMPTZ,
+    subject_verification_completed_at TIMESTAMPTZ,
 	subject_verification_revoked_at TIMESTAMPTZ,
     subject_properties JSONB DEFAULT '[]'::jsonb,
     subject_remarks JSONB DEFAULT '[]'::jsonb,
