@@ -18,9 +18,9 @@ if (ini_get("allow_url_fopen") == 1)	{
 else	{	
 	die('allow_url_fopen does not work.'); 	
 }
-$dataFile = '/home/admin/rdap_files/data_email.xml';
+$dataFile = '/home/admin/rdap_files/email_data.xml';
 $inputdomain = 'webhostingtech.nl';
-$url1 = "https://rdap.hostingtool.nl/compose_data/index.php?domain=$inputdomain";
+$url1 = "https://relationships.hostingtool.nl/domain_data/index.php?domain=$inputdomain";
 if (file_exists($dataFile))	{
 	$xml1 = simplexml_load_file($dataFile) or die("Cannot load xml1 from folder.");
 }
@@ -164,4 +164,4 @@ function get_block($ip) {
     }
 	return (strlen($country)) ? $country . '; ' . $orgName : $orgName;	
 }
-}?>
+?>

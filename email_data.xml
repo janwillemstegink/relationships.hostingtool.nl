@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<domains>
+	<domain item="webhostingtech.nl">
+		<details>
+			<ascii_name>webhostingtech.nl</ascii_name>
+			<unicode_name>webhostingtech.nl</unicode_name>
+		</details>
+		<registrant>
+			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<organization_type></organization_type>
+			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
+			<presented_name></presented_name>
+			<kind>org</kind>
+			<name>Jan Willem Stegink</name>
+			<email>post@janwillemstegink.nl</email>
+			<contact_uri>https://janwillemstegink.nl</contact_uri>
+			<telephone>voice uri tel:+31.683594853</telephone>
+			<country_code>NL</country_code>
+			<street>Dr. Schaepmanlaan 44</street>
+			<postal_code>6823 AS</postal_code>
+			<city>Arnhem</city>
+			<state_or_province>Gelderland</state_or_province>
+			<country_name>Nederland</country_name>
+		</registrant>
+		<administrative>
+			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<organization_type></organization_type>
+			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
+			<presented_name></presented_name>
+			<kind>org</kind>
+			<name>Jan Willem Stegink</name>
+			<email>post@janwillemstegink.nl</email>
+			<contact_uri>https://janwillemstegink.nl</contact_uri>
+			<telephone>voice uri tel:+31.683594853</telephone>
+			<country_code>NL</country_code>
+			<street>Dr. Schaepmanlaan 44</street>
+			<postal_code>6823 AS</postal_code>
+			<city>Arnhem</city>
+			<state_or_province>Gelderland</state_or_province>			
+			<country_name>Nederland</country_name>
+		</administrative>
+		<billing>
+			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<organization_type></organization_type>
+			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
+			<presented_name></presented_name>
+			<kind>org</kind>
+			<name>Jan Willem Stegink</name>
+			<email>techdesk@hostfusion.nl</email>
+			<contact_uri>https://janwillemstegink.nl</contact_uri>
+			<telephone>voice uri tel:+31.683594853</telephone>
+			<country_code>NL</country_code>			
+			<street>Dr. Schaepmanlaan 44</street>
+			<postal_code>6823 AS</postal_code>
+			<city>Arnhem</city>
+			<state_or_province>Gelderland</state_or_province>
+			<country_name>Nederland</country_name>
+		</billing>
+	</domain>
+</domains>
