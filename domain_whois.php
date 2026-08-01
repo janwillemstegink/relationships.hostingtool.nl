@@ -50,10 +50,10 @@ $log_file = "/home/admin/logging/" . $internal . "whois_tool_" . $datetime->form
 $log_line = $datetime->format('Y-m-d H:i:s') . " UTC, lang" . $viewlanguage . ", " . $vd . ", " . [ip] . ", " . [block] . "\n";
 file_put_contents($log_file, $log_line, FILE_APPEND);
 echo '<!DOCTYPE html><html lang="en" style="font-size: 90%"><head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta charset="UTF-8" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
-<meta name="robots" content="index" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="robots" content="index">
 <title>Domain Information</title>';
 ?><script>
 	
@@ -149,7 +149,7 @@ $server_url = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !
 $server_url .= '://'. $_SERVER['HTTP_HOST'];
 $server_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);	
 $server_url = dirname($server_url);
-$whois_url = $server_url . '/compose_domain_whois/index.php?batch=0&domain=' . urlencode($pd);
+$whois_url = $server_url . '/domain_whois_data/index.php?batch=0&domain=' . urlencode($pd);
 $json = @file_get_contents($whois_url);
 $data = null;
 $terms_and_conditions = '';
@@ -157,7 +157,7 @@ if ($json !== false) {
     $data = json_decode($json, true);
 }
 if (is_array($data) && isset($data[$pd]['metadata']['zone_identifier'])) {
-    $terms_and_conditions = $server_url . '/modeling_tld/index.php?language=' . $viewlanguage . '&tld=' . $data[$pd]['metadata']['zone_identifier'];
+    $terms_and_conditions = $server_url . '/tld/index.php?language=' . $viewlanguage . '&tld=' . $data[$pd]['metadata']['zone_identifier'];
 }
 else {
     $reopen = $server_url . '/domain_whois/index.php?batch=0&domain=hostingtool.nl';
@@ -175,7 +175,7 @@ $html_text .= '<tr style="font-size: .8rem"><td id="subtitle" style="font-size: 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(2)">en_US</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(3)">de_DE</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(4)">fr_FR</button> 
-	<a style="font-size: 0.9rem" href="https://github.com/janwillemstegink/rdap.hostingtool.nl" target="_blank">Code/issues on GitHub</a> - <a style="font-size: 0.9rem" href="https://janwillemstegink.nl/" target="_blank">Insight at janwillemstegink.nl</a></td></tr>';
+	<a style="font-size: 0.9rem" href="https://github.com/janwillemstegink/relationships.hostingtool.nl" target="_blank">Code/issues on GitHub</a> - <a style="font-size: 0.9rem" href="https://janwillemstegink.nl/" target="_blank">Insight at janwillemstegink.nl</a></td></tr>';
 //echo $pd.'#'.$data[$pd]['domain']['ascii_name'];
 if (true or $pd == mb_strtolower($data[$pd]['domain']['ascii_name']) or empty($data[$pd]['domain']['ascii_name']))	{
 	$html_text .= '<tr style="font-size:1.05rem;font-weight:bold"><td></td><td><td></td></tr>';
