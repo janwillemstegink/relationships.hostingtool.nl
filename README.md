@@ -4,13 +4,13 @@
 - The holder name, country code and contact details matter for customer protection, manageable administrative workload and an 'In Control Statement' (ICS);
 - Legal structure for domain information can arise after narrowing down physical structure first.
 
-Domain information modeling: https://rdap.hostingtool.nl/modeling_domain/
+Domain information modeling: https://relationships.hostingtool.nl/domain/
 
-TLD information modeling: https://rdap.hostingtool.nl/modeling_tld/
+TLD information modeling: https://relationships.hostingtool.nl/tld/
 
-Data by email modeling: https://rdap.hostingtool.nl/modeling_email/
+Data by email modeling: https://relationships.hostingtool.nl/email_modeling/
 
-Menu information modeling: https://rdap.hostingtool.nl/modeling_menu/
+Menu information modeling: https://relationships.hostingtool.nl/menu_modeling/
 
 Domain control tool: https://control.hostingtool.org/
 
