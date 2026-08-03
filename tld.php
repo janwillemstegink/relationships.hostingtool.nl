@@ -248,7 +248,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_search_engine_deletion_phase_ready").textContent = proposed + 'Of zoekmachines kunnen vertrouwen op de “pending delete”-fase om resultaten te verwijderen.';
 		document.getElementById("tld_services_uri").textContent = proposed + 'Een TLD-specifiek informatiemenu, beschikbaar onder een subdomein zoals "regmenu".';
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "Een machineleesbare gestandaardiseerde prijslijst zou de transparantie van registry-diensten ondersteunen.";
-		document.getElementById("tld_root_data_uri").textContent = modified + "Machineleesbare, informatieve TLD- en RDAP-gegevens.";
+		document.getElementById("tld_root_data_uri").textContent = modified + "Machineleesbare, informatieve root-TLD- en RDAP-gegevens.";
 		document.getElementById("tld_registry_data_uri").textContent = modified + "Machineleesbare, informatieve registry-TLD-gegevens."; 
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Beperkt gebruik. Interpretatie hangt af van TLD- en RDAP-context.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;
@@ -303,7 +303,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_search_engine_deletion_phase_ready").textContent = proposed + 'Whether search engines can rely on the “pending delete” phase to remove results.';
 		document.getElementById("tld_services_uri").textContent = proposed + 'A TLD specific information menu, available under a subdomain such as "regmenu".';
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "A machine-readable standardized price list would support registry transparency.";
-		document.getElementById("tld_root_data_uri").textContent = modified + "Machine-readable, informative TLD and RDAP data.";
+		document.getElementById("tld_root_data_uri").textContent = modified + "Machine-readable, informative root TLD and RDAP data.";
 		document.getElementById("tld_registry_data_uri").textContent = modified + "Machine-readable, informative registry TLD data.";
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Restricted use. Interpretation depends on TLD and RDAP context.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;		
@@ -348,7 +348,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_links").textContent = legacy;		
 		document.getElementById("tld_part").textContent = "Top-Level Domain (TLD)";
 		document.getElementById("tld_data_active_from").textContent = proposed;
-		document.getElementById("tld_root_data_uri").textContent = modified + "Maschinenlesbare, informative TLD- und RDAP-Daten.";
+		document.getElementById("tld_root_data_uri").textContent = modified + "Maschinenlesbare, informative Root-TLD- und RDAP-Daten.";
 		document.getElementById("tld_registry_data_uri").textContent = modified + "Maschinenlesbare, informative Registry-TLD-Daten.";
 		document.getElementById("tld_category").textContent = proposed + 'Zeigt eine generische TLD (gTLD) oder eine länderspezifische TLD (ccTLD) an.';
 		document.getElementById("tld_type").textContent = proposed + 'Der TLD-Typ, z. B. gTLD, grTLD, sTLD, ccTLD, tTLD, iTLD oder geoTLD.';
@@ -413,7 +413,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_search_engine_deletion_phase_ready").textContent = proposed + "Si les moteurs de recherche peuvent se fier à la phase 'pending delete' pour supprimer des résultats.";
 		document.getElementById("tld_services_uri").textContent = proposed + "Un menu d'informations spécifique au TLD, disponible sous un sous-domaine tel que 'regmenu'.";
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "Une liste de prix standardisée lisible par machine soutiendrait la transparence des services de registre.";
-		document.getElementById("tld_root_data_uri").textContent = modified + "Données TLD et RDAP lisibles par machine et informatives.";
+		document.getElementById("tld_root_data_uri").textContent = modified + "Données TLD racine et RDAP lisibles par machine et informatives.";
 		document.getElementById("tld_registry_data_uri").textContent = modified + "Données TLD du registre lisibles par machine et informatives.";
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Utilisation restreinte. L’interprétation dépend du contexte TLD et RDAP.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;		

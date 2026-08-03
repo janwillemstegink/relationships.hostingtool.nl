@@ -64,8 +64,8 @@ if (!empty($_GET['domain']))	{
 			$registry_rdap['metadata']['rdap_data_layer'] = 'registry_rdap';
 			$registrar_identifier = $registry_rdap['metadata']['registrar_identifier'] ?? null;
 			$iana_id = (int) $registrar_identifier;
-			$registry_self_uri = $registry_rdap['metadata']['registry_data_uri'] ?? null;
-			$registry_related_uri = $registry_rdap['metadata']['registrar_data_uri'] ?? null;
+			$registry_self_uri = $registry_rdap['metadata']['registry_domain_uri'] ?? null;
+			$registry_related_uri = $registry_rdap['metadata']['registrar_domain_uri'] ?? null;
 			if (empty($registry_self_uri)) {
 				$registry_interface .= 'The registry rel="self" link is a SHOULD.';
 			}		
@@ -85,7 +85,7 @@ if (!empty($_GET['domain']))	{
 				elseif (!empty($registry_related_uri)) {
        				$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $batch, $registry_related_uri);
 					$registrar_interface = $registrar_rdap['interface_notice'] ?? '';
-					$registry_rdap['metadata']['registrar_data_uri'] = $registry_related_uri;
+					$registry_rdap['metadata']['registrar_domain_uri'] = $registry_related_uri;
 					$registrar_rdap['metadata']['rdap_data_layer'] = 'registrar_rdap';
 					$registrar_rdap['metadata']['tld_unicode_name'] = $tld_unicode_name ?? null;
 					$registrar_rdap['metadata']['tld_ascii_name'] = $tld_ascii_name ?? null;
@@ -97,7 +97,7 @@ if (!empty($_GET['domain']))	{
 						$base_url = fetchIanaRegistrarRdapBaseUrl($iana_id);
 		    			if ($base_url) {
 							$registrar_uri = rtrim($base_url, '/') . '/domain/' . rawurlencode($domain);
-							$registry_rdap['metadata']['registrar_data_uri'] = $registrar_uri;
+							$registry_rdap['metadata']['registrar_domain_uri'] = $registrar_uri;
        						$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $batch, $registrar_uri);
 							$registrar_interface = $registrar_rdap['interface_notice'] ?? '';
 							$registrar_statuses = $registrar_rdap['domain']['statuses'] ?? null;
@@ -121,15 +121,15 @@ if (!empty($_GET['domain']))	{
 						}	
 					}
 				}
-				if (!empty($registrar_rdap['metadata']['registrar_data_uri'])) {
+				if (!empty($registrar_rdap['metadata']['registrar_domain_uri'])) {
 					if (strlen($registrar_interface))	{
 						$registrar_interface .= "<br />";
 					}
 					$registrar_interface .= 'Unexpected rel="related" link.';
 				}
 			}					
-			if (empty($registry_rdap['metadata']['registry_data_uri'])) {
-				$registry_rdap['metadata']['registry_data_uri'] = $registry_rdap['metadata']['request_uri'] ?? null;
+			if (empty($registry_rdap['metadata']['registry_domain_uri'])) {
+				$registry_rdap['metadata']['registry_domain_uri'] = $registry_rdap['metadata']['request_uri'] ?? null;
 			}
 		}
 		$dnssecInfo = getDnssecInfo($domain);
@@ -982,8 +982,8 @@ $rdap_conformance = (is_array($obj['rdapConformance'])) ? implode(",<br />", $ob
 $language_codes = (is_array($obj['lang'])) ? implode(",<br />", $obj['lang']) : $obj['lang'];
 $registrar_identifiers = '';
 $registrar_identifier = null;
-$registry_data_uri = '';
-$registrar_data_uri = '';
+$registry_domain_uri = '';
+$registrar_domain_uri = '';
 $registrar_complaint_uri = '';	
 $status_explanation_uri = '';
 $registrant_subject_identifier = '';
@@ -1330,10 +1330,10 @@ foreach($obj as $key1 => $value1) {
 			if ($key1 == 'links')	{
 				$links .= $key2.': '.$key3.': '.$value3."<br />";
 				if ($key3 == 'rel' and $value3 == 'self') {
-					$registry_data_uri = $value2['href'];
+					$registry_domain_uri = $value2['href'];
 				}
 				elseif ($key3 == 'rel' and $value3 == 'related') {
-					$registrar_data_uri = $value2['href'];
+					$registrar_domain_uri = $value2['href'];
 				}				
 			}	
 			if ($key1 == 'remarks')	{
@@ -2042,14 +2042,14 @@ $arr['interface_notice'] = $interface_notice;
 $arr['metadata']['object_type'] = $object_type;
 $arr['metadata']['rdap_version'] = $rdap_version;
 $arr['metadata']['rdap_conformance'] = $rdap_conformance;
-$arr['metadata']['tld_information_uri'] = $tld_information_uri;
-$arr['metadata']['registry_geo_location'] = '';	
+$arr['metadata']['registry_geo_location'] = '';
+$arr['metadata']['global_domain_uri'] = '';	
+$arr['metadata']['registry_domain_uri'] = $registry_domain_uri;
+$arr['metadata']['registrar_domain_uri'] = $registrar_domain_uri;
+$arr['metadata']['registry_tld_uri'] = '';	
 $arr['metadata']['registrar_identifiers'] = $registrar_identifiers;		
 $arr['metadata']['registrar_identifier'] = $registrar_identifier;
-
 $arr['metadata']['request_uri'] = $url;
-$arr['metadata']['registry_data_uri'] = $registry_data_uri;
-$arr['metadata']['registrar_data_uri'] = $registrar_data_uri;
 $arr['metadata']['registrar_complaint_uri'] = $registrar_complaint_uri;
 $arr['metadata']['status_explanation_uri'] = $status_explanation_uri;
 $arr['metadata']['resource_upload_at'] = $resource_upload_at;		
