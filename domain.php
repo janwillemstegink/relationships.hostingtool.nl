@@ -162,21 +162,21 @@ function SwitchDisplay(type) {
 }
 		
 const publication_state = `Legacy Limitations
-1. The current "name.description", "name.type", and "type" alternatives may result in differing visibility representation across registry and registrar RDAP.
-2. Current RDAP "redacted" semantics can evolve into relationship-specific field names such as "registrant_contact_uri" and relationship-specific "publication_state" values.
-3. Relationship responsibility order is not inherent in RDAP JSON representation.
+1. The current "name.description", "name.type", and "type" alternatives may result in differing visibility representations across registry and registrar RDAP.
+2. Current RDAP "redacted" semantics can evolve into relationship-specific field names, such as "registrant_contact_uri", and relationship-specific "publication_state" values.
+3. Relationship responsibility order is not inherent in the RDAP JSON representation.
 4. Contact endpoints may be represented in email fields even when the value is not an email address, resulting in ambiguous semantics and reduced interoperability.
-5. Registry and registrar RDAP are distinct; "Server policy" lacks source identification.
-6. Legacy subject-level hyperlinks may not consistently express relationship-specific data visibility.
+5. Registry and registrar RDAP are distinct; the "Server policy" notice lacks source identification.
+6. The legacy subject-level hyperlinks may not consistently express relationship-specific data visibility.
 
 Model Principles
-Inclusion of publication details depends on an actual RDAP service's data structure and representation choices.
+Inclusion of publication details depends on an RDAP service's data structure and representation choices.
 RDAP output MUST preserve relationship context and MUST NOT combine data from distinct relationships.
 The publication model is designed for both registrar RDAP and ccTLD registry RDAP. Country-code registries MAY adopt tunable publication states. The underlying data model SHOULD be prepared to support them.
 
 Definition
 A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
-The "publication_state" member MUST be included within relationship entries for which subject data is stored and MAY provide publication state for any subset of those fields, including none or all.
+The "publication_state" member MUST be included within relationship entries for which subject data is stored and MAY provide publication state for any combination of those fields, including none or all.
 Each publication state MUST contain exactly one enumerated value.
 When data is unavailable or not disclosed, placeholder values MUST NOT be used.
 If relationship-specific data is present, that data MUST precede "publication_state".
@@ -188,17 +188,17 @@ Relationship responsibilities: "sponsor", "registrant", "actor", "request_handli
 
 Operational Guidance
 Field values SHOULD conform to the semantics of the field in which they are represented.
-Registry communications SHOULD clearly identify the applicable relationship when addressing the recipient.
+Email communications issued by a registry SHOULD clearly identify the applicable relationship to which the message refers.
 
 Example (Non-Normative)
 A subject's email address may be disclosed for one relationship but not another.
 
 Enumerated Values
-"not_stored" — value not maintained by the domain service.
-"shielded" — value maintained, not disclosed.
-"visible" — value maintained and disclosed.
-"tunable_shielded" — value maintained, currently not disclosed.
-"tunable_visible" — value maintained, currently disclosed.
+"not_stored" — value is not maintained by the domain service.
+"shielded" — value is maintained but not disclosed.
+"visible" — value is maintained and disclosed.
+"tunable_shielded" — value is maintained and currently not disclosed.
+"tunable_visible" — value is maintained and currently disclosed.
 
 End of RFC modeling section.
 
@@ -345,7 +345,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("links_part").textContent = legacy + accessible;
 		document.getElementById("verification_state_part").textContent = "Het volgende model definieert een levenscyclus voor verificatie van subjecten op registryniveau.";
 		document.getElementById("verification_state").textContent = verification_state;
-		document.getElementById("publication_state_part").textContent = modified + "Het volgende model biedt een machineleesbare en mensleesbare weergave van de publicatiestatus.";
+		document.getElementById("publication_state_part").textContent = modified + "Het volgende model biedt een mensleesbare en machineleesbare weergave van de publicatiestatus.";
 		document.getElementById("publication_state").textContent = publication_state;
 		document.getElementById("metadata_part").textContent = proposed + "Metadata bieden context en details over data-elementen.";
 		document.getElementById("metadata_object_type").textContent = modified;
@@ -442,7 +442,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("links_part").textContent = legacy + accessible;
 		document.getElementById("verification_state_part").textContent = "The following model defines a registry-level subject verification lifecycle.";
 		document.getElementById("verification_state").textContent = verification_state;		
-		document.getElementById("publication_state_part").textContent = modified + "The following model provides machine-readable and human-readable publication visibility.";
+		document.getElementById("publication_state_part").textContent = modified + "The following model provides human-readable and machine-readable publication visibility.";
 		document.getElementById("publication_state").textContent = publication_state;		
 		document.getElementById("metadata_part").textContent=proposed+"Metadata provides context and details about data elements.";
 		document.getElementById("metadata_object_type").textContent=modified;
@@ -539,7 +539,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("links_part").textContent = legacy + accessible;
 		document.getElementById("verification_state_part").textContent = "Das folgende Modell definiert einen Lebenszyklus für die Verifizierung von Subjekten auf Registry-Ebene.";
 		document.getElementById("verification_state").textContent = verification_state;		
-		document.getElementById("publication_state_part").textContent = modified + "Das folgende Modell stellt die Veröffentlichung maschinen- und menschenlesbar dar.";
+		document.getElementById("publication_state_part").textContent = modified + "Das folgende Modell stellt die Veröffentlichung mensch- und maschinenlesbar dar.";
 		document.getElementById("publication_state").textContent = publication_state;
 		document.getElementById("metadata_part").textContent = proposed + "Metadaten liefern Kontext und Details zu Datenelementen.";
 		document.getElementById("metadata_object_type").textContent = modified;
@@ -636,7 +636,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("links_part").textContent = legacy + accessible;
 		document.getElementById("verification_state_part").textContent = "Le modèle suivant définit un cycle de vie de vérification des sujets au niveau du registre.";
 		document.getElementById("verification_state").textContent = verification_state;		
-		document.getElementById("publication_state_part").textContent = modified + "Le modèle suivant fournit une représentation lisible par machine et par l’être humain de l’état de publication.";
+		document.getElementById("publication_state_part").textContent = modified + "Le modèle suivant offre une visibilité des publications lisible par l'homme et par la machine.";
 		document.getElementById("publication_state").textContent = publication_state;
 		document.getElementById("metadata_part").textContent = proposed + "Les métadonnées fournissent le contexte et des détails sur les éléments de données.";
 		document.getElementById("metadata_object_type").textContent = modified;
