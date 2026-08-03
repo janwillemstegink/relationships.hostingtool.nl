@@ -264,7 +264,7 @@ EXECUTE FUNCTION update_autnums_latest_data_mutation_at();
 -- ========================================
 -- "not_stored" — value not maintained by the domain service
 -- "shielded" — value maintained, not disclosed
--- "visible" — value disclosed
+-- "visible" — value maintained, disclosed
 -- "tunable_shielded" — value maintained, currently not disclosed
 -- "tunable_visible" — value maintained, currently disclosed
 -- ========================================
@@ -321,7 +321,7 @@ EXECUTE FUNCTION update_domain_nameservers_latest_data_mutation_at();
 -- ========================================
 -- "not_stored" — value not maintained by the domain service
 -- "shielded" — value maintained, not disclosed
--- "visible" — value disclosed
+-- "visible" — value maintained, disclosed
 -- "tunable_shielded" — value maintained, currently not disclosed
 -- "tunable_visible" — value maintained, currently disclosed
 -- ========================================

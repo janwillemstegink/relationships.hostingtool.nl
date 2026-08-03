@@ -96,7 +96,7 @@ function SwitchDisplay(type) {
 	}
 	else if (type == 40)	{ // registrant
 		var pre = '40';
-		var max = 22
+		var max = 21
 	}
 	else if (type == 41)	{ // actor
 		var pre = '41';
@@ -172,7 +172,7 @@ const publication_state = `Legacy Limitations
 Model Principles
 Inclusion of publication details depends on an actual RDAP service's data structure and representation choices.
 RDAP output MUST preserve relationship context and MUST NOT combine data from distinct relationships.
-The publication model is designed for both registrar RDAP and ccTLD registry RDAP. Country-code registries MAY adopt tunable publication states. The underlying table definition SHOULD be prepared to support them.
+The publication model is designed for both registrar RDAP and ccTLD registry RDAP. Country-code registries MAY adopt tunable publication states. The underlying data model SHOULD be prepared to support them.
 
 Definition
 A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
@@ -386,7 +386,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'De gebruikelijke waarde is "work", of mogelijk "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "De juridische naam van de organisatie die primair verantwoordelijk is voor het domeinabonnement.";
 		document.getElementById("registrant_presented_name").textContent = "De naam van de primair verantwoordelijke persoon of een rol binnen de organisatie wordt verwacht.";
-		document.getElementById("registrant_kind").textContent = "Leeg / 'org' / 'individual' (Voor continuïteit: levenstestament + testament + digitale executeur)";
+		document.getElementById("registrant_kind").textContent = "Leeg / 'individual' / 'org' (Voor continuïteit: levenstestament + testament + digitale executeur)";
 		document.getElementById("registrant_name").textContent = "Een persoonlijke naam kan openbaar zichtbaar zijn in het veld 'presented_name'. Zie bijvoorbeeld cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Biedt een contactendpoint, mogelijk professioneel beheerd, om de registrant te bereiken.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2 landcode van vestiging; standaard rechtsmacht tenzij overschreven door wet of beleid.";
@@ -483,7 +483,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'The usual value is "work", or possibly "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "The legal name of the organization primarily responsible for the domain subscription.";
 		document.getElementById("registrant_presented_name").textContent = "The name of the primarily responsible person or a role within the organization is expected.";
-		document.getElementById("registrant_kind").textContent = "Empty / 'org' / 'individual' (For continuity: Living Will + Will + Digital Executor)";
+		document.getElementById("registrant_kind").textContent = "Empty / 'individual' / 'org' (For continuity: Living Will + Will + Digital Executor)";
 		document.getElementById("registrant_name").textContent = "A personal name may be publicly visible in the 'presented_name' field. See for example cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Provides a contact endpoint, potentially professionally managed, for reaching the registrant.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2 country code of establishment; default jurisdiction unless overridden by law or policy.";
@@ -580,7 +580,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'Der übliche Wert ist "work" oder möglicherweise "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "Der offizielle Name der Organisation, die hauptsächlich für das Domänenabonnement verantwortlich ist.";
 		document.getElementById("registrant_presented_name").textContent = "Erwartet wird der Name der primär verantwortlichen Person oder einer Rolle innerhalb der Organisation.";
-		document.getElementById("registrant_kind").textContent = "Leer / 'org' / 'individual' (Für Kontinuität: Patientenverfügung + Testament + digitaler Testamentsvollstrecker)";
+		document.getElementById("registrant_kind").textContent = "Leer / 'individual' / 'org' (Für Kontinuität: Patientenverfügung + Testament + digitaler Testamentsvollstrecker)";
 		document.getElementById("registrant_name").textContent = "Ein Personenname kann im Feld 'presented_name' öffentlich sichtbar sei. Siehe beispielsweise cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Stellt einen Kontaktendpunkt bereit, möglicherweise professionell verwaltet, um den Registranten zu erreichen.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2-Ländercode der Niederlassung; Standard-Gerichtsstand, sofern nicht durch Recht oder Richtlinien ersetzt.";
@@ -677,7 +677,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'La valeur habituelle est "work", ou éventuellement "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "Le nom légal de l'organisation principalement responsable de l'abonnement au domaine.";
 		document.getElementById("registrant_presented_name").textContent = "Le nom de la personne principalement responsable ou d’un rôle au sein de l’organisation est attendu.";
-		document.getElementById("registrant_kind").textContent = "Vide / 'org' / 'individual' (Pour la continuité : testament biologique + testament + exécuteur testamentaire numérique)";
+		document.getElementById("registrant_kind").textContent = "Vide / 'individual' / 'org' (Pour la continuité : testament biologique + testament + exécuteur testamentaire numérique)";
 		document.getElementById("registrant_name").textContent = "Un nom personnel peut être visible publiquement dans le champ 'presented_name'. Voir, par exemple, cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Fournit un point de contact, potentiellement géré professionnellement, pour joindre le titulaire.";
 		document.getElementById("registrant_country_code").textContent = "Code pays ISO-2 de l’établissement ; juridiction par défaut sauf dérogation par la loi ou la politique.";
@@ -958,27 +958,27 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="404" style="display:none"><td>registrant_organization_type</td><td>'.$data[$pd]['registry']['registrant']['organization_type'].'</td><td id="registrant_organization_type"></td><td>'.$data[$pd]['registrar']['registrant']['organization_type'].'</td></tr>';
 	$html_text .= '<tr><td>registrant_organization_name</td><td>'.$data[$pd]['registry']['registrant']['organization_name'].'</td><td id="registrant_organization_name"></td><td>'.$data[$pd]['registrar']['registrant']['organization_name'].'</td></tr>';
 	$html_text .= '<tr><td>registrant_presented_name (formatted name)</td><td>'.$data[$pd]['registry']['registrant']['presented_name'].'</td><td id="registrant_presented_name"></td><td>'.$data[$pd]['registrar']['registrant']['presented_name'].'</td></tr>';
-	$html_text .= '<tr id="405" style="display:none"><td>registrant_kind</td><td>'.$data[$pd]['registry']['registrant']['kind'].'</td><td id="registrant_kind"></td><td>'.$data[$pd]['registrar']['registrant']['kind'].'</td></tr>';
-	$html_text .= '<tr id="406" style="display:none"><td>registrant_name</td><td>'.$data[$pd]['registry']['registrant']['name'].'</td><td id="registrant_name"></td><td>'.$data[$pd]['registrar']['registrant']['name'].'</td></tr>';
+	$html_text .= '<tr><td>registrant_kind</td><td>'.$data[$pd]['registry']['registrant']['kind'].'</td><td id="registrant_kind"></td><td>'.$data[$pd]['registrar']['registrant']['kind'].'</td></tr>';
+	$html_text .= '<tr id="405" style="display:none"><td>registrant_name</td><td>'.$data[$pd]['registry']['registrant']['name'].'</td><td id="registrant_name"></td><td>'.$data[$pd]['registrar']['registrant']['name'].'</td></tr>';
 	$html_text .= '<tr><td>registrant_email</td><td>'.$data[$pd]['registry']['registrant']['email'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['email'].'</td></tr>';
 	$html_text .= '<tr><td>registrant_contact_uri</td><td>'.$data[$pd]['registry']['registrant']['contact_uri'].'</td><td id="registrant_contact_uri"></td><td>'.$data[$pd]['registrar']['registrant']['contact_uri'].'</td></tr>';
-	$html_text .= '<tr id="407" style="display:none"><td>registrant_phone</td><td>'.$data[$pd]['registry']['registrant']['phone'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['phone'].'</td></tr>';
+	$html_text .= '<tr id="406" style="display:none"><td>registrant_phone</td><td>'.$data[$pd]['registry']['registrant']['phone'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['phone'].'</td></tr>';
 	$html_text .= '<tr><td>registrant_country_code (<a style="font-size: 0.9rem" href="https://icann-hamster.nl/ham/soac/ccnso/techday/icann80/2.%20RDAP%20Conformance%20Tool%20-%20Tech%20Day.pdf" target="_blank">"cc"</a>, establishment)</td><td>'.$data[$pd]['registry']['registrant']['country_code'].'</td><td id="registrant_country_code"></td><td>'.$data[$pd]['registrar']['registrant']['country_code'].'</td></tr>';
-	$html_text .= '<tr id="408" style="display:none"><td>registrant_street_address</td><td>'.$data[$pd]['registry']['registrant']['street_address'].'</td><td id="registrant_street_address"></td><td>'.$data[$pd]['registrar']['registrant']['street_address'].'</td></tr>';
-	$html_text .= '<tr id="409" style="display:none"><td>registrant_city</td><td>'.$data[$pd]['registry']['registrant']['city'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['city'].'</td></tr>';
-	$html_text .= '<tr id="4010" style="display:none"><td>registrant_state_or_province</td><td>'.$data[$pd]['registry']['registrant']['state_or_province'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['state_or_province'].'</td></tr>';
-	$html_text .= '<tr id="4011" style="display:none"><td>registrant_postal_code</td><td>'.$data[$pd]['registry']['registrant']['postal_code'].'</td><td id="registrant_postal_code"></td><td>'.$data[$pd]['registrar']['registrant']['postal_code'].'</td></tr>';
-	$html_text .= '<tr id="4012" style="display:none"><td>registrant_country_name'.if_filled($data[$pd]['registry']['registrant']['country_name']).'</td><td>'.$data[$pd]['registry']['registrant']['country_name'].'</td><td id="registrant_country_name"></td><td>'.$data[$pd]['registrar']['registrant']['country_name'].'</td></tr>';
-	$html_text .= '<tr id="4013" style="display:none"><td>registrant_preferred_languages</td><td>'.$data[$pd]['registry']['registrant']['preferred_languages'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['preferred_languages'].'</td></tr>';
-	$html_text .= '<tr id="4014" style="display:none"><td>registrant_statuses</td><td>'.$data[$pd]['registry']['registrant']['statuses'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['statuses'].'</td></tr>';
-	$html_text .= '<tr id="4015" style="display:none"><td>registrant_created_at</td><td>'.$data[$pd]['registry']['registrant']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['created_at'].'</td></tr>';
-	$html_text .= '<tr id="4016" style="display:none"><td>registrant_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['registrant']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['latest_data_mutation_at'].'</td></tr>';
-	$html_text .= '<tr id="4017" style="display:none"><td>registrant_identifier_received_at</td><td>'.$data[$pd]['registry']['registrant']['identifier_received_at'].'</td><td id="registrant_identifier_received_at"></td><td>'.$data[$pd]['registrar']['registrant']['identifier_received_at'].'</td></tr>';
-	$html_text .= '<tr id="4018" style="display:none"><td>registrant_verification_completed_at</td><td>'.$data[$pd]['registry']['registrant']['verification_completed_at'].'</td><td id="registrant_verification_completed_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_completed_at'].'</td></tr>';
-	$html_text .= '<tr id="4019" style="display:none"><td>registrant_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrant']['verification_revoked_at'].'</td><td id="registrant_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_revoked_at'].'</td></tr>';
-	$html_text .= '<tr id="4020" style="display:none"><td>registrant_remarks</td><td>'.$data[$pd]['registry']['registrant']['remarks'].'</td><td id="registrant_remarks"></td><td>'.$data[$pd]['registrar']['registrant']['remarks'].'</td></tr>';
-	$html_text .= '<tr id="4021" style="display:none"><td>registrant_links</td><td colspan="2">'.$data[$pd]['registry']['registrant']['links'].'</td><td>'.$data[$pd]['registrar']['registrant']['links'].'</td></tr>';
-	$html_text .= '<tr id="4022" style="display:none"><td>registrant_data_uri</td><td>'.$data[$pd]['registry']['registrant']['data_uri'].'</td><td id="registrant_data_uri"></td><td>'.$data[$pd]['registrar']['registrant']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="407" style="display:none"><td>registrant_street_address</td><td>'.$data[$pd]['registry']['registrant']['street_address'].'</td><td id="registrant_street_address"></td><td>'.$data[$pd]['registrar']['registrant']['street_address'].'</td></tr>';
+	$html_text .= '<tr id="408" style="display:none"><td>registrant_city</td><td>'.$data[$pd]['registry']['registrant']['city'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['city'].'</td></tr>';
+	$html_text .= '<tr id="409" style="display:none"><td>registrant_state_or_province</td><td>'.$data[$pd]['registry']['registrant']['state_or_province'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['state_or_province'].'</td></tr>';
+	$html_text .= '<tr id="4010" style="display:none"><td>registrant_postal_code</td><td>'.$data[$pd]['registry']['registrant']['postal_code'].'</td><td id="registrant_postal_code"></td><td>'.$data[$pd]['registrar']['registrant']['postal_code'].'</td></tr>';
+	$html_text .= '<tr id="4011" style="display:none"><td>registrant_country_name'.if_filled($data[$pd]['registry']['registrant']['country_name']).'</td><td>'.$data[$pd]['registry']['registrant']['country_name'].'</td><td id="registrant_country_name"></td><td>'.$data[$pd]['registrar']['registrant']['country_name'].'</td></tr>';
+	$html_text .= '<tr id="4012" style="display:none"><td>registrant_preferred_languages</td><td>'.$data[$pd]['registry']['registrant']['preferred_languages'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['preferred_languages'].'</td></tr>';
+	$html_text .= '<tr id="4013" style="display:none"><td>registrant_statuses</td><td>'.$data[$pd]['registry']['registrant']['statuses'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['statuses'].'</td></tr>';
+	$html_text .= '<tr id="4014" style="display:none"><td>registrant_created_at</td><td>'.$data[$pd]['registry']['registrant']['created_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['created_at'].'</td></tr>';
+	$html_text .= '<tr id="4015" style="display:none"><td>registrant_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['registrant']['latest_data_mutation_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['latest_data_mutation_at'].'</td></tr>';
+	$html_text .= '<tr id="4016" style="display:none"><td>registrant_identifier_received_at</td><td>'.$data[$pd]['registry']['registrant']['identifier_received_at'].'</td><td id="registrant_identifier_received_at"></td><td>'.$data[$pd]['registrar']['registrant']['identifier_received_at'].'</td></tr>';
+	$html_text .= '<tr id="4017" style="display:none"><td>registrant_verification_completed_at</td><td>'.$data[$pd]['registry']['registrant']['verification_completed_at'].'</td><td id="registrant_verification_completed_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_completed_at'].'</td></tr>';
+	$html_text .= '<tr id="4018" style="display:none"><td>registrant_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrant']['verification_revoked_at'].'</td><td id="registrant_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_revoked_at'].'</td></tr>';
+	$html_text .= '<tr id="4019" style="display:none"><td>registrant_remarks</td><td>'.$data[$pd]['registry']['registrant']['remarks'].'</td><td id="registrant_remarks"></td><td>'.$data[$pd]['registrar']['registrant']['remarks'].'</td></tr>';
+	$html_text .= '<tr id="4020" style="display:none"><td>registrant_links</td><td colspan="2">'.$data[$pd]['registry']['registrant']['links'].'</td><td>'.$data[$pd]['registrar']['registrant']['links'].'</td></tr>';
+	$html_text .= '<tr id="4021" style="display:none"><td>registrant_data_uri</td><td>'.$data[$pd]['registry']['registrant']['data_uri'].'</td><td id="registrant_data_uri"></td><td>'.$data[$pd]['registrar']['registrant']['data_uri'].'</td></tr>';	
 	$html_text .= '<tr id="152" style="display:none"><td colspan="2">registrant_publication_state'.$data[$pd]['registry']['registrant']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['publication_state'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(41)">Actor (On Behalf) +/-</button></td><td></td><td id="actor_part"></td><td></td></tr>';
 	$html_text .= '<tr id="411" style="display:none"><td>actor_tld_global_handle</td><td>'.$data[$pd]['registry']['actor']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['tld_global_handle'].'</td></tr>';
