@@ -167,7 +167,7 @@ const publication_state = `Legacy Limitations
 3. Relationship responsibility order is not inherent in the RDAP JSON representation.
 4. Contact endpoints may be represented in email fields even when the value is not an email address, resulting in ambiguous semantics and reduced interoperability.
 5. Registry and registrar RDAP are distinct; the "Server policy" notice lacks source identification.
-6. The legacy subject-level hyperlinks may not consistently express relationship-specific data visibility.
+6. The legacy subject-level hyperlinks may diverge from relationship-specific data visibility.
 
 Model Principles
 Inclusion of publication details depends on an RDAP service's data structure and representation choices.
@@ -386,7 +386,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'De gebruikelijke waarde is "work", of mogelijk "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "De juridische naam van de organisatie die primair verantwoordelijk is voor het domeinabonnement.";
 		document.getElementById("registrant_presented_name").textContent = "De naam van de primair verantwoordelijke persoon of een rol binnen de organisatie wordt verwacht.";
-		document.getElementById("registrant_kind").textContent = "Leeg / 'individual' / 'org' (Voor continuïteit: levenstestament + testament + digitale executeur)";
+		document.getElementById("registrant_kind").textContent = "Inzake continuïteit: Empty / 'individual' / 'group' / 'org' / 'location' / 'application' / 'device'";
 		document.getElementById("registrant_name").textContent = "Een persoonlijke naam kan openbaar zichtbaar zijn in het veld 'presented_name'. Zie bijvoorbeeld cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Biedt een contactendpoint, mogelijk professioneel beheerd, om de registrant te bereiken.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2 landcode van vestiging; standaard rechtsmacht tenzij overschreven door wet of beleid.";
@@ -483,7 +483,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'The usual value is "work", or possibly "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "The legal name of the organization primarily responsible for the domain subscription.";
 		document.getElementById("registrant_presented_name").textContent = "The name of the primarily responsible person or a role within the organization is expected.";
-		document.getElementById("registrant_kind").textContent = "Empty / 'individual' / 'org' (For continuity: Living Will + Will + Digital Executor)";
+		document.getElementById("registrant_kind").textContent = "Regarding continuity: Empty / 'individual' / 'group' / 'org' / 'location' / 'application' / 'device'";
 		document.getElementById("registrant_name").textContent = "A personal name may be publicly visible in the 'presented_name' field. See for example cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Provides a contact endpoint, potentially professionally managed, for reaching the registrant.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2 country code of establishment; default jurisdiction unless overridden by law or policy.";
@@ -580,7 +580,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'Der übliche Wert ist "work" oder möglicherweise "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "Der offizielle Name der Organisation, die hauptsächlich für das Domänenabonnement verantwortlich ist.";
 		document.getElementById("registrant_presented_name").textContent = "Erwartet wird der Name der primär verantwortlichen Person oder einer Rolle innerhalb der Organisation.";
-		document.getElementById("registrant_kind").textContent = "Leer / 'individual' / 'org' (Für Kontinuität: Patientenverfügung + Testament + digitaler Testamentsvollstrecker)";
+		document.getElementById("registrant_kind").textContent = "Hinsichtlich der Kontinuität: Empty / 'individual' / 'group' / 'org' / 'location' / 'application' / 'device'";
 		document.getElementById("registrant_name").textContent = "Ein Personenname kann im Feld 'presented_name' öffentlich sichtbar sei. Siehe beispielsweise cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Stellt einen Kontaktendpunkt bereit, möglicherweise professionell verwaltet, um den Registranten zu erreichen.";
 		document.getElementById("registrant_country_code").textContent = "ISO-2-Ländercode der Niederlassung; Standard-Gerichtsstand, sofern nicht durch Recht oder Richtlinien ersetzt.";
@@ -677,7 +677,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_organization_type").textContent = 'La valeur habituelle est "work", ou éventuellement "work", "headquarters".';
 		document.getElementById("registrant_organization_name").textContent = "Le nom légal de l'organisation principalement responsable de l'abonnement au domaine.";
 		document.getElementById("registrant_presented_name").textContent = "Le nom de la personne principalement responsable ou d’un rôle au sein de l’organisation est attendu.";
-		document.getElementById("registrant_kind").textContent = "Vide / 'individual' / 'org' (Pour la continuité : testament biologique + testament + exécuteur testamentaire numérique)";
+		document.getElementById("registrant_kind").textContent = "Concernant la continuité : Empty / 'individual' / 'group' / 'org' / 'location' / 'application' / 'device'";
 		document.getElementById("registrant_name").textContent = "Un nom personnel peut être visible publiquement dans le champ 'presented_name'. Voir, par exemple, cira.ca.";
 		document.getElementById("registrant_contact_uri").textContent = "Fournit un point de contact, potentiellement géré professionnellement, pour joindre le titulaire.";
 		document.getElementById("registrant_country_code").textContent = "Code pays ISO-2 de l’établissement ; juridiction par défaut sauf dérogation par la loi ou la politique.";
