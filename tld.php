@@ -194,7 +194,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_services_uri").textContent = proposed;		
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed;
 		document.getElementById("tld_root_data_uri").textContent = modified;
-		document.getElementById("tld_registry_data_uri").textContent = modified;
+		document.getElementById("tld_registry_data_uri").textContent = proposed;
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed;
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;
 		document.getElementById("tld_functions").textContent = proposed;
@@ -249,7 +249,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_services_uri").textContent = proposed + 'Een TLD-specifiek informatiemenu, beschikbaar onder een subdomein zoals "regmenu".';
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "Een machineleesbare gestandaardiseerde prijslijst zou de transparantie van registry-diensten ondersteunen.";
 		document.getElementById("tld_root_data_uri").textContent = modified + "Machineleesbare, informatieve root-TLD- en RDAP-gegevens.";
-		document.getElementById("tld_registry_data_uri").textContent = modified + "Machineleesbare, informatieve registry-TLD-gegevens."; 
+		document.getElementById("tld_registry_data_uri").textContent = proposed + "Machineleesbare, informatieve registry-TLD-gegevens."; 
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Beperkt gebruik. Interpretatie hangt af van TLD- en RDAP-context.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;
 		document.getElementById("tld_functions").textContent = proposed + "Een formeel functioneel aanspreekbaarheidsmodel onderscheidt juridische en gepresenteerde identiteiten.";
@@ -304,7 +304,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_services_uri").textContent = proposed + 'A TLD specific information menu, available under a subdomain such as "regmenu".';
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "A machine-readable standardized price list would support registry transparency.";
 		document.getElementById("tld_root_data_uri").textContent = modified + "Machine-readable, informative root TLD and RDAP data.";
-		document.getElementById("tld_registry_data_uri").textContent = modified + "Machine-readable, informative registry TLD data.";
+		document.getElementById("tld_registry_data_uri").textContent = proposed + "Machine-readable, informative registry TLD data.";
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Restricted use. Interpretation depends on TLD and RDAP context.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;		
 		document.getElementById("tld_functions").textContent = proposed + "A formal function addressability model distinguishes legal and presented identities.";
@@ -349,7 +349,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_part").textContent = "Top-Level Domain (TLD)";
 		document.getElementById("tld_data_active_from").textContent = proposed;
 		document.getElementById("tld_root_data_uri").textContent = modified + "Maschinenlesbare, informative Root-TLD- und RDAP-Daten.";
-		document.getElementById("tld_registry_data_uri").textContent = modified + "Maschinenlesbare, informative Registry-TLD-Daten.";
+		document.getElementById("tld_registry_data_uri").textContent = proposed + "Maschinenlesbare, informative Registry-TLD-Daten.";
 		document.getElementById("tld_category").textContent = proposed + 'Zeigt eine generische TLD (gTLD) oder eine länderspezifische TLD (ccTLD) an.';
 		document.getElementById("tld_type").textContent = proposed + 'Der TLD-Typ, z. B. gTLD, grTLD, sTLD, ccTLD, tTLD, iTLD oder geoTLD.';
 		document.getElementById("tld_ascii_name").textContent = modified;
@@ -414,7 +414,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("tld_services_uri").textContent = proposed + "Un menu d'informations spécifique au TLD, disponible sous un sous-domaine tel que 'regmenu'.";
 		document.getElementById("tld_standardized_price_list_uri").textContent = proposed + "Une liste de prix standardisée lisible par machine soutiendrait la transparence des services de registre.";
 		document.getElementById("tld_root_data_uri").textContent = modified + "Données TLD racine et RDAP lisibles par machine et informatives.";
-		document.getElementById("tld_registry_data_uri").textContent = modified + "Données TLD du registre lisibles par machine et informatives.";
+		document.getElementById("tld_registry_data_uri").textContent = proposed + "Données TLD du registre lisibles par machine et informatives.";
 		document.getElementById("tld_data_usage_policy_uri").textContent = proposed + "Utilisation restreinte. L’interprétation dépend du contexte TLD et RDAP.";
 		document.getElementById("tld_privacy_policy_uri").textContent = proposed;		
 		document.getElementById("tld_functions").textContent = proposed + "Un modèle formel d'adressabilité des fonctions distingue les identités légales et présentées.";
@@ -510,7 +510,7 @@ if (true or $pd == mb_strtolower($data[$pd]['domain']['ascii_name']) or empty($d
 	$html_text .= '<tr id="415" style="display:table-row"><td>tld_data_usage_policy_uri</td><td>'.((!empty($data[$pd]['tld']['data_usage_policy_uri'])) ? '<a href='.$data[$pd]['tld']['data_usage_policy_uri'].' target="_blank">TLD Data Usage</a>' : '').'</td><td id="tld_data_usage_policy_uri"></td><td></td></tr>';
 	$html_text .= '<tr id="416" style="display:table-row"><td>tld_privacy_policy_uri</td><td>'.((!empty($data[$pd]['tld']['privacy_policy_uri'])) ? '<a href='.$data[$pd]['tld']['privacy_policy_uri'].' target="_blank">TLD Privacy</a>' : '').'</td><td id="tld_privacy_policy_uri"></td><td></td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(42)">Functions +/-</button></td><td></td><td id="tld_functions"></td><td>data needed</td></tr>';
-	$html_text .= '<tr><td colspan="3">tld_registrant_full_name: '.$data[$pd]['tld']['registrant_full_name'].'</td><td>data replaced</td></tr>';
+	$html_text .= '<tr><td colspan="3">tld_registrant_formatted_name: '.$data[$pd]['tld']['registrant_formatted_name'].'</td><td>data replaced</td></tr>';
 	$html_text .= '<tr id="421" style="display:none;vertical-align:top"><td colspan="2">'.$data[$pd]['tld']['functions'].'</td><td></td><td></td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(44)">Accepted Workload +/-</button></td><td></td><td id="tld_accepted_workload"></td><td>data needed</td></tr>';
 	$html_text .= '<tr id="441" style="display:none;vertical-align:top"><td colspan="2">'.$data[$pd]['tld']['accepted_workload'].'</td><td></td><td></td></tr>';

@@ -73,7 +73,7 @@ $nameservers_rdap_ds_algorithm_numbers = '';
 $nameservers_rdap_ds_digest_types = '';
 $nameservers_rdap_ds_digests = '';
 $entity_registrant = -1;
-$tld_registrant_full_name = '';
+$tld_registrant_formatted_name = '';
 foreach ($obj['entities'] ?? [] as $entity_index => $entity) {
 	foreach ($entity['roles'] ?? [] as $role) {
     	if ($role === 'registrant') {
@@ -85,7 +85,7 @@ foreach ($obj['entities'] ?? [] as $entity_index => $entity) {
 if ($entity_registrant >= 0 && isset($obj['entities'][$entity_registrant]['vcardArray'][1])) {
 	foreach ($obj['entities'][$entity_registrant]['vcardArray'][1] as $vcardField) {
     	if (($vcardField[0] ?? '') === 'fn') {
-        	$tld_registrant_full_name = $vcardField[3] ?? '';
+        	$tld_registrant_formatted_name = $vcardField[3] ?? '';
     	    break;
 	    }
     }
@@ -735,7 +735,7 @@ $arr[$inputtld]['tld']['registry_data_uri'] = '';
 $arr[$inputtld]['tld']['data_usage_policy_uri'] = $tld_data_usage_policy_uri;
 $arr[$inputtld]['tld']['privacy_policy_uri'] = $tld_privacy_policy_uri;
 
-$arr[$inputtld]['tld']['registrant_full_name'] = $tld_registrant_full_name;
+$arr[$inputtld]['tld']['registrant_formatted_name'] = $tld_registrant_formatted_name;
 $arr[$inputtld]['tld']['functions'] = $tld_functions;	
 $arr[$inputtld]['tld']['accepted_workload'] = $tld_accepted_workload;
 $arr[$inputtld]['tld']['relationships'] = $tld_relationships;
