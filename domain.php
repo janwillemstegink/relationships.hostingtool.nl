@@ -1230,4 +1230,3 @@ function if_filled($inputvalue)	{
 	}
 	return ' (to be empty)';
 }
-?>

@@ -587,5 +587,4 @@ function get_block($ip) {
         }
     }
 	return (!empty($country)) ? $country . '; ' . $orgName : $orgName;	
-}	
-?>
+}

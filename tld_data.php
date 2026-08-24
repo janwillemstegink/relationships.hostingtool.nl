@@ -759,4 +759,3 @@ $arr[$inputtld]['nameservers']['rdap_ds_digests'] = $nameservers_rdap_ds_digests
 
 return $arr;
 }
-}?>

@@ -132,9 +132,10 @@ if (!empty($_GET['domain']))	{
 				$registry_rdap['metadata']['registry_domain_uri'] = $registry_rdap['metadata']['request_uri'] ?? null;
 			}
 		}
-		$dnssecInfo = getDnssecInfo($domain);
+		$dnssecInfo = getDnssecInfo($domain);		
 		$registry_rdap['measured_ds_key_tags'] = '';
 		$registry_rdap['measured_ds_algorithm_numbers'] = '';
+		$registry_rdap['measured_ds_algorithm_names'] = '';
 		$registry_rdap['measured_ds_digest_types'] = '';
 		$registry_rdap['measured_ds_digests'] = '';
 		foreach ($dnssecInfo['ds_data'] as $index => $ds) {
@@ -2259,4 +2260,3 @@ $arr['raw_rdap'] = $raw_rdap_data;
 
 return $arr;
 }
-?>
