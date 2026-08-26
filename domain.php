@@ -4,25 +4,25 @@ session_start();  // A clean, stateless environment works without a sleep comman
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
 $utc = $datetime->format('Y-m-d H:i:s');
-if (!empty($_GET["language"]))	{
-	$_GET["language"] = intval($_GET["language"]);
-	$viewlanguage = $_GET["language"];
+if (isset($_GET['language'])) {
+    $language = intval($_GET['language']);
+	$viewlanguage = in_array($language, [1, 2, 3, 4, 99], true) ? $language : 2;
 }
-if (empty($_GET["language"]))	{	
-	$browserlanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-	switch ($browserlanguage) {
-		case 'nl':
-	 		$viewlanguage = 1;
-	 		break;
-		case 'de':
-	 		$viewlanguage = 3;
-			break;
-		case 'fr':
-  			$viewlanguage = 4;
-			break;
-		default:
-   			$viewlanguage = 2;
-	}
+else {
+    $browserlanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '', 0, 2);
+    switch ($browserlanguage) {
+        case 'nl':
+            $viewlanguage = 1;
+            break;
+        case 'de':
+            $viewlanguage = 3;
+            break;
+        case 'fr':
+            $viewlanguage = 4;
+            break;
+        default:
+            $viewlanguage = 2;
+    }
 }
 if (!empty(trim($_GET['domain'])))	{
 	$_GET["domain"] = trim($_GET['domain']);
