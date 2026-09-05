@@ -5,8 +5,8 @@
 //$_GET['tld'] = 'vermögensberater';
 
 if (!empty($_GET['tld']))	{
-	if (strlen($_GET['tld']))	{
-		$tld = mb_strtolower($_GET['tld']);
+	if (strlen(trim($_GET['tld'])))	{
+		$tld = mb_strtolower(trim($_GET['tld']));
 		$tld = str_replace('http://','', $tld);
 		$tld = str_replace('https://','', $tld);
 		if (substr_count($tld, '.') > 1)	{

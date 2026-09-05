@@ -4,7 +4,7 @@ session_start();  // A clean, stateless environment works without a sleep comman
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
 $utc = $datetime->format('Y-m-d H:i:s');
-if (isset($_GET['language'])) {
+if (!empty($_GET['language'])) {
     $language = intval($_GET['language']);
 	$viewlanguage = in_array($language, [1, 2, 3, 4, 99], true) ? $language : 2;
 }
@@ -24,7 +24,7 @@ else {
             $viewlanguage = 2;
     }
 }
-if (!empty(trim($_GET['domain'])))	{
+if (!empty($_GET['domain']))	{
 	$_GET["domain"] = trim($_GET['domain']);
 	$_GET["domain"] = str_replace("'", "", $_GET["domain"]);
 	$vd = mb_strtolower($_GET["domain"]);
@@ -732,7 +732,7 @@ $server_uri = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !
 $server_uri .= '://'. $_SERVER['HTTP_HOST'];
 $server_uri .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);	
 $server_uri = dirname($server_uri);
-$rdap_uri = $server_uri.'/domain_data/index.php?batch=0&domain='.$pd;
+$rdap_uri = $server_uri.'/domain_data/index.php?main=0&domain='.$pd;
 $context = stream_context_create([
   'http' => [
     'method'           => 'GET',
@@ -768,7 +768,7 @@ $raw_whois = $server_uri.'/domain_whois/index.php?language='.$viewlanguage.'&dom
 if	(is_null($data))	{
 	$view_tld_uri = '';
 	$raw_whois = '';
-	$reopen = $server_uri.'/domain/index.php?batch=0&domain=domain';
+	$reopen = $server_uri.'/domain/index.php?main=0&domain=domain';
 	sc_redir($reopen);
 }
 //$data[$pd]['registry']['metadata']['registry_tld_uri'] = 'https://rdap.publicinterestregistry.org/rdap/domain/hostingtool.org';

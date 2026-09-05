@@ -4,7 +4,7 @@ session_start();  // is needed with no PHP Generator Scriptcase
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
 $utc = $datetime->format('Y-m-d H:i:s');
-if (isset($_GET['language'])) {
+if (!empty($_GET['language'])) {
     $language = intval($_GET['language']);
 	$viewlanguage = in_array($language, [1, 2, 3, 4, 99], true) ? $language : 2;
 }
@@ -24,8 +24,8 @@ else {
             $viewlanguage = 2;
     }
 }
-if (!empty(trim($_GET['tld'])))	{
-	$_GET["tld"] = trim($_GET['tld']);
+if (!empty($_GET['tld'])) {
+    $_GET['tld'] = trim($_GET['tld']);
 	$_GET["tld"] = str_replace("'", "", $_GET["tld"]);
 	$vd = mb_strtolower($_GET["tld"]);
 	$vd = str_replace('http://','', $vd);

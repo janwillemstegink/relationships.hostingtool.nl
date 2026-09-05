@@ -15,14 +15,15 @@
 //$_GET['domain'] = 'internet.nl';
 //$_GET['domain'] = 'nic.vermögensberater';
 //$_GET['domain'] = 'teamblue.domains';
+//$_GET['domain'] = 'zeven-sprong.nl';
 
-if (!empty($_GET['domain']))	{
-	if (strlen($_GET['domain']))	{
-		$domain = $_GET['domain'];
-		$batch = 0;
-		if (isset($_GET['batch']) && trim($_GET['batch']) === '1') {
-		    $batch = 1;
-		}
+if (!empty($_GET['domain'])) {
+    if (strlen(trim($_GET['domain']))) {
+        $domain = trim($_GET['domain']);
+        $main = 0;
+        if (isset($_GET['main']) && trim($_GET['main']) === '1') {
+            $main = 1;
+		}	
 		$domain = mb_strtolower($domain);
 		$domain = str_replace('http://','', $domain);
 		$domain = str_replace('https://','', $domain);
@@ -51,7 +52,7 @@ if (!empty($_GET['domain']))	{
 			$tld_ascii_name = 'tld';
         }
 		$registry_rdap = [];
-		$registry_rdap = write_file($tld_ascii_name, $domain_ascii_name, $batch, '');
+		$registry_rdap = write_file($tld_ascii_name, $domain_ascii_name, $main, '');
 		$registry_interface = $registry_rdap['interface_notice'] ?? '';
 		$registry_rdap['metadata']['tld_unicode_name'] = $tld_unicode_name ?? null;
 		$registry_rdap['metadata']['tld_ascii_name'] = $tld_ascii_name ?? null;
@@ -83,7 +84,7 @@ if (!empty($_GET['domain']))	{
 				if (!empty($registry_self_uri) and strcasecmp($registry_related_uri, $registry_self_uri) === 0)	{	
 				}	
 				elseif (!empty($registry_related_uri)) {
-       				$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $batch, $registry_related_uri);
+       				$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $main, $registry_related_uri);
 					$registrar_interface = $registrar_rdap['interface_notice'] ?? '';
 					$registry_rdap['metadata']['registrar_domain_uri'] = $registry_related_uri;
 					$registrar_rdap['metadata']['rdap_data_layer'] = 'registrar_rdap';
@@ -98,7 +99,7 @@ if (!empty($_GET['domain']))	{
 		    			if ($base_url) {
 							$registrar_uri = rtrim($base_url, '/') . '/domain/' . rawurlencode($domain);
 							$registry_rdap['metadata']['registrar_domain_uri'] = $registrar_uri;
-       						$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $batch, $registrar_uri);
+       						$registrar_rdap = write_file($tld_ascii_name, $domain_ascii_name, $main, $registrar_uri);
 							$registrar_interface = $registrar_rdap['interface_notice'] ?? '';
 							$registrar_statuses = $registrar_rdap['domain']['statuses'] ?? null;
 							if (!empty($registrar_statuses)) {						
@@ -734,7 +735,7 @@ function getConformanceGroup($value) {
     return 999;
 }
 
-function write_file($inputtld, $inputdomain, $inputbatch, $inputurl) {
+function write_file($inputtld, $inputdomain, $inputmain, $inputurl) {
 
     $arr = array();
     $arr['interface_notice'] = "";
@@ -2031,7 +2032,7 @@ foreach($obj as $key1 => $value1) {
 	}
 }	
 
-if ($inputbatch)	{
+if ($inputmain)	{
 	$raw_rdap_data = '';
 }
 	
