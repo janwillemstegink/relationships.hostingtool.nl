@@ -400,7 +400,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "De verificatie van de subjectidentificatie kan worden ingetrokken.";
 		document.getElementById("registrant_remarks").textContent = "Meer informatie. Zie bijvoorbeeld france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
-		document.getElementById("actor_part").textContent = proposed + "Handelt namens de registrant en opereert volgens de vereisten van de registrant.";
+		document.getElementById("actor_part").textContent = proposed + "Handelt namens de registrant (bijv. een organisatie onder .gov.nl).";
 		document.getElementById("request_handling_part").textContent = modified + "Behandelt binnenkomende verzoeken en stuurt deze indien nodig door naar de juiste partij.";
 		document.getElementById("request_handling_subject_identifier").textContent = proposed;
 		document.getElementById("issue_reporting_part").textContent = modified + "Ontvangt en behandelt meldingen van DNS-problemen.";
@@ -498,7 +498,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "The verification of the subject identifier can be revoked.";
 		document.getElementById("registrant_remarks").textContent = "More information. See for example france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
-		document.getElementById("actor_part").textContent = proposed + "Acts on behalf of the registrant and operates in accordance with the registrant’s requirements.";
+		document.getElementById("actor_part").textContent = proposed + "Acts on behalf of the registrant (e.g. an organization under .gov.nl).";
 		document.getElementById("request_handling_part").textContent = modified + "Handles incoming requests and forwards them to the appropriate party when necessary.";
 		document.getElementById("request_handling_subject_identifier").textContent = proposed;
 		document.getElementById("issue_reporting_part").textContent = modified + "Receives and handles DNS issue reports.";
@@ -596,7 +596,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "Die Verifizierung der Subjektkennung kann widerrufen werden.";
 		document.getElementById("registrant_remarks").textContent = "Weitere Informationen. Siehe beispielsweise france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
-		document.getElementById("actor_part").textContent = proposed + "Handelt im Auftrag des Registranten und agiert gemäß dessen Anforderungen.";
+		document.getElementById("actor_part").textContent = proposed + "Handelt im Namen des Registranten (z. B. eine Organisation unter .gov.nl).";
 		document.getElementById("request_handling_part").textContent = modified + "Bearbeitet eingehende Anfragen und leitet sie bei Bedarf an die zuständige Stelle weiter.";
 		document.getElementById("request_handling_subject_identifier").textContent = proposed;
 		document.getElementById("issue_reporting_part").textContent = modified + "Nimmt Meldungen zu DNS-Problemen entgegen und bearbeitet diese.";
@@ -694,7 +694,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("registrant_verification_revoked_at").textContent = proposed + "La vérification de l'identifiant du sujet peut être révoquée.";
 		document.getElementById("registrant_remarks").textContent = "Plus d'informations. Voir, par exemple, france.fr.";
 		document.getElementById("registrant_data_uri").textContent = proposed;
-		document.getElementById("actor_part").textContent = proposed + "Agit pour le compte du titulaire et opère conformément à ses exigences.";
+		document.getElementById("actor_part").textContent = proposed + "Agit au nom du titulaire (p. ex. une organisation sous .gov.nl).";
 		document.getElementById("request_handling_part").textContent = modified + "Traite les demandes reçues et les transmet à la partie compétente si nécessaire.";
 		document.getElementById("request_handling_subject_identifier").textContent = proposed;
 		document.getElementById("issue_reporting_part").textContent = modified + "Reçoit et traite les signalements de problèmes DNS.";
