@@ -51,8 +51,7 @@ CREATE TABLE IF NOT EXISTS domains (
     domain_source_handle TEXT,
     domain_ascii_name VARCHAR(511) NOT NULL,
     domain_unicode_name VARCHAR(511) NOT NULL,
-    domain_registration_depth SMALLINT
-        CHECK (domain_registration_depth >= 0),
+    domain_registration_depth SMALLINT,
     domain_statuses TEXT[],
 	domain_policy_statuses TEXT[],
 	domain_dns_state TEXT[],
