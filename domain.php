@@ -268,7 +268,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "";
 		document.getElementById("domain_ascii_name").textContent = "";
 		document.getElementById("domain_unicode_name").textContent = "";
-		document.getElementById("domain_registration_depth").textContent = "";
+		document.getElementById("domain_subdomains").textContent = "";
 		document.getElementById("domain_statuses").textContent = legacy;
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed;
@@ -366,7 +366,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Een domein onder TLD-niveau is wereldwijd uniek en kan vrij worden gekozen onder bepaalde regels.";
 		document.getElementById("domain_ascii_name").textContent = "Voor speciale tekens bevatten de ASCII-tekenreeksen Punycode-transcriptie.";
 		document.getElementById("domain_unicode_name").textContent = "Optioneel veld dat, indien van toepassing, de Unicode-weergave van het domein biedt.";
-		document.getElementById("domain_registration_depth").textContent = proposed + "Aantal registratieniveaus onder dit domein (bijv. .gov.nl: 1).";
+		document.getElementById("domain_subdomains").textContent = proposed + "Registratie met subdomeinen onder dit domein (bijv. .gov.nl: true).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 zelf garandeert niet of status van registry, registrar, of lifecycle is — elimineerbaar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Gemodelleerde DNS-resolutiestatussen: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -464,7 +464,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "A domain below TLD level is globally unique and can be freely chosen under certain rules.";
 		document.getElementById("domain_ascii_name").textContent = "For special characters, the ASCII character strings contain Punycode transcription.";
 		document.getElementById("domain_unicode_name").textContent = "Optional field that provides the Unicode representation of the domain, if applicable.";
-		document.getElementById("domain_registration_depth").textContent = proposed + "Number of registration levels below this domain (e.g. .gov.nl: 1).";
+		document.getElementById("domain_subdomains").textContent = proposed + "Registration with subdomains under this domain (e.g. .gov.nl: true).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 itself doesn’t guarantee showing if status is registry, registrar, or lifecycle — eliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modeled DNS resolution states: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -562,7 +562,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Eine Domain unterhalb der TLD-Ebene ist weltweit eindeutig und kann unter bestimmten Regeln frei gewählt werden.";
 		document.getElementById("domain_ascii_name").textContent = "Für Sonderzeichen enthalten die ASCII-Zeichenfolgen eine Punycode-Transkription.";
 		document.getElementById("domain_unicode_name").textContent = "Optionales Feld, das gegebenenfalls die Unicode-Darstellung der Domäne bereitstellt.";
-		document.getElementById("domain_registration_depth").textContent = proposed + "Anzahl der Registrierungsebenen unter dieser Domain (z. B. .gov.nl: 1).";
+		document.getElementById("domain_subdomains").textContent = proposed + "Registrierung mit Subdomains unter dieser Domain (z. B. .gov.nl: true).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 garantiert nicht, ob Status von Registry, Registrar, oder Lifecycle stammt — eliminierbar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modellierte DNS-Auflösungszustände: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -660,7 +660,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Un domaine inférieur au niveau TLD est unique au monde et peut être choisi librement selon certaines règles.";
 		document.getElementById("domain_ascii_name").textContent = "Pour les caractères spéciaux, les chaînes de caractères ASCII contiennent une transcription Punycode.";
 		document.getElementById("domain_unicode_name").textContent = "Champ facultatif qui fournit la représentation Unicode du domaine, le cas échéant.";
-		document.getElementById("domain_registration_depth").textContent = proposed + "Nombre de niveaux d’enregistrement sous ce domaine (p. ex. .gov.nl : 1).";
+		document.getElementById("domain_subdomains").textContent = proposed + "Enregistrement avec des sous-domaines sous ce domaine (p. ex. .gov.nl : true).";
 		document.getElementById("domain_statuses").textContent = legacy + "Les statuts ne garantissent pas que RDAPv1 indique registre, registrar, ou cycle — éliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "États de résolution DNS modélisés : dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -830,7 +830,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="302" style="display:none"><td>domain_source_handle</td><td colspan="2">'.$data[$pd]['registry']['domain']['source_handle'].'</td><td>'.$data[$pd]['registrar']['domain']['source_handle'].'</td></tr>';
 	$html_text .= '<tr id="303" style="display:none"><td>domain_ascii_name (lowercase not required)</td><td>'.$data[$pd]['registry']['domain']['ascii_name'].'</td><td id="domain_ascii_name"></td><td>'.$data[$pd]['registrar']['domain']['ascii_name'].'</td></tr>';
 	$html_text .= '<tr id="304" style="display:none"><td>domain_unicode_name</td><td>'.$data[$pd]['registry']['domain']['unicode_name'].'</td><td id="domain_unicode_name"></td><td>'.$data[$pd]['registrar']['domain']['unicode_name'].'</td></tr>';
-	$html_text .= '<tr id="305" style="display:none"><td>domain_registration_depth</td><td>'.$data[$pd]['registry']['domain']['registration_depth'].'</td><td id="domain_registration_depth"></td><td>'.$data[$pd]['registrar']['domain']['registration_depth'].'</td></tr>';	
+	$html_text .= '<tr id="305" style="display:none"><td>domain_subdomains</td><td>'.$data[$pd]['registry']['domain']['subdomains'].'</td><td id="domain_subdomains"></td><td>'.$data[$pd]['registrar']['domain']['subdomains'].'</td></tr>';	
 	$domain_statuses = (!empty($data[$pd]['registry']['domain']['statuses'])) ? $data[$pd]['registry']['domain']['statuses'] : '';
 	$domain_statuses = str_replace('excluded','<br />excluded (without DNS no email protection)', $domain_statuses);
 	$domain_statuses = str_replace('locked','<br />locked (ambiguous RDAP use)', $domain_statuses);
