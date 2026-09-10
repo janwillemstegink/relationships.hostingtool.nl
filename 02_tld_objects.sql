@@ -5,7 +5,7 @@
    Tables:
      - tld_categories, tld_types
      - root             	 : global registry settings (functions, statuses, periods)
-     - tlds                  : public suffix / TLD entries (with functions & workload)
+     - tlds                  : DNS root-zone TLD entries (with functions & workload)
 	 - function_subjects     : subject functions
      - lifecycles            : TLD lifecycle policy snapshots
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS root (
 );
 
 -- ========================================
--- Table: tlds (TLDs / public suffixes)
+-- Table: tlds (DNS root-zone TLDs)
 -- ========================================
 CREATE TABLE IF NOT EXISTS tlds (
     tld_id SERIAL PRIMARY KEY,
@@ -197,33 +197,32 @@ FOR EACH ROW
 EXECUTE FUNCTION update_tld_latest_update_at();
 
 -- Function: get_matching_tld_ascii_name(domain_name)
--- Returns the best matching tld_ascii_name for a given domain name.
+-- Returns the active DNS root-zone TLD matching the final label of a domain name.
 CREATE OR REPLACE FUNCTION get_matching_tld_ascii_name(domain_name TEXT)
 RETURNS VARCHAR AS $$
 DECLARE
-    suffix TEXT;
-    parts TEXT[];
-    i INT;
+    requested_tld TEXT;
     match_tld_ascii_name VARCHAR;
 BEGIN
-    parts := string_to_array(lower(domain_name), '.');
+    IF domain_name IS NULL OR btrim(domain_name) = '' THEN
+        RETURN NULL;
+    END IF;
 
-    FOR i IN REVERSE array_lower(parts, 1)..array_upper(parts, 1) LOOP
-        suffix := array_to_string(parts[i:array_upper(parts, 1)], '.');
+    requested_tld := lower(split_part(rtrim(btrim(domain_name), '.'), '.', -1));
 
-        SELECT tld_ascii_name INTO match_tld_ascii_name
-        FROM tlds
-        WHERE tld_ascii_name = suffix
-          AND (tld_data_active_from IS NULL
-               OR (tld_data_active_from AT TIME ZONE 'UTC') <= (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'))
-        ORDER BY tld_data_active_from DESC NULLS LAST
-        LIMIT 1;
+    IF requested_tld = '' THEN
+        RETURN NULL;
+    END IF;
 
-        IF match_tld_ascii_name IS NOT NULL THEN
-            RETURN match_tld_ascii_name;
-        END IF;
-    END LOOP;
-    RETURN NULL;
+    SELECT tld_ascii_name INTO match_tld_ascii_name
+    FROM tlds
+    WHERE tld_ascii_name = requested_tld
+      AND (tld_data_active_from IS NULL
+           OR (tld_data_active_from AT TIME ZONE 'UTC') <= (CURRENT_TIMESTAMP AT TIME ZONE 'UTC'))
+    ORDER BY tld_data_active_from DESC NULLS LAST
+    LIMIT 1;
+
+    RETURN match_tld_ascii_name;
 END;
 $$ LANGUAGE plpgsql;
 

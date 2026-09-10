@@ -88,7 +88,7 @@ function SwitchDisplay(type) {
 	}
 	else if (type == 30)	{ // domain properties
 		var pre = '30';
-		var max = 24
+		var max = 25
 	}
 	else if (type == 39)	{ // sponsor
 		var pre = '39';
@@ -268,6 +268,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "";
 		document.getElementById("domain_ascii_name").textContent = "";
 		document.getElementById("domain_unicode_name").textContent = "";
+		document.getElementById("domain_registration_depth").textContent = "";
 		document.getElementById("domain_statuses").textContent = legacy;
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed;
@@ -365,6 +366,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Een domein onder TLD-niveau is wereldwijd uniek en kan vrij worden gekozen onder bepaalde regels.";
 		document.getElementById("domain_ascii_name").textContent = "Voor speciale tekens bevatten de ASCII-tekenreeksen Punycode-transcriptie.";
 		document.getElementById("domain_unicode_name").textContent = "Optioneel veld dat, indien van toepassing, de Unicode-weergave van het domein biedt.";
+		document.getElementById("domain_registration_depth").textContent = proposed + "Aantal registratieniveaus onder dit domein (bijv. .gov.nl: 1).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 zelf garandeert niet of status van registry, registrar, of lifecycle is — elimineerbaar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Gemodelleerde DNS-resolutiestatussen: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -462,6 +464,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "A domain below TLD level is globally unique and can be freely chosen under certain rules.";
 		document.getElementById("domain_ascii_name").textContent = "For special characters, the ASCII character strings contain Punycode transcription.";
 		document.getElementById("domain_unicode_name").textContent = "Optional field that provides the Unicode representation of the domain, if applicable.";
+		document.getElementById("domain_registration_depth").textContent = proposed + "Number of registration levels below this domain (e.g. .gov.nl: 1).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 itself doesn’t guarantee showing if status is registry, registrar, or lifecycle — eliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modeled DNS resolution states: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -559,6 +562,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Eine Domain unterhalb der TLD-Ebene ist weltweit eindeutig und kann unter bestimmten Regeln frei gewählt werden.";
 		document.getElementById("domain_ascii_name").textContent = "Für Sonderzeichen enthalten die ASCII-Zeichenfolgen eine Punycode-Transkription.";
 		document.getElementById("domain_unicode_name").textContent = "Optionales Feld, das gegebenenfalls die Unicode-Darstellung der Domäne bereitstellt.";
+		document.getElementById("domain_registration_depth").textContent = proposed + "Anzahl der Registrierungsebenen unter dieser Domain (z. B. .gov.nl: 1).";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 garantiert nicht, ob Status von Registry, Registrar, oder Lifecycle stammt — eliminierbar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modellierte DNS-Auflösungszustände: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -656,6 +660,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Un domaine inférieur au niveau TLD est unique au monde et peut être choisi librement selon certaines règles.";
 		document.getElementById("domain_ascii_name").textContent = "Pour les caractères spéciaux, les chaînes de caractères ASCII contiennent une transcription Punycode.";
 		document.getElementById("domain_unicode_name").textContent = "Champ facultatif qui fournit la représentation Unicode du domaine, le cas échéant.";
+		document.getElementById("domain_registration_depth").textContent = proposed + "Nombre de niveaux d’enregistrement sous ce domaine (p. ex. .gov.nl : 1).";
 		document.getElementById("domain_statuses").textContent = legacy + "Les statuts ne garantissent pas que RDAPv1 indique registre, registrar, ou cycle — éliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "États de résolution DNS modélisés : dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -825,6 +830,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="302" style="display:none"><td>domain_source_handle</td><td colspan="2">'.$data[$pd]['registry']['domain']['source_handle'].'</td><td>'.$data[$pd]['registrar']['domain']['source_handle'].'</td></tr>';
 	$html_text .= '<tr id="303" style="display:none"><td>domain_ascii_name (lowercase not required)</td><td>'.$data[$pd]['registry']['domain']['ascii_name'].'</td><td id="domain_ascii_name"></td><td>'.$data[$pd]['registrar']['domain']['ascii_name'].'</td></tr>';
 	$html_text .= '<tr id="304" style="display:none"><td>domain_unicode_name</td><td>'.$data[$pd]['registry']['domain']['unicode_name'].'</td><td id="domain_unicode_name"></td><td>'.$data[$pd]['registrar']['domain']['unicode_name'].'</td></tr>';
+	$html_text .= '<tr id="305" style="display:none"><td>domain_registration_depth</td><td>'.$data[$pd]['registry']['domain']['registration_depth'].'</td><td id="domain_registration_depth"></td><td>'.$data[$pd]['registrar']['domain']['registration_depth'].'</td></tr>';	
 	$domain_statuses = (!empty($data[$pd]['registry']['domain']['statuses'])) ? $data[$pd]['registry']['domain']['statuses'] : '';
 	$domain_statuses = str_replace('excluded','<br />excluded (without DNS no email protection)', $domain_statuses);
 	$domain_statuses = str_replace('locked','<br />locked (ambiguous RDAP use)', $domain_statuses);
@@ -853,50 +859,50 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 			$domain_statuses = str_replace('delete prohibited','<br />delete prohibited (ambiguous RDAP use)', $domain_statuses);
 		}
 	}	
-	$html_text .= '<tr id="305" style="display:none"><td>domain_statuses</td><td>'.$domain_statuses.'</td><td id="domain_statuses"></td><td>'.$data[$pd]['registrar']['domain']['statuses'].'</td></tr>';
-	$html_text .= '<tr id="306" style="display:none"><td>domain_policy_statuses</td><td>'.$data[$pd]['registry']['domain']['policy_statuses'].'</td><td id="domain_policy_statuses"></td><td>'.$data[$pd]['registrar']['domain']['policy_statuses'].'</td></tr>';
+	$html_text .= '<tr id="306" style="display:none"><td>domain_statuses</td><td>'.$domain_statuses.'</td><td id="domain_statuses"></td><td>'.$data[$pd]['registrar']['domain']['statuses'].'</td></tr>';
+	$html_text .= '<tr id="307" style="display:none"><td>domain_policy_statuses</td><td>'.$data[$pd]['registry']['domain']['policy_statuses'].'</td><td id="domain_policy_statuses"></td><td>'.$data[$pd]['registrar']['domain']['policy_statuses'].'</td></tr>';
 	$html_text .= '<tr><td>domain_dns_state</td><td>'.$data[$pd]['registry']['domain']['dns_state'].'</td><td id="domain_dns_state"></td><td>'.$data[$pd]['registrar']['domain']['dns_state'].'</td></tr>';
-	$html_text .= '<tr id="307" style="display:none"><td>domain_created_at</td><td>'.$data[$pd]['registry']['domain']['created_at'].'</td><td id="domain_created_at"></td><td>'.$data[$pd]['registrar']['domain']['created_at'].'</td></tr>';
-	$html_text .= '<tr id="308" style="display:none"><td>domain_latest_registrar_transfer_at</td><td>'.$data[$pd]['registry']['domain']['latest_registrar_transfer_at'].'</td><td></td><td>'.$data[$pd]['registrar']['domain']['latest_registrar_transfer_at'].'</td></tr>';		
+	$html_text .= '<tr id="308" style="display:none"><td>domain_created_at</td><td>'.$data[$pd]['registry']['domain']['created_at'].'</td><td id="domain_created_at"></td><td>'.$data[$pd]['registrar']['domain']['created_at'].'</td></tr>';
+	$html_text .= '<tr id="309" style="display:none"><td>domain_latest_registrar_transfer_at</td><td>'.$data[$pd]['registry']['domain']['latest_registrar_transfer_at'].'</td><td></td><td>'.$data[$pd]['registrar']['domain']['latest_registrar_transfer_at'].'</td></tr>';		
 	$html_text .= '<tr><td>domain_latest_data_mutation_at</td><td>'.$data[$pd]['registry']['domain']['latest_data_mutation_at'].'</td><td id="domain_latest_data_mutation_at"></td><td>'.$data[$pd]['registrar']['domain']['latest_data_mutation_at'].'</td></tr>';	
 	$html_text .= '<tr><td>domain_expiration_at</td><td>'.$data[$pd]['registry']['domain']['expiration_at'].'</td><td id="domain_expiration_at"></td><td>'.$data[$pd]['registrar']['domain']['expiration_at'].'</td></tr>';
-	$html_text .= '<tr id="309" style="display:none"><td>domain_lifecycle_phase</td><td>'.$data[$pd]['registry']['domain']['lifecycle_phase'].'</td><td id="domain_lifecycle_phase"></td><td>'.$data[$pd]['registrar']['domain']['lifecycle_phase'].'</td></tr>';
-	$html_text .= '<tr id="3010" style="display:none"><td>domain_lifecycle_phase_until</td><td>'.$data[$pd]['registry']['domain']['lifecycle_phase_until'].'</td><td id="domain_lifecycle_phase_until"></td><td>'.$data[$pd]['registrar']['domain']['lifecycle_phase_until'].'</td></tr>';
-	$html_text .= '<tr id="3011" style="display:none"><td>domain_applicable_grace</td><td>'.$data[$pd]['registry']['domain']['applicable_grace'].'</td><td id="domain_applicable_grace"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace'].'</td></tr>';
-	$html_text .= '<tr id="3012" style="display:none"><td>domain_applicable_grace_until</td><td>'.$data[$pd]['registry']['domain']['applicable_grace_until'].'</td><td id="domain_applicable_grace_until"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace_until'].'</td></tr>';
-	$html_text .= '<tr id="3013" style="display:none"><td>domain_recoverable_until</td><td>'.$data[$pd]['registry']['domain']['recoverable_until'].'</td><td id="domain_recoverable_until"></td><td>'.$data[$pd]['registrar']['domain']['recoverable_until'].'</td></tr>';
-	$html_text .= '<tr id="3014" style="display:none"><td>domain_deletion_at</td><td>'.$data[$pd]['registry']['domain']['deletion_at'].'</td><td id="domain_deletion_at"></td><td>'.$data[$pd]['registrar']['domain']['deletion_at'].'</td></tr>';
+	$html_text .= '<tr id="3010" style="display:none"><td>domain_lifecycle_phase</td><td>'.$data[$pd]['registry']['domain']['lifecycle_phase'].'</td><td id="domain_lifecycle_phase"></td><td>'.$data[$pd]['registrar']['domain']['lifecycle_phase'].'</td></tr>';
+	$html_text .= '<tr id="3011" style="display:none"><td>domain_lifecycle_phase_until</td><td>'.$data[$pd]['registry']['domain']['lifecycle_phase_until'].'</td><td id="domain_lifecycle_phase_until"></td><td>'.$data[$pd]['registrar']['domain']['lifecycle_phase_until'].'</td></tr>';
+	$html_text .= '<tr id="3012" style="display:none"><td>domain_applicable_grace</td><td>'.$data[$pd]['registry']['domain']['applicable_grace'].'</td><td id="domain_applicable_grace"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace'].'</td></tr>';
+	$html_text .= '<tr id="3013" style="display:none"><td>domain_applicable_grace_until</td><td>'.$data[$pd]['registry']['domain']['applicable_grace_until'].'</td><td id="domain_applicable_grace_until"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace_until'].'</td></tr>';
+	$html_text .= '<tr id="3014" style="display:none"><td>domain_recoverable_until</td><td>'.$data[$pd]['registry']['domain']['recoverable_until'].'</td><td id="domain_recoverable_until"></td><td>'.$data[$pd]['registrar']['domain']['recoverable_until'].'</td></tr>';
+	$html_text .= '<tr id="3015" style="display:none"><td>domain_deletion_at</td><td>'.$data[$pd]['registry']['domain']['deletion_at'].'</td><td id="domain_deletion_at"></td><td>'.$data[$pd]['registrar']['domain']['deletion_at'].'</td></tr>';
 	if (!empty($data[$pd]['registry']['domain']['statuses']))	{
 		if (!empty($data[$pd]['registry']['domain']['lifecycle_phase']))	{
 			if (str_contains($data[$pd]['registry']['domain']['lifecycle_phase'], ','))	{
-				$html_text .= '<tr id="3015" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>RDAPv2: single-value for lifecycle_phase</td><td></td><td></td></tr>';
+				$html_text .= '<tr id="3016" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>RDAPv2: single-value for lifecycle_phase</td><td></td><td></td></tr>';
 			}
 		}
 		if (str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
 			if (str_contains($data[$pd]['registry']['domain']['statuses'], 'redemption period') and str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
-				$html_text .= '<tr id="3016" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" disregards redemption grace</td><td></td><td></td></tr>';
+				$html_text .= '<tr id="3017" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" disregards redemption grace</td><td></td><td></td></tr>';
 			}	
 			elseif (!empty($data[$pd]['registry']['tld_unicode_name']))	{
 				if ($data[$pd]['registry']['tld_unicode_name'] == 'nl')	{
-					$html_text .= '<tr id="3017" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" refers to "redemption period"</td><td></td><td></td></tr>';
+					$html_text .= '<tr id="3018" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" refers to "redemption period"</td><td></td><td></td></tr>';
 				}	
 			}	
 		}
 		if (str_contains($data[$pd]['registry']['domain']['statuses'], 'redemption period') or str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
 			if (!empty($data[$pd]['registry']['domain']['dns_state']))	{
 				if ($data[$pd]['registry']['domain']['dns_state'] == 'dns_delegated')	{
-					$html_text .= '<tr id="3018" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>upon deletion, DNS publishing is not expected</td><td></td><td></td></tr>';
+					$html_text .= '<tr id="3019" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>upon deletion, DNS publishing is not expected</td><td></td><td></td></tr>';
 				}	
 			}
 		}		
 		if (str_contains($data[$pd]['registry']['domain']['statuses'], 'redemption period'))	{
 			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['deletion_at'])) {
-				$html_text .= '<tr id="3019" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"redemption" without date-time provided</td><td></td><td></td></tr>';
+				$html_text .= '<tr id="3020" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"redemption" without date-time provided</td><td></td><td></td></tr>';
 			}	
 		}
 		elseif (str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
 			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['deletion_at'])) {
-				$html_text .= '<tr id="3020" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" without date-time provided</td><td></td><td></td></tr>';
+				$html_text .= '<tr id="3021" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" without date-time provided</td><td></td><td></td></tr>';
 			}	
 		}
 	}
@@ -906,7 +912,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
     	if ($expiration !== false and $deletion !== false)	{
 			$days_before = floor(($expiration - $deletion) / (60 * 60 * 24));
 			if ($days_before > 0) {
-       			$html_text .= '<tr id="3021" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" '.$days_before.' days before "expiration_at"</td><td></td><td></td></tr>';
+       			$html_text .= '<tr id="3022" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" '.$days_before.' days before "expiration_at"</td><td></td><td></td></tr>';
 			}	
     	}
 	}
@@ -915,11 +921,11 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 		$deletion = strtotime($data[$pd]['registry']['domain']['deletion_at']);
     	if ($current !== false and $deletion !== false and $current > $deletion) {
 			$days_ago = floor(($current - $deletion) / (60 * 60 * 24));
-        	$html_text .= '<tr id="3022" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" was '.$days_ago.' days ago?</td><td></td><td></td></tr>';
+        	$html_text .= '<tr id="3023" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" was '.$days_ago.' days ago?</td><td></td><td></td></tr>';
 		}
 	}	
-	$html_text .= '<tr id="3023" style="display:none"><td>domain_extensions</td><td>'.$data[$pd]['registry']['domain']['extensions'].'</td><td id="domain_extensions"></td><td>'.$data[$pd]['registrar']['domain']['extensions'].'</td></tr>';
-	$html_text .= '<tr id="3024" style="display:none"><td>domain_remarks</td><td>'.$data[$pd]['registry']['domain']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['domain']['remarks'].'</td></tr>';
+	$html_text .= '<tr id="3024" style="display:none"><td>domain_extensions</td><td>'.$data[$pd]['registry']['domain']['extensions'].'</td><td id="domain_extensions"></td><td>'.$data[$pd]['registrar']['domain']['extensions'].'</td></tr>';
+	$html_text .= '<tr id="3025" style="display:none"><td>domain_remarks</td><td>'.$data[$pd]['registry']['domain']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['domain']['remarks'].'</td></tr>';
 	if (!empty($data[$pd]['registry']['domain']['statuses']))	{
 		$sponsor_applicable = (!empty($data[$pd]['registry']['sponsor']['organization_name']) or !empty($data[$pd]['registry']['sponsor']['presented_name'])) ? '(sponsor data exists)' : '(no sponsor data)';
 	}

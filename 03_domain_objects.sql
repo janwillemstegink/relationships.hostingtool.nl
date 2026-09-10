@@ -18,7 +18,7 @@
    Functions & Triggers:
      - update_*_latest_data_mutation_at() for several tables
      - set_domain_tld() BEFORE INSERT/UPDATE → calls
-       get_matching_tld_ascii_name() from 02_tld_objects.sql
+       get_matching_tld_ascii_name() from 02_tld_objects.sql (root-zone TLD)
 
    Run order: 4 of 4  (bootstrap → logging → TLD → domain)
    Depends on: 00_bootstrap_extensions.sql, 02_tld_objects.sql
@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS domains (
     domain_source_handle TEXT,
     domain_ascii_name VARCHAR(511) NOT NULL,
     domain_unicode_name VARCHAR(511) NOT NULL,
+    domain_registration_depth SMALLINT
+        CHECK (domain_registration_depth >= 0),
     domain_statuses TEXT[],
 	domain_policy_statuses TEXT[],
 	domain_dns_state TEXT[],
