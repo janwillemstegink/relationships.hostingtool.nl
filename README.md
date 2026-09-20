@@ -2,7 +2,7 @@
 - Business transparency must be combined with privacy of a natural person;
 - Better public understanding clears up workload for registrars;
 - The holder name, country code and contact details matter for customer protection, manageable administrative workload and an 'In Control Statement' (ICS);
-- Legal structure for domain information can arise after narrowing down physical structure first.
+- Legal structure for domain information can arise after first narrowing down the required technical structure.
 
 Domain information modeling: https://relationships.hostingtool.nl/domain/
 
