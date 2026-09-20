@@ -366,7 +366,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Een geregistreerde domein-apex is wereldwijd uniek en onderworpen aan de toepasselijke registratieregels.";
 		document.getElementById("domain_ascii_name").textContent = "Voor speciale tekens bevatten de ASCII-tekenreeksen Punycode-transcriptie.";
 		document.getElementById("domain_unicode_name").textContent = "Optioneel veld dat, indien van toepassing, de Unicode-weergave van het domein biedt.";
-		document.getElementById("domain_next_apex").textContent = proposed + "Een volgende domein-apex toegestaan onder dit domein.";
+		document.getElementById("domain_next_apex").textContent = proposed + "Een volgende domein-apex onder dit domein kan toegestaan zijn.";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 zelf garandeert niet of status van registry, registrar, of lifecycle is — elimineerbaar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Gemodelleerde DNS-resolutiestatussen: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -464,7 +464,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "A registered domain apex is globally unique and subject to the applicable registration rules.";
 		document.getElementById("domain_ascii_name").textContent = "For special characters, the ASCII character strings contain Punycode transcription.";
 		document.getElementById("domain_unicode_name").textContent = "Optional field that provides the Unicode representation of the domain, if applicable.";
-		document.getElementById("domain_next_apex").textContent = proposed + "A next domain apex allowed below this domain.";
+		document.getElementById("domain_next_apex").textContent = proposed + "A next domain apex below this domain may be allowed.";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 itself doesn’t guarantee showing if status is registry, registrar, or lifecycle — eliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modeled DNS resolution states: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -562,7 +562,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Ein registrierter Domain-Apex ist weltweit eindeutig und unterliegt den geltenden Registrierungsregeln.";
 		document.getElementById("domain_ascii_name").textContent = "Für Sonderzeichen enthalten die ASCII-Zeichenfolgen eine Punycode-Transkription.";
 		document.getElementById("domain_unicode_name").textContent = "Optionales Feld, das gegebenenfalls die Unicode-Darstellung der Domäne bereitstellt.";
-		document.getElementById("domain_next_apex").textContent = proposed + "Ein nächster Domain-Apex unterhalb dieser Domain zulässig.";
+		document.getElementById("domain_next_apex").textContent = proposed + "Ein nächster Domain-Apex unterhalb dieser Domain kann zulässig sein.";
 		document.getElementById("domain_statuses").textContent = legacy + "RDAPv1 garantiert nicht, ob Status von Registry, Registrar, oder Lifecycle stammt — eliminierbar.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "Modellierte DNS-Auflösungszustände: dns_delegated, dns_undelegated, no_dns_records, unknown.";
@@ -660,7 +660,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_part").textContent = "Un apex de domaine enregistré est unique au niveau mondial et soumis aux règles d’enregistrement applicables.";
 		document.getElementById("domain_ascii_name").textContent = "Pour les caractères spéciaux, les chaînes de caractères ASCII contiennent une transcription Punycode.";
 		document.getElementById("domain_unicode_name").textContent = "Champ facultatif qui fournit la représentation Unicode du domaine, le cas échéant.";
-		document.getElementById("domain_next_apex").textContent = proposed + "Un prochain apex de domaine autorisé sous ce domaine.";
+		document.getElementById("domain_next_apex").textContent = proposed + "Un prochain apex de domaine sous ce domaine peut être autorisé.";
 		document.getElementById("domain_statuses").textContent = legacy + "Les statuts ne garantissent pas que RDAPv1 indique registre, registrar, ou cycle — éliminable.";
 		document.getElementById("domain_policy_statuses").textContent = modified;
 		document.getElementById("domain_dns_state").textContent = proposed + "États de résolution DNS modélisés : dns_delegated, dns_undelegated, no_dns_records, unknown.";
