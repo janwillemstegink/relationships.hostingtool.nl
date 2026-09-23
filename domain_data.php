@@ -68,7 +68,7 @@ if (!empty($_GET['domain'])) {
 			$registry_self_uri = $registry_rdap['metadata']['registry_domain_uri'] ?? null;
 			$registry_related_uri = $registry_rdap['metadata']['registrar_domain_uri'] ?? null;
 			if (empty($registry_self_uri)) {
-				$registry_interface .= 'The registry rel="self" link is a SHOULD.';
+				$registry_interface .= 'The registry rel="self" link is expected.';
 			}		
 			elseif (strcasecmp($registry_rdap['metadata']['request_uri'], $registry_self_uri) !== 0) {
  				$registry_interface .= 'Registry RDAP has an uneven rel="self" link.';
@@ -111,7 +111,7 @@ if (!empty($_GET['domain'])) {
 								if (strlen($registry_interface))	{
 									$registry_interface .= "<br />";
 								}
-								$registry_interface .= 'The registry rel="related" link here is a MUST.';
+								$registry_interface .= 'The registry rel="related" link is missing.';
 							}	
     					}	
 						else	{
