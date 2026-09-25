@@ -84,7 +84,7 @@ function SwitchDisplay(type) {
 	}
 	else if (type == 20)	{ // metadata
 		var pre = '20';
-		var max = 12
+		var max = 13
 	}
 	else if (type == 30)	{ // domain properties
 		var pre = '30';
@@ -255,6 +255,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_rdap_version").textContent = modified;
 		document.getElementById("metadata_rdap_data_layer").textContent = proposed;
 		document.getElementById("metadata_rdap_disclosure").textContent = proposed;
+		document.getElementById("metadata_rdap_region_uri").textContent = proposed;
 		document.getElementById("metadata_rdap_issue_uri").textContent = proposed;
 		document.getElementById("metadata_rdap_supplier_uri").textContent = proposed;
 		document.getElementById("metadata_global_domain_uri").textContent = proposed;
@@ -353,7 +354,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_object_type").textContent = modified;
 		document.getElementById("metadata_rdap_version").textContent = modified;
 		document.getElementById("metadata_rdap_data_layer").textContent = proposed + "Geeft aan uit welke RDAP-laag de gegevens afkomstig zijn.";
-		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Het niveau kan limited, informative of full zijn.";
+		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Openbaarmakingsniveau: Empty / 'limited' / 'informative' / 'full'.";
+		document.getElementById("metadata_rdap_region_uri").textContent = proposed + "URI voor een regiospecifieke (e-mail) geïdentificeerde RDAP-bevraging.";
 		document.getElementById("metadata_rdap_issue_uri").textContent=proposed+"URI voor het melden van RDAP-technische problemen of zorgen over gegevensintegriteit.";
 		document.getElementById("metadata_rdap_supplier_uri").textContent = proposed+"URI die de leverancier van de RDAP-dienst identificeert, indien bekendgemaakt.";
 		document.getElementById("metadata_global_domain_uri").textContent=proposed+"URI naar een globale RDAP respons die kan verwijzen naar een andere gezaghebbende RDAP-bron.";
@@ -452,7 +454,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_object_type").textContent=modified;
 		document.getElementById("metadata_rdap_version").textContent=modified;
 		document.getElementById("metadata_rdap_data_layer").textContent=proposed+"Indicates the RDAP layer from which the data originates.";
-		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "The level can be limited, informative, or full.";
+		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Disclosure level: Empty / 'limited' / 'informative' / 'full'.";
+		document.getElementById("metadata_rdap_region_uri").textContent = proposed + "URI for a region-specific (email) identified RDAP inquiry.";
 		document.getElementById("metadata_rdap_issue_uri").textContent=proposed+"URI for reporting RDAP technical issues or data integrity concerns.";
 		document.getElementById("metadata_rdap_supplier_uri").textContent = proposed+"URI identifying the supplier of the RDAP service, if disclosed.";
 		document.getElementById("metadata_global_domain_uri").textContent=proposed+"URI to a global RDAP resource that may reference another authoritative RDAP source.";
@@ -551,7 +554,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_object_type").textContent = modified;
 		document.getElementById("metadata_rdap_version").textContent = modified;
 		document.getElementById("metadata_rdap_data_layer").textContent = proposed + "Gibt an, aus welcher RDAP-Ebene die Daten stammen.";
-		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Die Stufe kann limited, informative oder full sein.";
+		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Offenlegungsstufe: Empty / 'limited' / 'informative' / 'full'.";
+		document.getElementById("metadata_rdap_region_uri").textContent = proposed + "URI für eine regionsspezifische (E-Mail-)identifizierte RDAP-Abfrage.";
 		document.getElementById("metadata_rdap_issue_uri").textContent=proposed+"URI zum Melden technischer RDAP-Probleme oder von Bedenken hinsichtlich der Datenintegrität.";
 		document.getElementById("metadata_rdap_supplier_uri").textContent = proposed+"URI zur Identifizierung des Anbieters des RDAP-Dienstes, sofern veröffentlicht.";
 		document.getElementById("metadata_global_domain_uri").textContent=proposed+"URI zu einer globalen RDAP-Antwort, die auf eine andere maßgebliche RDAP-Quelle verweisen kann.";
@@ -650,7 +654,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_object_type").textContent = modified;
 		document.getElementById("metadata_rdap_version").textContent = modified;
 		document.getElementById("metadata_rdap_data_layer").textContent = proposed + "Indique la couche RDAP dont proviennent les données.";
-		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Le niveau peut être limited, informative ou full.";
+		document.getElementById("metadata_rdap_disclosure").textContent = proposed + "Niveau de divulgation : Empty / 'limited' / 'informative' / 'full'.";
+		document.getElementById("metadata_rdap_region_uri").textContent = proposed + "URI pour une requête RDAP régionale avec identification (e-mail).";
 		document.getElementById("metadata_rdap_issue_uri").textContent=proposed+"URI pour signaler des problèmes RDAP ou d’intégrité des données.";
 		document.getElementById("metadata_rdap_supplier_uri").textContent = proposed+"URI identifiant le fournisseur du service RDAP, lorsqu'il est publié.";
 		document.getElementById("metadata_global_domain_uri").textContent=proposed+"URI vers une réponse RDAP globale pouvant référencer une autre source RDAP faisant autorité.";
@@ -812,9 +817,10 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="203" style="display:none"><td>rdap_conformance</td><td colspan="2">'.$data[$pd]['registry']['metadata']['rdap_conformance'].'</td><td>'.$data[$pd]['registrar']['metadata']['rdap_conformance'].'</td></tr>';
 	$html_text .= '<tr id="204" style="display:none"><td>rdap_data_layer</td><td>'.$data[$pd]['registry']['metadata']['rdap_data_layer'].'</td><td id="metadata_rdap_data_layer"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_data_layer'].'</td></tr>';
 	$html_text .= '<tr id="205" style="display:none"><td>rdap_disclosure</td><td>'.$data[$pd]['registry']['metadata']['rdap_disclosure'].'</td><td id="metadata_rdap_disclosure"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_disclosure'].'</td></tr>';
-	$html_text .= '<tr id="206" style="display:none"><td>rdap_issue_uri</td><td>'.$data[$pd]['registry']['metadata']['rdap_issue_uri'].'</td><td id="metadata_rdap_issue_uri"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_issue_uri'].'</td></tr>';
-	$html_text .= '<tr id="207" style="display:none"><td>rdap_supplier_uri</td><td>'.$data[$pd]['registry']['metadata']['rdap_supplier_uri'].'</td><td id="metadata_rdap_supplier_uri"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_supplier_uri'].'</td></tr>';
-	$html_text .= '<tr id="208" style="display:none"><td>global_domain_uri</td><td>'.$data[$pd]['registry']['metadata']['global_domain_uri'].'</td><td id="metadata_global_domain_uri"></td><td>'.$data[$pd]['registrar']['metadata']['global_domain_uri'].'</td></tr>';
+	$html_text .= '<tr id="206" style="display:none"><td>rdap_region_uri</td><td>'.$data[$pd]['registry']['metadata']['rdap_region_uri'].'</td><td id="metadata_rdap_region_uri"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_region_uri'].'</td></tr>';
+	$html_text .= '<tr id="207" style="display:none"><td>rdap_issue_uri</td><td>'.$data[$pd]['registry']['metadata']['rdap_issue_uri'].'</td><td id="metadata_rdap_issue_uri"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_issue_uri'].'</td></tr>';
+	$html_text .= '<tr id="208" style="display:none"><td>rdap_supplier_uri</td><td>'.$data[$pd]['registry']['metadata']['rdap_supplier_uri'].'</td><td id="metadata_rdap_supplier_uri"></td><td>'.$data[$pd]['registrar']['metadata']['rdap_supplier_uri'].'</td></tr>';
+	$html_text .= '<tr id="209" style="display:none"><td>global_domain_uri</td><td>'.$data[$pd]['registry']['metadata']['global_domain_uri'].'</td><td id="metadata_global_domain_uri"></td><td>'.$data[$pd]['registrar']['metadata']['global_domain_uri'].'</td></tr>';
 	$registry_domain_uri = str_replace('https://', '', $data[$pd]['registry']['metadata']['registry_domain_uri']);
 	$validation_registry = 'https://validator.rdap.org/?url=https://'.$registry_domain_uri.'&response-type=domain&server-type=gtld-registry&errors-only=1';	
 	$html_text .= '<tr><td>registry_domain_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['registry_domain_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['registry_domain_uri'].' target="_blank">Registry Response</a> - <a href="' . htmlspecialchars($validation_registry, ENT_QUOTES, "UTF-8") . '" target="_blank">gTLD validator.rdap.org</a>' : '').'</td><td id="metadata_registry_domain_uri"></td><td>'.$data[$pd]['registrar']['metadata']['registry_domain_uri'].'</td></tr>';
@@ -822,10 +828,10 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$validation_registrar = 'https://validator.rdap.org/?url=https://'.$registrar_domain_uri.'&response-type=domain&server-type=gtld-registrar&errors-only=1';
 	$html_text .= '<tr><td>registrar_domain_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_domain_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['registrar_domain_uri'].' target="_blank">Registrar Response</a> - <a href="' . htmlspecialchars($validation_registrar, ENT_QUOTES, "UTF-8") . '" target="_blank">gTLD validator.rdap.org</a>' : '').'</td><td id="metadata_registrar_domain_uri"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_domain_uri'].'</td></tr>';	
 	$html_text .= '<tr><td>registry_tld_uri</td><td>'.(!empty($data[$pd]['registry']['metadata']['registry_tld_uri']) ? '<a href="' . htmlspecialchars($data[$pd]['registry']['metadata']['registry_tld_uri'], ENT_QUOTES, 'UTF-8') . '" target="_blank">Registry TLD Response</a>' : '(proposed resource)').' - <a href="'. htmlspecialchars($view_tld_uri, ENT_QUOTES, 'UTF-8') . '" target="_blank">View TLD</a>'.'</td><td id="metadata_registry_tld_uri"></td><td></td></tr>';
-	$html_text .= '<tr id="209" style="display:none"><td>registrar_identifiers</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_identifiers'])) ? $data[$pd]['registry']['metadata']['registrar_identifiers'] : '').'</td><td id="metadata_registrar_identifiers"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_identifiers'].'</td></tr>';	
-	$html_text .= '<tr id="2010" style="display:none"><td>registrar_complaint_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_complaint_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['registrar_complaint_uri'].' target="_blank">icann.org/wicf</a>' : '').'</td><td id="metadata_registrar_complaint_uri"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_complaint_uri'].'</td></tr>';
-	$html_text .= '<tr id="2011" style="display:none"><td>registrar_publication_method</td><td>'.$data[$pd]['registry']['metadata']['registrar_publication_method'].'</td><td id="metadata_registrar_publication_method"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_publication_method'].'</td></tr>';
-	$html_text .= '<tr id="2012" style="display:none"><td>status_explanation_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['status_explanation_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['status_explanation_uri'].' target="_blank">icann.org/epp</a>' : '').'</td><td id="metadata_status_explanation_uri"></td><td>'.$data[$pd]['registrar']['metadata']['status_explanation_uri'].'</td></tr>';
+	$html_text .= '<tr id="2010" style="display:none"><td>registrar_identifiers</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_identifiers'])) ? $data[$pd]['registry']['metadata']['registrar_identifiers'] : '').'</td><td id="metadata_registrar_identifiers"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_identifiers'].'</td></tr>';	
+	$html_text .= '<tr id="2011" style="display:none"><td>registrar_complaint_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_complaint_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['registrar_complaint_uri'].' target="_blank">icann.org/wicf</a>' : '').'</td><td id="metadata_registrar_complaint_uri"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_complaint_uri'].'</td></tr>';
+	$html_text .= '<tr id="2012" style="display:none"><td>registrar_publication_method</td><td>'.$data[$pd]['registry']['metadata']['registrar_publication_method'].'</td><td id="metadata_registrar_publication_method"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_publication_method'].'</td></tr>';
+	$html_text .= '<tr id="2013" style="display:none"><td>status_explanation_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['status_explanation_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['status_explanation_uri'].' target="_blank">icann.org/epp</a>' : '').'</td><td id="metadata_status_explanation_uri"></td><td>'.$data[$pd]['registrar']['metadata']['status_explanation_uri'].'</td></tr>';
 	$html_text .= '<tr><td>resource_upload_at</td><td>'.$data[$pd]['registry']['metadata']['resource_upload_at'].'</td><td id="metadata_resource_upload_at"></td><td>'.$data[$pd]['registrar']['metadata']['resource_upload_at'].'</td></tr>';
 	$html_text .= '<tr><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr>';
 	if (!empty($data[$pd]['registry']['interface_notice']) or !empty($data[$pd]['registrar']['interface_notice']))	{
