@@ -197,8 +197,7 @@ Enumerated Values
 "not_stored" — value is not maintained by the domain service.
 "shielded" — value is maintained and not disclosed.
 "visible" — value is maintained and disclosed.
-"identified_shielded" — value is maintained and not disclosed for an identified inquiry.
-"identified_visible" — value is maintained and disclosed for an identified inquiry.
+"identified_visible" — value is maintained, not publicly disclosed, and disclosed for an identified inquiry.
 "tunable_shielded" — value is maintained and currently not disclosed by registrant choice.
 "tunable_visible" — value is maintained and currently disclosed by registrant choice.
 
