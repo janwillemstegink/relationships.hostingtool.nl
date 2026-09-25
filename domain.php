@@ -172,7 +172,7 @@ const publication_state = `Legacy Limitations
 Model Principles
 Inclusion of publication details depends on an RDAP service's data structure and representation choices.
 RDAP output MUST preserve relationship context and MUST NOT combine data from distinct relationships.
-The publication model is designed for both registrar RDAP and ccTLD registry RDAP. Country-code registries MAY adopt tunable publication states. The underlying data model SHOULD be prepared to support them.
+The publication model supports ccTLD registry and registrar RDAP with identified and tunable disclosure.
 
 Definition
 A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
@@ -195,10 +195,12 @@ A subject's email address may be disclosed for one relationship but not another.
 
 Enumerated Values
 "not_stored" — value is not maintained by the domain service.
-"shielded" — value is maintained but not disclosed.
+"shielded" — value is maintained and not disclosed.
 "visible" — value is maintained and disclosed.
-"tunable_shielded" — value is maintained and currently not disclosed.
-"tunable_visible" — value is maintained and currently disclosed.
+"identified_shielded" — value is maintained and not disclosed for an identified inquiry.
+"identified_visible" — value is maintained and disclosed for an identified inquiry.
+"tunable_shielded" — value is maintained and currently not disclosed by registrant choice.
+"tunable_visible" — value is maintained and currently disclosed by registrant choice.
 
 End of RFC modeling section.
 
