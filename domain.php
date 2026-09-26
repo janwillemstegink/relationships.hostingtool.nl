@@ -84,7 +84,7 @@ function SwitchDisplay(type) {
 	}
 	else if (type == 20)	{ // metadata
 		var pre = '20';
-		var max = 13
+		var max = 12
 	}
 	else if (type == 30)	{ // domain properties
 		var pre = '30';
@@ -175,7 +175,7 @@ RDAP output MUST preserve relationship context and MUST NOT combine data from di
 The publication model supports ccTLD registry and registrar RDAP with identified and tunable disclosure.
 
 Definition
-A subject is a natural person or organization with one or more relationship responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
+A subject is a natural person or organization with one or more responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
 The "publication_state" member MUST be included within relationship entries for which subject data is stored and MAY provide publication state for any combination of those fields, including none or all.
 Each publication state MUST contain exactly one enumerated value.
 When data is unavailable or not disclosed, placeholder values MUST NOT be used.
@@ -184,7 +184,7 @@ If relationship-specific data is present, that data MUST precede "publication_st
 Required Output Naming and Human-Readable Ordering
 Member names defined by this specification MUST use snake_case.
 Top-level members: "metadata", "domain", "relationships", "nameservers", "dns_security".
-Relationship responsibilities: "sponsor", "registrant", "actor", "request_handling", "issue_reporting", "billing", "escalation", "reseller", "registrar", "registrar_abuse".
+Relationships visualized by responsibility: "sponsor", "registrant", "actor", "request_handling", "issue_reporting", "billing", "escalation", "reseller", "registrar", "registrar_abuse".
 
 Operational Guidance
 Field values SHOULD conform to the semantics of the field in which they are represented.
@@ -265,7 +265,6 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_registry_tld_uri").textContent = proposed;
 		document.getElementById("metadata_registrar_identifiers").textContent = modified;
 		document.getElementById("metadata_registrar_complaint_uri").textContent = proposed;
-		document.getElementById("metadata_registrar_publication_method").textContent = proposed;
 		document.getElementById("metadata_status_explanation_uri").textContent = proposed;
 		document.getElementById("metadata_resource_upload_at").textContent = modified;
 		document.getElementById("domain_part").textContent = "";
@@ -365,7 +364,6 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_registry_tld_uri").textContent = proposed+"URI naar door de registry gepubliceerde TLD-informatie die de wereldwijde TLD-informatie aanvult.";
 		document.getElementById("metadata_registrar_identifiers").textContent = modified + "Registrar-identificaties. Voor ccTLD's: een geldige IANA Registrar ID of 0000.";
 		document.getElementById("metadata_registrar_complaint_uri").textContent=proposed+"URI voor klachtenafhandeling van ICANN gTLD-registrars.";
-		document.getElementById("metadata_registrar_publication_method").textContent=proposed+"Voor gTLD's kan publicatie per registrantveld worden ingeschakeld.";
 		document.getElementById("metadata_status_explanation_uri").textContent=proposed+"Vereist indien de registrar IANA-geaccrediteerd is; biedt uitleg over statuscodes.";
 		document.getElementById("metadata_resource_upload_at").textContent = modified + "Tijdstempel van de RDAP-datasetupdate in UTC (Zulu-tijd).";
 		document.getElementById("domain_part").textContent = "Een geregistreerde domein-apex is wereldwijd uniek en onderworpen aan de toepasselijke registratieregels.";
@@ -465,7 +463,6 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_registry_tld_uri").textContent = proposed+"URI to registry-published TLD information that complements global TLD information.";
 		document.getElementById("metadata_registrar_identifiers").textContent=modified+"Registrar identifiers. For ccTLDs: a valid IANA Registrar ID or 0000.";
 		document.getElementById("metadata_registrar_complaint_uri").textContent=proposed+"URI for ICANN gTLD registrar complaint handling.";
-		document.getElementById("metadata_registrar_publication_method").textContent=proposed+"For gTLDs, publication may be enabled on a per-registrant-field basis.";
 		document.getElementById("metadata_status_explanation_uri").textContent=proposed+"Required if the registrar is IANA-accredited; provides status code explanations.";
 		document.getElementById("metadata_resource_upload_at").textContent=modified+"Timestamp of RDAP dataset update in UTC (Zulu time).";		
 		document.getElementById("domain_part").textContent = "A registered domain apex is globally unique and subject to the applicable registration rules.";
@@ -565,7 +562,6 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_registry_tld_uri").textContent = proposed+"URI zu von der Registry veröffentlichten TLD-Informationen, die globale TLD-Informationen ergänzen.";
 		document.getElementById("metadata_registrar_identifiers").textContent = modified + "Registrar-Kennungen. Für ccTLDs: eine gültige IANA Registrar-ID oder 0000.";
 		document.getElementById("metadata_registrar_complaint_uri").textContent=proposed+"URI für die Beschwerdebehandlung von ICANN-gTLD-Registraren.";
-		document.getElementById("metadata_registrar_publication_method").textContent=proposed+"Für gTLDs kann die Veröffentlichung pro Registrantenfeld aktiviert werden.";
 		document.getElementById("metadata_status_explanation_uri").textContent=proposed+"Erforderlich, wenn der Registrar IANA-akkreditiert ist; stellt Erläuterungen zu Statuscodes bereit.";
 		document.getElementById("metadata_resource_upload_at").textContent = modified + "Zeitstempel der Aktualisierung des RDAP-Datensatzes in UTC (Zulu-Zeit).";
 		document.getElementById("domain_part").textContent = "Ein registrierter Domain-Apex ist weltweit eindeutig und unterliegt den geltenden Registrierungsregeln.";
@@ -665,7 +661,6 @@ function SwitchTranslation(translation)	{
 		document.getElementById("metadata_registry_tld_uri").textContent = proposed+"URI vers des informations TLD publiées par le registre qui complètent les informations TLD globales.";
 		document.getElementById("metadata_registrar_identifiers").textContent = modified + "Identifiants du bureau d’enregistrement. Pour les ccTLD : un identifiant de registrar IANA valide ou 0000.";
 		document.getElementById("metadata_registrar_complaint_uri").textContent=proposed+"URI pour le traitement des plaintes des bureaux d’enregistrement ICANN gTLD.";
-		document.getElementById("metadata_registrar_publication_method").textContent=proposed+"Pour les gTLD, la publication peut être activée par champ de titulaire.";
 		document.getElementById("metadata_status_explanation_uri").textContent=proposed+"Requis si accrédité IANA ; explications des codes d’état.";
 		document.getElementById("metadata_resource_upload_at").textContent = modified + "Horodatage de la mise à jour de l'ensemble de données RDAP en UTC (heure Zulu).";
 		document.getElementById("domain_part").textContent = "Un apex de domaine enregistré est unique au niveau mondial et soumis aux règles d’enregistrement applicables.";
@@ -831,8 +826,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr><td>registry_tld_uri</td><td>'.(!empty($data[$pd]['registry']['metadata']['registry_tld_uri']) ? '<a href="' . htmlspecialchars($data[$pd]['registry']['metadata']['registry_tld_uri'], ENT_QUOTES, 'UTF-8') . '" target="_blank">Registry TLD Response</a>' : '(proposed resource)').' - <a href="'. htmlspecialchars($view_tld_uri, ENT_QUOTES, 'UTF-8') . '" target="_blank">View TLD</a>'.'</td><td id="metadata_registry_tld_uri"></td><td></td></tr>';
 	$html_text .= '<tr id="2010" style="display:none"><td>registrar_identifiers</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_identifiers'])) ? $data[$pd]['registry']['metadata']['registrar_identifiers'] : '').'</td><td id="metadata_registrar_identifiers"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_identifiers'].'</td></tr>';	
 	$html_text .= '<tr id="2011" style="display:none"><td>registrar_complaint_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['registrar_complaint_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['registrar_complaint_uri'].' target="_blank">icann.org/wicf</a>' : '').'</td><td id="metadata_registrar_complaint_uri"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_complaint_uri'].'</td></tr>';
-	$html_text .= '<tr id="2012" style="display:none"><td>registrar_publication_method</td><td>'.$data[$pd]['registry']['metadata']['registrar_publication_method'].'</td><td id="metadata_registrar_publication_method"></td><td>'.$data[$pd]['registrar']['metadata']['registrar_publication_method'].'</td></tr>';
-	$html_text .= '<tr id="2013" style="display:none"><td>status_explanation_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['status_explanation_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['status_explanation_uri'].' target="_blank">icann.org/epp</a>' : '').'</td><td id="metadata_status_explanation_uri"></td><td>'.$data[$pd]['registrar']['metadata']['status_explanation_uri'].'</td></tr>';
+	$html_text .= '<tr id="2012" style="display:none"><td>status_explanation_uri</td><td>'.((!empty($data[$pd]['registry']['metadata']['status_explanation_uri'])) ? '<a href='.$data[$pd]['registry']['metadata']['status_explanation_uri'].' target="_blank">icann.org/epp</a>' : '').'</td><td id="metadata_status_explanation_uri"></td><td>'.$data[$pd]['registrar']['metadata']['status_explanation_uri'].'</td></tr>';
 	$html_text .= '<tr><td>resource_upload_at</td><td>'.$data[$pd]['registry']['metadata']['resource_upload_at'].'</td><td id="metadata_resource_upload_at"></td><td>'.$data[$pd]['registrar']['metadata']['resource_upload_at'].'</td></tr>';
 	$html_text .= '<tr><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr>';
 	if (!empty($data[$pd]['registry']['interface_notice']) or !empty($data[$pd]['registrar']['interface_notice']))	{
