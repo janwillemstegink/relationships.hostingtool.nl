@@ -175,7 +175,8 @@ RDAP output MUST preserve relationship context and MUST NOT combine data from di
 The publication model supports ccTLD registry and registrar RDAP with identified and tunable disclosure.
 
 Definition
-A subject is a natural person or organization with one or more responsibilities. A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
+A subject is a natural person or organization with one or more responsibilities.
+A subject identifier is a unique reference assigned to the subject and prefixed by the issuing jurisdiction.
 The "publication_state" member MUST be included within relationship entries for which subject data is stored and MAY provide publication state for any combination of those fields, including none or all.
 Each publication state MUST contain exactly one enumerated value.
 When data is unavailable or not disclosed, placeholder values MUST NOT be used.
@@ -731,6 +732,14 @@ function SwitchTranslation(translation)	{
 		document.getElementById("raw_data_next").textContent = "Remarques : Les relations sont ici organisés selon la responsabilité. Plus clair avec '(not provided)'. Une structure JSON peut être aussi lisible que du XML.";
 	}
 }
+
+function pronounce(words) {
+    const speech = new SpeechSynthesisUtterance(words);
+    speech.lang = 'en-US';
+    speechSynthesis.cancel();
+    speechSynthesis.speak(speech);
+}
+
 </script><?php
 echo '</head>';
 if (ini_get("allow_url_fopen") == 1)	{
@@ -1147,8 +1156,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="6023" style="display:none"><td>registrar_remarks</td><td>'.$data[$pd]['registry']['registrar']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="6024" style="display:none"><td>registrar_links</td><td colspan="2">'.$data[$pd]['registry']['registrar']['links'].'</td><td>'.$data[$pd]['registrar']['registrar']['links'].'</td></tr>';
 	$html_text .= '<tr id="6025" style="display:none"><td>registrar_domain_uri</td><td>'.$data[$pd]['registry']['registrar']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['data_uri'].'</td></tr>';	
-	$html_text .= '<tr id="159" style="display:none"><td colspan="2">registrar_publication_state'.$data[$pd]['registry']['registrar']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['publication_state'].'</td></tr>';	
-	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(61)">Registrar Abuse +/-</button></td><td></td><td id="registrar_abuse_part"></td><td></td></tr>';
+	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(61)">Abuse Contact +/-</button> <button type="button" onclick="pronounce(\'abuse contact\')" title="Pronounce Registrar Abuse" aria-label="Pronounce Registrar Abuse" style="border:0;background:none;cursor:pointer;padding:0 2px;">pronounce:🔊</button></td><td></td><td id="registrar_abuse_part"></td><td></td></tr>';
 	$html_text .= '<tr id="611" style="display:none"><td>registrar_abuse_tld_global_handle</td><td>'.$data[$pd]['registry']['registrar_abuse']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar_abuse']['tld_global_handle'].'</td></tr>';
 	$html_text .= '<tr id="612" style="display:none"><td>registrar_abuse_source_handle</td><td>'.$data[$pd]['registry']['registrar_abuse']['source_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar_abuse']['source_handle'].'</td></tr>';
 	$html_text .= '<tr id="613" style="display:none"><td>registrar_abuse_organization_type</td><td>'.$data[$pd]['registry']['registrar_abuse']['organization_type'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar_abuse']['organization_type'].'</td></tr>';
