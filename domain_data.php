@@ -969,7 +969,7 @@ $redacted = '';
 $interface_notice = '';	
 $resource_upload_at = null;
 $object_type = $obj['objectClassName'];
-$rdap_version = '';	
+$rdap_protocol_version = '';	
 if (is_array($obj['rdapConformance'])) {
     usort($obj['rdapConformance'], function ($a, $b) {
         $ga = getConformanceGroup($a);
@@ -1284,7 +1284,7 @@ foreach($obj as $key1 => $value1) {
 	}
 	foreach($value1 as $key2 => $value2) {
 		if ($key1 == 'status')	{
-			$rdap_version = 'RDAPv1';
+			$rdap_protocol_version = 'RDAPv1';
 			if (str_starts_with($value2, 'server'))	{
 				$server_statuses .= $value2 . ",";
 			}
@@ -2042,7 +2042,7 @@ $arr['publication_state'] = $redacted;
 $arr['interface_notice'] = $interface_notice;
 	
 $arr['metadata']['object_type'] = $object_type;
-$arr['metadata']['rdap_version'] = $rdap_version;
+$arr['metadata']['rdap_protocol_version'] = $rdap_protocol_version;
 $arr['metadata']['rdap_conformance'] = $rdap_conformance;
 $arr['metadata']['registry_geo_location'] = '';
 $arr['metadata']['global_domain_uri'] = '';	
