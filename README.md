@@ -12,7 +12,7 @@ Data by email modeling: https://relationships.hostingtool.nl/email_modeling.php
 
 Menu information modeling: https://relationships.hostingtool.nl/menu_modeling.php
 
-Domain control tool: https://control.hostingtool.org/
+Web Control: https://control.hostingtool.org/
 
 EU TLDs DNSSEC analysis tool:  https://analyzetlds.hostingtool.org/
 
