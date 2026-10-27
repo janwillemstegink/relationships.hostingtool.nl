@@ -1,14 +1,15 @@
 <?php
-session_start();  // is needed with no PHP Generator Scriptcase
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
-if (empty([ip]) or empty([block]))	{
-	[ip] = getClientIP();
-	[block] = get_block([ip]);
+if (!isset($_SESSION['client_ip'])) {
+    $_SESSION['client_ip'] = getClientIP();
+    $_SESSION['client_block'] = get_block($_SESSION['client_ip']);
 }
+$ip = $_SESSION['client_ip'];
+$block = $_SESSION['client_block'];
 $log_file = "/home/admin/logging/email_modeling_" . date("Ym") . ".txt";
-$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, " . [ip] . ", " . [block] . "\n";
+$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, " . $ip . ", " . $block . "\n";
 file_put_contents($log_file, $log_line, FILE_APPEND);
 if (!function_exists('simplexml_load_file')) {
 	die('simpleXML functions are not available.');
@@ -20,7 +21,7 @@ else	{
 }
 $dataFile = '/home/admin/rdap_files/email_data.xml';
 $inputdomain = 'webhostingtech.nl';
-$url1 = "https://relationships.hostingtool.nl/domain_data/index.php?domain=$inputdomain";
+$url1 = "https://relationships.hostingtool.nl/domain_data.php?domain=$inputdomain";
 if (file_exists($dataFile))	{
 	$xml1 = simplexml_load_file($dataFile) or die("Cannot load xml1 from folder.");
 }
@@ -164,4 +165,3 @@ function get_block($ip) {
     }
 	return (strlen($country)) ? $country . '; ' . $orgName : $orgName;	
 }
-?>

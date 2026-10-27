@@ -1,5 +1,4 @@
 <?php
-session_start();  // is needed with no PHP Generator Scriptcase
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
@@ -20,12 +19,14 @@ if (empty($inputlanguage))	{
 			$inputlanguage = 2;
 	}		
 }
-if (empty([ip]) or empty([block]))	{
-	[ip] = getClientIP();
-	[block] = get_block([ip]);
+if (!isset($_SESSION['client_ip'])) {
+    $_SESSION['client_ip'] = getClientIP();
+    $_SESSION['client_block'] = get_block($_SESSION['client_ip']);
 }
+$ip = $_SESSION['client_ip'];
+$block = $_SESSION['client_block'];
 $log_file = "/home/admin/logging/menu_modeling_" . date("Ym") . ".txt";
-$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, browserlanguage " . $browserlanguage . ", inputlanguage " . $inputlanguage . ", " . [ip] . ", " . [block] . "\n";
+$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, browserlanguage " . $browserlanguage . ", inputlanguage " . $inputlanguage . ", " . $ip . ", " . $block . "\n";
 file_put_contents($log_file, $log_line, FILE_APPEND);
 echo '<!DOCTYPE html><html lang="en" style="font-size: 100%"><head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -187,4 +188,3 @@ function get_block($ip) {
     }
 	return (strlen($country)) ? $country . '; ' . $orgName : $orgName;	
 }
-?>

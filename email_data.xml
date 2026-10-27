@@ -6,7 +6,7 @@
 			<unicode_name>webhostingtech.nl</unicode_name>
 		</details>
 		<registrant>
-			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<subject_code>NL88COMM01234567890123456789012345</subject_code>
 			<organization_type></organization_type>
 			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
 			<presented_name></presented_name>
@@ -23,7 +23,7 @@
 			<country_name>Nederland</country_name>
 		</registrant>
 		<administrative>
-			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<subject_code>NL88COMM01234567890123456789012345</subject_code>
 			<organization_type></organization_type>
 			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
 			<presented_name></presented_name>
@@ -40,7 +40,7 @@
 			<country_name>Nederland</country_name>
 		</administrative>
 		<billing>
-			<web_id>NL88COMM01234567890123456789012345</web_id>
+			<subject_code>NL88COMM01234567890123456789012345</subject_code>
 			<organization_type></organization_type>
 			<organization_name><![CDATA[Stegink Webdomeindienst]]></organization_name>
 			<presented_name></presented_name>

@@ -1,5 +1,5 @@
 <?php
-session_start();  // is needed with no Scriptcase PHP Generator
+session_start();
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
 $utc = $datetime->format('Y-m-d H:i:s');
 if (empty($_GET["language"]))	{
@@ -40,14 +40,16 @@ if (!empty(trim($_GET['domain'])))	{
 }
 else	{
 	$vd = 'domain';
-}	
-if (empty([ip]) or empty([block]))	{
-	[ip] = getClientIP();
-	[block] = get_block([ip]);
 }
-$internal = (str_contains([block],'Freedom')) ? '_internal_' : '';
+if (!isset($_SESSION['client_ip'])) {
+    $_SESSION['client_ip'] = getClientIP();
+    $_SESSION['client_block'] = get_block($_SESSION['client_ip']);
+}
+$ip = $_SESSION['client_ip'];
+$block = $_SESSION['client_block'];
+$internal = (str_contains($block,'Freedom')) ? '_internal_' : '';
 $log_file = "/home/admin/logging/" . $internal . "whois_tool_" . $datetime->format('Ym') . ".txt";
-$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, lang" . $viewlanguage . ", " . $vd . ", " . [ip] . ", " . [block] . "\n";
+$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, lang" . $viewlanguage . ", " . $vd . ", " . $ip . ", " . $block . "\n";
 file_put_contents($log_file, $log_line, FILE_APPEND);
 echo '<!DOCTYPE html><html lang="en" style="font-size: 90%"><head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -148,8 +150,8 @@ $pd = idn_to_ascii($vd, IDNA_DEFAULT, INTL_IDNA_VARIANT_UTS46);
 $server_url = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 $server_url .= '://'. $_SERVER['HTTP_HOST'];
 $server_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);	
-$server_url = dirname($server_url);
-$whois_url = $server_url . '/domain_whois_data/index.php?batch=0&domain=' . urlencode($pd);
+//$server_url = dirname($server_url);
+$whois_url = $server_url . '/domain_whois_data.php?batch=0&domain=' . urlencode($pd);
 $json = @file_get_contents($whois_url);
 $data = null;
 $terms_and_conditions = '';
@@ -157,10 +159,10 @@ if ($json !== false) {
     $data = json_decode($json, true);
 }
 if (is_array($data) && isset($data[$pd]['metadata']['zone_identifier'])) {
-    $terms_and_conditions = $server_url . '/tld/index.php?language=' . $viewlanguage . '&tld=' . $data[$pd]['metadata']['zone_identifier'];
+    $terms_and_conditions = $server_url . '/tld.php?language=' . $viewlanguage . '&tld=' . $data[$pd]['metadata']['zone_identifier'];
 }
 else {
-    $reopen = $server_url . '/domain_whois/index.php?batch=0&domain=hostingtool.nl';
+    $reopen = $server_url . '/domain_whois.php?batch=0&domain=hostingtool.nl';
     sc_redir($reopen);
 }
 $html_text = '<body onload=SwitchTranslation('.$viewlanguage.')><div style="border-collapse:collapse; line-height:120%">
@@ -232,5 +234,4 @@ function get_block($ip) {
         }
     }
 	return (strlen($country)) ? $country . '; ' . $orgName : $orgName;	
-}						
-?>
+}

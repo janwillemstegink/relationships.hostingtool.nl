@@ -1,5 +1,4 @@
 <?php
-session_start();  // A clean, stateless environment works without a sleep command.
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
@@ -45,14 +44,15 @@ if (!empty($_GET['domain']))	{
 else	{
 	$vd = 'domain';
 }	
-if (empty([ip]) or empty([block]))	{
-	[ip] = getClientIP();
-	[block] = get_block([ip]);
+if (!isset($_SESSION['client_ip'])) {
+    $_SESSION['client_ip'] = getClientIP();
+    $_SESSION['client_block'] = get_block($_SESSION['client_ip']);
 }
-
-$internal = (str_contains([block],'Freedom')) ? '_internal_' : '';
+$ip = $_SESSION['client_ip'];
+$block = $_SESSION['client_block'];
+$internal = (str_contains($block,'Freedom')) ? '_internal_' : '';
 $log_file = "/home/admin/logging/" . $internal . "domain_tool_" . $datetime->format('Ym') . ".txt";
-$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, lang" . $viewlanguage . ", " . $vd . ", " . [ip] . ", " . [block] . "\n";
+$log_line = $datetime->format('Y-m-d H:i:s') . " UTC, lang" . $viewlanguage . ", " . $vd . ", " . $ip . ", " . $block . "\n";
 file_put_contents($log_file, $log_line, FILE_APPEND);
 echo '<!DOCTYPE html><html lang="en" style="font-size: 90%">
 <head><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -756,8 +756,7 @@ $pd = idn_to_ascii($vd, IDNA_DEFAULT, INTL_IDNA_VARIANT_UTS46);
 $server_uri = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 $server_uri .= '://'. $_SERVER['HTTP_HOST'];
 $server_uri .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);	
-$server_uri = dirname($server_uri);
-$rdap_uri = $server_uri.'/domain_data/index.php?main=0&domain='.$pd;
+$rdap_uri = $server_uri.'/domain_data.php?main=0&domain='.$pd;
 $context = stream_context_create([
   'http' => [
     'method'           => 'GET',
@@ -788,12 +787,12 @@ $data = json_decode($json, true);
 if (!is_array($data)) {
 	die("RDAP returned invalid JSON (after {$duration}s).");
 }
-$view_tld_uri = $server_uri.'/tld/index.php?language='.$viewlanguage.'&tld='.$data[$pd]['registry']['metadata']['tld_ascii_name'];;
-$raw_whois = $server_uri.'/domain_whois/index.php?language='.$viewlanguage.'&domain='.$vd;
+$view_tld_uri = $server_uri.'/tld.php?language='.$viewlanguage.'&tld='.$data[$pd]['registry']['metadata']['tld_ascii_name'];;
+$raw_whois = $server_uri.'/domain_whois.php?language='.$viewlanguage.'&domain='.$vd;
 if	(is_null($data))	{
 	$view_tld_uri = '';
 	$raw_whois = '';
-	$reopen = $server_uri.'/domain/index.php?main=0&domain=domain';
+	$reopen = $server_uri.'/domain.php?main=0&domain=domain';
 	sc_redir($reopen);
 }
 //$data[$pd]['registry']['metadata']['registry_tld_uri'] = 'https://rdap.publicinterestregistry.org/rdap/domain/hostingtool.org';
@@ -810,7 +809,7 @@ $html_text .= '<tr><td id="instruction" style="font-size: 0.8rem; vertical-align
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(2)">en_US</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(3)">de_DE</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(4)">fr_FR</button> 
-	<a style="font-size: 0.9rem" href="https://relationships.hostingtool.nl/email_modeling" target="_blank">Email modeling</a> - <a style="font-size: 0.9rem" href="https://github.com/janwillemstegink/relationships.hostingtool.nl" target="_blank">Code/issues on GitHub</a> - <a style="font-size: 0.9rem" href="https://janwillemstegink.nl/" target="_blank">Insight at janwillemstegink.nl</a></td><td></td></tr>';
+	<a style="font-size: 0.9rem" href="https://relationships.hostingtool.nl/email_modeling.php" target="_blank">Email modeling</a> - <a style="font-size: 0.9rem" href="https://github.com/janwillemstegink/relationships.hostingtool.nl" target="_blank">Code/issues on GitHub</a> - <a style="font-size: 0.9rem" href="https://janwillemstegink.nl/" target="_blank">Insight at janwillemstegink.nl</a></td><td></td></tr>';
 if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name']) or empty($data[$pd]['registry']['domain']['ascii_name']))	{
 	$html_text .= '<tr style="font-size:1.05rem;font-weight:bold"><td id="field_name"></td><td>domain_from_registry<td id="explanation"></td><td>domain_from_registrar</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(11)">Notices +/-</button><td></td><td id="notices_part"></td><td></td></tr>';

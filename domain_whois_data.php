@@ -3,7 +3,7 @@
 //error_reporting(E_ALL);
 //$_GET['domain'] = 'hostingtool.nl';
 //$_GET['domain'] = 'cyberfusion.nl';
-//$_GET['domain'] = 'münchen.de';
+//$_GET['domain'] = 'mï¿½nchen.de';
 //$_GET['domain'] = 'example.tel';
 
 if (!empty($_GET['domain']))	{
@@ -70,13 +70,13 @@ if ($inputbatch)	{
 }
 else	{
 	usleep(1.05 * 1_000_000);
-	//$command = escapeshellcmd("/usr/bin/python3.9 /home/admin/scripts/get_whois_domain_data.py");
+	//$command = escapeshellcmd("/home/admin/venv-lookup/bin/python /home/admin/scripts/get_whois_domain_data.py");
 	//$raw_whois_data = nl2br(htmlspecialchars(shell_exec($command . " " . $inputdomain)));	
 	
-	//$command = "/usr/bin/python3.9 /home/admin/scripts/get_whois_domain_data.py";
+	//$command = "/home/admin/venv-lookup/bin/python /home/admin/scripts/get_whois_domain_data.py";
 	//$raw_whois_data = shell_exec($command . " " . escapeshellarg($inputdomain) . " --format html 2>&1");	
 	
-	$command = "/usr/bin/python3.9 /home/admin/scripts/get_whois_domain_data.py";
+	$command = "/home/admin/venv-lookup/bin/python /home/admin/scripts/get_whois_domain_data.py";
 	$raw_whois_data = shell_exec($command . " " . escapeshellarg($inputdomain) . " 2>&1");
 	
 	//$raw_whois_data = shell_exec($command . " " . $inputdomain);	
@@ -97,4 +97,3 @@ $arr[$inputdomain]['raw_whois'] = $raw_whois_data;
 
 return $arr;
 }
-?>

@@ -2,7 +2,7 @@
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 //$_GET['tld'] = 'nl';
-//$_GET['tld'] = 'vermögensberater';
+//$_GET['tld'] = 'vermÃ¶gensberater';
 
 if (!empty($_GET['tld']))	{
 	if (strlen(trim($_GET['tld'])))	{
@@ -428,9 +428,9 @@ elseif ($inputtld == 'fr')	{
         {"function_identifier": "contracting_authority", "function_legal_name": null, "function_presented_name": null},
 		{"function_identifier": "contract_holder", "function_legal_name": null, "function_presented_name": null},
         {"function_identifier": "sponsoring_organization", "function_legal_name": null, "function_presented_name": null},
-        {"function_identifier": "country_code_designated_manager", "function_legal_name": "Association Française pour le Nommage Internet en Coopération", "function_presented_name": "A.F.N.I.C."},
-        {"function_identifier": "registry_operator", "function_legal_name": "Association Française pour le Nommage Internet en Coopération", "function_presented_name": "A.F.N.I.C."},
-		{"function_identifier": "backend_operator", "function_legal_name": "Association Française pour le Nommage Internet en Coopération", "function_presented_name": "A.F.N.I.C."}
+        {"function_identifier": "country_code_designated_manager", "function_legal_name": "Association FranÃ§aise pour le Nommage Internet en CoopÃ©ration", "function_presented_name": "A.F.N.I.C."},
+        {"function_identifier": "registry_operator", "function_legal_name": "Association FranÃ§aise pour le Nommage Internet en CoopÃ©ration", "function_presented_name": "A.F.N.I.C."},
+		{"function_identifier": "backend_operator", "function_legal_name": "Association FranÃ§aise pour le Nommage Internet en CoopÃ©ration", "function_presented_name": "A.F.N.I.C."}
     ]';	
 	$tld_data_usage_policy_uri = 'https://www.afnic.fr/';
 	$tld_services_uri = 'https://www.afnic.fr/';

@@ -1,13 +1,9 @@
 <?php
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
-//$_GET['domain'] = 'hostingtool.nl';
-//$_GET['domain'] = 'cyberfusion.nl';
 //$_GET['domain'] = 'münchen.de';
-//$_GET['domain'] = 'example.tel';
 //$_GET['domain'] = 'rdap.org';
 //$_GET['domain'] = 'france.fr';
-//$_GET['domain'] = 'domaincontrolregister.org';
 //$_GET['domain'] = 'icann.org';
 //$_GET['domain'] = 'amsterdam.amsterdam';
 //$_GET['domain'] = 'eurid.eu';
@@ -950,15 +946,16 @@ function write_file($inputtld, $inputdomain, $inputmain, $inputurl) {
     	$arr['interface_notice']=implode(', ',$parts);
     	return $arr;
 	}
-	$response=stream_get_contents($fp);
-	fclose($fp);
+	$response = stream_get_contents($fp);
+	fclose($fp);	
 	$http_code=null;
 	if (!empty($http_response_header)&&preg_match('#^HTTP/\S+\s+(\d{3})#',$http_response_header[0],$m))$http_code=(int)$m[1];
 	$elapsed_seconds=microtime(true)-$start_monotonic;
 	$obs=($start_utc_iso?" at $start_utc_iso UTC":"").' in '.round($elapsed_seconds,2).' sec'.($server_seen?" observed from $server_seen":"");
-	if ($http_code===null) {$arr['interface_notice']="No HTTP status line$obs";return $arr;}
-	if ($http_code===429) {$arr['interface_notice']="429 - Rate limit exceeded$obs";return $arr;}
-	if ($http_code!==200) {$arr['interface_notice']=$http_code." - Insufficient HTTP response$obs";return $arr;}
+	if ($http_code === null) {$arr['interface_notice']="No HTTP status line$obs";return $arr;}
+	if ($http_code === 429) {$arr['interface_notice']="429 - Rate limit exceeded$obs";return $arr;}
+	//if ($http_code !== 200) {$arr['interface_notice']=$http_code." - Insufficient HTTP response$obs";return $arr;}
+	if ($http_code < 200 || $http_code >= 300) {$arr['interface_notice'] = "$http_code - HTTP response$obs"; return $arr;}	
 	try {$obj=json_decode($response,true,512,JSON_THROW_ON_ERROR);}
 	catch(JsonException $e){$arr['interface_notice']="200 - JSON decode exception: ".$e->getMessage().$obs;return $arr;}
 	if (!is_array($obj)) {$arr['interface_notice']="200 - Invalid JSON structure$obs";return $arr;}
