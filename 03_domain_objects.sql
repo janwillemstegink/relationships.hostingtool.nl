@@ -265,10 +265,10 @@ EXECUTE FUNCTION update_autnums_latest_data_mutation_at();
 -- ========================================
 -- "not_stored" — value is not maintained by the domain service.
 -- "shielded" — value is maintained and not disclosed.
--- "visible" — value is maintained and disclosed.
+-- "publicly_visible" — value is maintained and publicly disclosed.
 -- "identified_visible" — value is maintained, not publicly disclosed, and disclosed for an identified inquiry.
--- "tunable_shielded" — value is maintained and currently not disclosed by registrant choice.
--- "tunable_visible" — value is maintained and currently disclosed by registrant choice.
+-- "tunable_shielded" — value is maintained and currently not disclosed by subject choice.
+-- "tunable_visible" — value is maintained and currently publicly disclosed by subject.
 -- ========================================
 CREATE TABLE IF NOT EXISTS domain_relationships (
     dr_id SERIAL PRIMARY KEY,
@@ -320,14 +320,6 @@ BEFORE UPDATE ON domain_nameservers
 FOR EACH ROW
 EXECUTE FUNCTION update_domain_nameservers_latest_data_mutation_at();
 
--- ========================================
--- "not_stored" — value is not maintained by the domain service.
--- "shielded" — value is maintained and not disclosed.
--- "visible" — value is maintained and disclosed.
--- "identified_visible" — value is maintained, not publicly disclosed, and disclosed for an identified inquiry.
--- "tunable_shielded" — value is maintained and currently not disclosed by registrant choice.
--- "tunable_visible" — value is maintained and currently disclosed by registrant choice.
--- ========================================
 CREATE TABLE IF NOT EXISTS subject_relationships (
     sr_id BIGSERIAL PRIMARY KEY,
 	sr_source_layer VARCHAR(12) NOT NULL CHECK (sr_source_layer IN ('registry','registrar')),
