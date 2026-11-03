@@ -266,7 +266,7 @@ EXECUTE FUNCTION update_autnums_latest_data_mutation_at();
 -- "not_stored" — value is not maintained by the domain service.
 -- "shielded" — value is maintained and not disclosed.
 -- "publicly_visible" — value is maintained and publicly disclosed.
--- "identified_visible" — value is maintained, not publicly disclosed, and disclosed for an identified inquiry.
+-- "identified_visible" — value is maintained and disclosed only upon identified inquiry.
 -- "tunable_shielded" — value is maintained and currently not disclosed by subject choice.
 -- "tunable_visible" — value is maintained and currently publicly disclosed by subject.
 -- ========================================
