@@ -161,7 +161,8 @@ function SwitchDisplay(type) {
 	}
 }
 		
-const publication_state = `Legacy Limitations
+const publication_state = `Existing RDAP mechanisms have limitations in visibility, relationships, and interoperability:
+
 1. The current "name.description", "name.type", and "type" alternatives may result in differing visibility representations across registry and registrar RDAP.
 2. Current RDAP "redacted" semantics can evolve into relationship-specific field names, such as "registrant_contact_uri", and relationship-specific "publication_state" values.
 3. Relationship responsibility order is not inherent in the RDAP JSON representation.
@@ -189,6 +190,7 @@ Relationships visualized by responsibility: "sponsor", "registrant", "actor", "r
 
 Operational Guidance
 Field values SHOULD conform to the semantics of the field in which they are represented.
+Subject-controlled publication depends on supporting capabilities of the gTLD registrar or the ccTLD registry.
 Email communications issued by a registry SHOULD clearly identify the applicable relationship to which the message refers.
 
 Example (Non-Normative)
@@ -197,10 +199,10 @@ A subject's email address may be disclosed for one relationship but not another.
 Enumerated Values
 "not_stored" — value is not maintained by the domain service.
 "shielded" — value is maintained and not disclosed.
-"visible" — value is maintained and disclosed.
+"publicly_visible" — value is maintained and publicly disclosed.
 "identified_visible" — value is maintained, not publicly disclosed, and disclosed for an identified inquiry.
-"tunable_shielded" — value is maintained and currently not disclosed by registrant choice.
-"tunable_visible" — value is maintained and currently disclosed by registrant choice.
+"tunable_shielded" — value is maintained and currently not disclosed by subject choice.
+"tunable_visible" — value is maintained and currently publicly disclosed by subject.
 
 End of RFC modeling section.
 
@@ -1202,28 +1204,9 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 $html_text .= '</table></div></body></html>';
 echo $html_text;
 
-function getClientIP() {
-    $ip = '';
-    if (isset($_SERVER)) {
-        if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            $ipList = explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"]);
-            $ip = trim($ipList[0]);
-        } elseif (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-            $ip = $_SERVER["HTTP_CLIENT_IP"];
-        } else {
-            $ip = $_SERVER["REMOTE_ADDR"];
-        }
-    } else {
-        if (getenv('HTTP_X_FORWARDED_FOR')) {
-            $ipList = explode(',', getenv('HTTP_X_FORWARDED_FOR'));
-            $ip = trim($ipList[0]);
-        } elseif (getenv('HTTP_CLIENT_IP')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-        } else {
-            $ip = getenv('REMOTE_ADDR');
-        }
-    }
-    return $ip;
+function getClientIP(): string {
+    $ip = (string)($_SERVER['REMOTE_ADDR'] ?? '');
+    return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
 }
 
 function get_block($ip) {
