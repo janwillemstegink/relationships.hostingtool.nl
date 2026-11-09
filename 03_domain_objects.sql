@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS metadata_registrar (
 	mr_registrar_server_handle TEXT NOT NULL UNIQUE,
 	mr_registrar_identifiers JSONB DEFAULT '[]'::jsonb,
     mr_registrar_data_uri JSONB DEFAULT '[]'::jsonb,
+	mr_registrar_object_template TEXT,
     mr_registrar_complaint_uri JSONB DEFAULT '[]'::jsonb
 );
 
