@@ -1,4 +1,13 @@
 <?php
+session_name('__Host-PHPSESSID');
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+session_start();
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
@@ -541,28 +550,9 @@ if (true or $pd == mb_strtolower($data[$pd]['domain']['ascii_name']) or empty($d
 $html_text .= '</table></div></body></html>';
 echo $html_text;
 
-function getClientIP() {
-    $ip = '';
-    if (isset($_SERVER)) {
-        if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            $ipList = explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"]);
-            $ip = trim($ipList[0]);
-        } elseif (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-            $ip = $_SERVER["HTTP_CLIENT_IP"];
-        } else {
-            $ip = $_SERVER["REMOTE_ADDR"];
-        }
-    } else {
-        if (getenv('HTTP_X_FORWARDED_FOR')) {
-            $ipList = explode(',', getenv('HTTP_X_FORWARDED_FOR'));
-            $ip = trim($ipList[0]);
-        } elseif (getenv('HTTP_CLIENT_IP')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-        } else {
-            $ip = getenv('REMOTE_ADDR');
-        }
-    }
-    return $ip;
+function getClientIP(): string {
+    $ip = (string)($_SERVER['REMOTE_ADDR'] ?? '');
+    return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
 }
 
 function get_block($ip) {

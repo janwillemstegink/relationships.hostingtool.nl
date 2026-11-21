@@ -1,5 +1,6 @@
 <?php
 //ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 //$_GET['domain'] = 'münchen.de';
 //$_GET['domain'] = 'rdap.org';
@@ -438,14 +439,13 @@ function getDnssecInfo(string $domain): array
         return $result;
     }
 
-    $runner = findDnsCommand();
-    if ($runner === null) {
-        $result['error'] = 'Neither dig nor drill was found on this system';
+    try {
+        $dnskeyLines = runDnsQuery($domain, 'DNSKEY');
+        $dsLines = runDnsQuery($domain, 'DS');
+    } catch (RuntimeException $e) {
+        $result['error'] = $e->getMessage();
         return $result;
     }
-
-    $dnskeyLines = runDnsQuery($runner, $domain, 'DNSKEY');
-    $dsLines = runDnsQuery($runner, $domain, 'DS');
 
     $result['dnskey_records'] = $dnskeyLines;
     $result['ds_records'] = $dsLines;
@@ -525,9 +525,10 @@ function getDnssecInfo(string $domain): array
     return $result;
 }
 
+/* Legacy dig/drill implementation (requires shell_exec; disabled by PHP updates).
 /**
  * Find available DNS tool.
- */
+ * /
 function findDnsCommand(): ?string
 {
     $candidates = ['dig', 'drill'];
@@ -544,7 +545,7 @@ function findDnsCommand(): ?string
 
 /**
  * Run DNS query and return non-empty lines.
- */
+ * /
 function runDnsQuery(string $runner, string $domain, string $type): array
 {
     $domainArg = escapeshellarg($domain);
@@ -583,6 +584,36 @@ function runDnsQuery(string $runner, string $domain, string $type): array
         }
     ));
 
+    return $lines;
+}
+
+*/
+
+function runDnsQuery(string $domain, string $type): array
+{
+    $url = 'https://cloudflare-dns.com/dns-query?name=' . rawurlencode($domain) . '&type=' . $type;
+    $context = stream_context_create(['http' => [
+        'method' => 'GET',
+        'header' => "Accept: application/dns-json\r\n",
+        'timeout' => 5,
+        'ignore_errors' => true,
+    ]]);
+    $json = @file_get_contents($url, false, $context);
+    $httpStatus = $http_response_header[0] ?? '';
+    if ($json === false || !preg_match('~^HTTP/\S+ 200(?:\s|$)~', $httpStatus)) {
+        throw new RuntimeException('DNS-over-HTTPS request failed: ' . $type);
+    }
+    $response = json_decode($json, true);
+    if (!is_array($response) || !isset($response['Status']) || (int)$response['Status'] !== 0) {
+        throw new RuntimeException('DNS-over-HTTPS response failed: ' . $type);
+    }
+    $recordType = $type === 'DNSKEY' ? 48 : 43;
+    $lines = [];
+    foreach ($response['Answer'] ?? [] as $record) {
+        if (($record['type'] ?? null) === $recordType && isset($record['data'])) {
+            $lines[] = trim((string)$record['data']);
+        }
+    }
     return $lines;
 }
 

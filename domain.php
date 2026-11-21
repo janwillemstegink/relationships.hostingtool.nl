@@ -1,4 +1,13 @@
 <?php
+session_name('__Host-PHPSESSID');
+session_set_cookie_params([
+	'lifetime' => 0,
+	'path' => '/',
+	'secure' => true,
+	'httponly' => true,
+	'samesite' => 'Strict'
+]);
+session_start();
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $datetime = new DateTime('now', new DateTimeZone('UTC'));
