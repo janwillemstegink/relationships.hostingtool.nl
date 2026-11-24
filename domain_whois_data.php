@@ -140,5 +140,23 @@ function lookupWhois(string $domain): string {
     foreach ($lines as $line) {
         if (!$deduped || $line !== end($deduped)) $deduped[] = $line;
     }
+    for ($i = 0; $i < count($deduped); $i++) {
+        if (strcasecmp(trim($deduped[$i]), 'Domain nameservers:') !== 0) continue;
+        $start = $i + 1;
+        $end = $start;
+        while (isset($deduped[$end]) && preg_match('/^\s*[a-z0-9_-]+(?:\.[a-z0-9_-]+)+\.?(?:\s+\S+)?\s*$/i', $deduped[$end])) $end++;
+        $nameservers = array_slice($deduped, $start, $end - $start);
+        usort($nameservers, function ($a, $b) {
+            $a = preg_split('/\s+/', trim($a), 2);
+            $b = preg_split('/\s+/', trim($b), 2);
+            $cmp = strcasecmp($a[0], $b[0]);
+            if ($cmp !== 0) return $cmp;
+            $ipA = inet_pton($a[1] ?? '') ?: '';
+            $ipB = inet_pton($b[1] ?? '') ?: '';
+            return (strlen($ipA) <=> strlen($ipB)) ?: strcmp($ipA, $ipB);
+        });
+        array_splice($deduped, $start, $end - $start, $nameservers);
+        $i = $end - 1;
+    }
     return nl2br(htmlspecialchars(implode("\n", $deduped), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), false);
 }

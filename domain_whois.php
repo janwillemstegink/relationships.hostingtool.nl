@@ -29,7 +29,7 @@ if (empty($_GET["language"]))	{
 else	{
 	$viewlanguage = $_GET["language"];
 }
-if (!empty(trim($_GET['domain'])))	{
+if (!empty(trim($_GET['domain'] ?? '')))	{
 	$vd = trim($_GET['domain']);
 	$vd = mb_strtolower($vd);
 	$vd = str_replace('http://','', $vd);
@@ -159,8 +159,11 @@ $server_url = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !
 $server_url .= '://'. $_SERVER['HTTP_HOST'];
 $server_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);	
 //$server_url = dirname($server_url);
-$whois_url = $server_url . '/domain_whois_data.php?batch=0&domain=' . urlencode($pd);
-$json = @file_get_contents($whois_url);
+$json = false;
+if ($vd !== 'domain' && $pd !== false) {
+    $whois_url = $server_url . '/domain_whois_data.php?batch=0&domain=' . urlencode($pd);
+    $json = @file_get_contents($whois_url);
+}
 $data = null;
 $terms_and_conditions = '';
 if ($json !== false) {
@@ -169,17 +172,14 @@ if ($json !== false) {
 if (is_array($data) && isset($data[$pd]['metadata']['zone_identifier'])) {
     $terms_and_conditions = $server_url . '/tld.php?language=' . $viewlanguage . '&tld=' . $data[$pd]['metadata']['zone_identifier'];
 }
-else {
-    $reopen = $server_url . '/domain_whois.php?batch=0&domain=hostingtool.nl';
-    sc_redir($reopen);
-}
+
 $html_text = '<body onload=SwitchTranslation('.$viewlanguage.')><div style="border-collapse:collapse; line-height:120%">
 <table style="font-family:Helvetica, Arial, sans-serif; font-size: 1rem; table-layout: fixed; width:1375px">
 <tr><th style="width:325px"></th><th style="width:300px"></th><th style="width:750px"></th></tr>';
 $html_text .= '<tr style="font-size: .8rem"><td id="title" style="font-size: 1.3rem;color:blue;font-weight:bold"></td><td id="instruction"></td><td></td></tr>';
 $html_text .= '<tr style="font-size: .8rem"><td id="subtitle" style="font-size: 1.0rem;color:blue;font-weight:bold"></td><td><form action='.htmlentities($_SERVER['PHP_SELF']).' method="get">
 	<input type="hidden" id="language" name="language" value='.$viewlanguage.'>	
-	<input type="text" style="width:90%" id="domain" name="domain" value='.$vd.'></form></td><td>
+	<input type="text" style="width:90%" id="domain" name="domain" value='.htmlspecialchars($vd, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8').'></form></td><td>
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(99)">None</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(1)">nl_NL</button> 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(2)">en_US</button> 
@@ -187,7 +187,7 @@ $html_text .= '<tr style="font-size: .8rem"><td id="subtitle" style="font-size: 
 	<button style="cursor:pointer;font-size:1.0rem" onclick="SwitchTranslation(4)">fr_FR</button> 
 	<a style="font-size: 0.9rem" href="https://github.com/janwillemstegink/relationships.hostingtool.nl" target="_blank">Code/issues on GitHub</a> - <a style="font-size: 0.9rem" href="https://janwillemstegink.nl/" target="_blank">Insight at janwillemstegink.nl</a></td></tr>';
 //echo $pd.'#'.$data[$pd]['domain']['ascii_name'];
-if (true or $pd == mb_strtolower($data[$pd]['domain']['ascii_name']) or empty($data[$pd]['domain']['ascii_name']))	{
+if (is_array($data) && isset($data[$pd]['raw_whois']))	{
 	$html_text .= '<tr style="font-size:1.05rem;font-weight:bold"><td></td><td><td></td></tr>';
 	$html_text .= '<tr><td><hr></td><td><hr></td><td><hr></td></tr>';
 	$html_text .= '<tr><td colspan="3">'.$data[$pd]['raw_whois'].'</td></tr>';

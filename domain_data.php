@@ -1031,7 +1031,7 @@ $indeterminate_statuses = '';
 $dns_state = 'dns_undelegated';
 $expiration_at = null;
 $lifecycle_phase = '';	
-$deletion_at = null;	
+$release_at = null;	
 $extensions = '';
 $remarks = '';
 $registrant_statuses = '';
@@ -1039,7 +1039,7 @@ $registrant_created_at = null;
 $registrant_latest_transfer_at = null;	
 $registrant_latest_data_mutation_at = null;
 $registrant_expiration_at = null;	
-$registrant_deletion_at = null;	
+$registrant_ended_at = null;	
 $registrant_remarks = '';		
 $request_handling_remarks = '';
 $issue_reporting_remarks = '';
@@ -1049,21 +1049,21 @@ $reseller_created_at = null;
 $reseller_latest_transfer_at = null;	
 $reseller_latest_data_mutation_at = null;
 $reseller_expiration_at = null;	
-$reseller_deletion_at = null;
+$reseller_ended_at = null;
 $reseller_remarks = '';		
 $registrar_statuses = '';	
 $registrar_created_at = null;
 $registrar_latest_transfer_at = null;	
 $registrar_latest_data_mutation_at = null;
 $registrar_expiration_at = null;	
-$registrar_deletion_at = null;		
+$registrar_ended_at = null;		
 $registrar_remarks = '';
 $sponsor_statuses = '';
 $sponsor_created_at = null;
 $sponsor_latest_transfer_at = null;	
 $sponsor_latest_data_mutation_at = null;
 $sponsor_expiration_at = null;	
-$sponsor_deletion_at = null;
+$sponsor_ended_at = null;
 $sponsor_remarks = '';
 $tld_global_handle	= '';
 $registrar_handle = $obj['handle'];
@@ -1386,7 +1386,7 @@ foreach($obj as $key1 => $value1) {
 					$expiration_at = $value2['eventDate'];
 				}
 				elseif ($key3 == 'eventAction' and $value3 == 'deletion')	{
-					$deletion_at = $value2['eventDate'];
+					$release_at = $value2['eventDate'];
 				}
 				elseif ($key3 == 'eventAction' and $value3 == 'last update of RDAP database')	{
 					$resource_upload_at = $value2['eventDate'];				
@@ -1491,7 +1491,7 @@ foreach($obj as $key1 => $value1) {
 								$registrant_expiration_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'deletion')	{
-								$registrant_deletion_at = $value4['eventDate'];
+								$registrant_ended_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'last update of RDAP database')	{
 								$registrant_resource_upload_at = $value4['eventDate'];				
@@ -1511,7 +1511,7 @@ foreach($obj as $key1 => $value1) {
 								$reseller_expiration_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'deletion')	{
-								$reseller_deletion_at = $value4['eventDate'];
+								$reseller_ended_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'last update of RDAP database')	{
 								$reseller_resource_upload_at = $value4['eventDate'];				
@@ -1531,7 +1531,7 @@ foreach($obj as $key1 => $value1) {
 								$registrar_expiration_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'deletion')	{
-								$registrar_deletion_at = $value4['eventDate'];
+								$registrar_ended_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'last update of RDAP database')	{
 								$registrar_resource_upload_at = $value4['eventDate'];				
@@ -1551,7 +1551,7 @@ foreach($obj as $key1 => $value1) {
 								$sponsor_expiration_at = $valu4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'deletion')	{
-								$sponsor_deletion_at = $value4['eventDate'];
+								$sponsor_ended_at = $value4['eventDate'];
 							}
 							elseif ($key5 == 'eventAction' and $value5 == 'last update of RDAP database')	{
 								$sponsor_resource_upload_at = $value4['eventDate'];				
@@ -2096,7 +2096,7 @@ $arr['domain']['latest_registrar_transfer_at'] = $latest_registrar_transfer_at;
 $arr['domain']['latest_data_mutation_at'] = $latest_data_mutation_at;
 $arr['domain']['expiration_at'] = $expiration_at;
 $arr['domain']['lifecycle_phase'] = rtrim($lifecycle_phase, ",");
-$arr['domain']['deletion_at'] = $deletion_at;
+$arr['domain']['release_at'] = $release_at;
 $arr['domain']['extensions'] = $extensions;
 $arr['domain']['remarks'] = $remarks;			
 	
@@ -2119,6 +2119,7 @@ $arr['sponsor']['preferred_languages'] = $sponsor_preferred_languages;
 $arr['sponsor']['statuses'] = $sponsor_statuses;
 $arr['sponsor']['created_at'] = $sponsor_created_at;
 $arr['sponsor']['latest_data_mutation_at'] = $sponsor_latest_data_mutation_at;
+$arr['sponsor']['ended_at'] = $sponsor_ended_at;	
 $arr['sponsor']['remarks'] = $sponsor_remarks;
 $arr['sponsor']['links'] = $sponsor_links;	
 	
@@ -2142,6 +2143,7 @@ $arr['registrant']['preferred_languages'] = $registrant_preferred_languages;
 $arr['registrant']['statuses'] = $registrant_statuses;
 $arr['registrant']['created_at'] = $registrant_created_at;
 $arr['registrant']['latest_data_mutation_at'] = $registrant_latest_data_mutation_at;
+$arr['registrant']['ended_at'] = $registrant_ended_at;	
 $arr['registrant']['remarks'] = $registrant_remarks;
 $arr['registrant']['links'] = $registrant_links;	
 	
@@ -2165,6 +2167,7 @@ $arr['request_handling']['preferred_languages'] = $request_handling_preferred_la
 $arr['request_handling']['statuses'] = $request_handling_statuses;
 $arr['request_handling']['created_at'] = $request_handling_created_at;
 $arr['request_handling']['latest_data_mutation_at'] = $request_handling_latest_data_mutation_at;
+$arr['request_handling']['ended_at'] = $request_handling_ended_at;	
 $arr['request_handling']['remarks'] = $request_handling_remarks;
 $arr['request_handling']['links'] = $request_handling_links;
 
@@ -2188,6 +2191,7 @@ $arr['issue_reporting']['preferred_languages'] = $issue_reporting_preferred_lang
 $arr['issue_reporting']['statuses'] = $issue_reporting_statuses;
 $arr['issue_reporting']['created_at'] = $issue_reporting_created_at;
 $arr['issue_reporting']['latest_data_mutation_at'] = $issue_reporting_latest_data_mutation_at;
+$arr['issue_reporting']['ended_at'] = $issue_reporting_ended_at;	
 $arr['issue_reporting']['remarks'] = $issue_reporting_remarks;
 $arr['issue_reporting']['links'] = $issue_reporting_links;	
 	
@@ -2211,6 +2215,7 @@ $arr['billing']['preferred_languages'] = $billing_preferred_languages;
 $arr['billing']['statuses'] = $billing_statuses;
 $arr['billing']['created_at'] = $billing_created_at;
 $arr['billing']['latest_data_mutation_at'] = $billing_latest_data_mutation_at;
+$arr['billing']['ended_at'] = $billing_ended_at;	
 $arr['billing']['remarks'] = $billing_remarks;
 $arr['billing']['links'] = $billing_links;	
 
@@ -2234,6 +2239,7 @@ $arr['reseller']['preferred_languages'] = $reseller_preferred_languages;
 $arr['reseller']['statuses'] = $reseller_statuses;
 $arr['reseller']['created_at'] = $reseller_created_at;
 $arr['reseller']['latest_data_mutation_at'] = $reseller_latest_data_mutation_at;
+$arr['reseller']['ended_at'] = $reseller_ended_at;	
 $arr['reseller']['remarks'] = $reseller_remarks;
 $arr['reseller']['links'] = $reseller_links;	
 
@@ -2257,6 +2263,7 @@ $arr['registrar']['preferred_languages'] = $registrar_preferred_languages;
 $arr['registrar']['statuses'] = $registrar_statuses;
 $arr['registrar']['created_at'] = $registrar_created_at;
 $arr['registrar']['latest_data_mutation_at'] = $registrar_latest_data_mutation_at;
+$arr['registrar']['ended_at'] = $registrar_ended_at;	
 $arr['registrar']['remarks'] = $registrar_remarks;
 $arr['registrar']['links'] = $registrar_links;	
 	

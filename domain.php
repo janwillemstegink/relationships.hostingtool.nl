@@ -295,7 +295,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
 		document.getElementById("domain_recoverable_until").textContent = proposed;
-		document.getElementById("domain_deletion_at").textContent = "";
+		document.getElementById("domain_release_at").textContent = "";
 		document.getElementById("domain_extensions").textContent = "";		
 		document.getElementById("sponsor_part").textContent = "";
 		document.getElementById("registrant_part").textContent = "";
@@ -390,12 +390,12 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_created_at").textContent = "De datumvelden staan hier in een logische volgorde. Dit is ook eenvoudig in de JSON-array.";
 		document.getElementById("domain_latest_data_mutation_at").textContent = modified + "Verschillende mutatieniveaus: domeinobject (registry) versus contactobject (registrar).";
 		document.getElementById("domain_expiration_at").textContent = "Vervaldatumgrens van het domein, waarna de rechten van de registrar afnemen.";
-		document.getElementById("domain_lifecycle_phase").textContent = modified + "De EPP-status 'redemptionPeriod' kan in RDAPv2 worden gewijzigd naar 'pending_redemption'.";
+		document.getElementById("domain_lifecycle_phase").textContent = modified + "EPP → RDAPv2: 'redemptionPeriod' → 'recoverable'; 'pendingDelete' → 'pending_release'.";
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Gemodelleerd als na stop van DNS-publicatie + TLD pending_redemption_days.";
-		document.getElementById("domain_deletion_at").textContent = "Datum en tijdstip gepland voor volledige verwijdering. Er kan een laatste verwijderingsfase zijn.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Gemodelleerd als na stop van DNS-publicatie + TLD recoverable_days.";
+		document.getElementById("domain_release_at").textContent = "Datum en tijd waarop de domeinnaam volgens planning opnieuw beschikbaar komt voor registratie.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': Hoe het domein voldoet aan specifieke eisen van de TLD-rootzone.";
 		document.getElementById("sponsor_part").textContent = "Gebruikt wanneer een partij toezicht houdt op het domeinabonnement.";
 		document.getElementById("registrant_part").textContent = "De registrant is primair verantwoordelijk; andere partijen kunnen afhankelijk van de context worden benaderd.";
@@ -490,12 +490,12 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_created_at").textContent = "The date fields are here in a logical order. This is also easy in the JSON array.";
 		document.getElementById("domain_latest_data_mutation_at").textContent = modified + "Distinct mutation layers: domain object (registry) vs contact object (registrar).";
 		document.getElementById("domain_expiration_at").textContent = "Domain expiration boundary, after which registrar rights decline.";
-		document.getElementById("domain_lifecycle_phase").textContent = modified + "The EPP 'redemptionPeriod' status can be changed to 'pending_redemption' in RDAPv2.";
+		document.getElementById("domain_lifecycle_phase").textContent = modified + "EPP → RDAPv2: 'redemptionPeriod' → 'recoverable'; 'pendingDelete' → 'pending_release'.";
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modeled as after DNS publication stop + TLD pending_redemption_days.";
-		document.getElementById("domain_deletion_at").textContent = "Date and time scheduled for complete deletion. A final deletion phase may exist.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Modeled as after DNS publication stop + TLD recoverable_days.";
+		document.getElementById("domain_release_at").textContent = "Date and time scheduled for the domain name to become available for subsequent registration.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': How the domain meets specific TLD root zone requirements.";
 		document.getElementById("sponsor_part").textContent = "Used when a party provides oversight related to the domain subscription.";
 		document.getElementById("registrant_part").textContent = "The registrant is the primary accountable party; other parties may be addressed depending on context.";
@@ -590,12 +590,12 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_created_at").textContent = "Die Datumsfelder stehen hier in einer logischen Reihenfolge. Auch dies ist im JSON-Array einfach.";
 		document.getElementById("domain_latest_data_mutation_at").textContent = modified + "Unterschiedliche Mutationsebenen: Domainobjekt (Registry) versus Kontaktobjekt (Registrar).";
 		document.getElementById("domain_expiration_at").textContent = "Ablaufschwelle der Domain, nach der die Befugnisse des Registrars abnehmen.";
-		document.getElementById("domain_lifecycle_phase").textContent = modified + "Der EPP-Status 'redemptionPeriod' kann in RDAPv2 auf 'pending_redemption' geändert werden.";
+		document.getElementById("domain_lifecycle_phase").textContent = modified + "EPP → RDAPv2: 'redemptionPeriod' → 'recoverable'; 'pendingDelete' → 'pending_release'.";
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modelliert als nach Ende der DNS-Veröffentlichung + TLD pending_redemption_days.";
-		document.getElementById("domain_deletion_at").textContent = "Datum und Uhrzeit für die vollständige Löschung geplant. Es kann eine abschließende Löschphase geben.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Modelliert als nach Ende der DNS-Veröffentlichung + TLD recoverable_days.";
+		document.getElementById("domain_release_at").textContent = "Datum und Uhrzeit, zu denen der Domainname planmäßig wieder zur Registrierung verfügbar wird.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': Wie die Domain die spezifischen Anforderungen der TLD-Rootzone erfüllt.";
 		document.getElementById("sponsor_part").textContent = "Wird verwendet, wenn eine Partei die Aufsicht über das Domain-Abonnement wahrnimmt.";
 		document.getElementById("registrant_part").textContent = "Der Registrant ist die primär verantwortliche Partei; andere Parteien können je nach Kontext angesprochen werden.";
@@ -690,12 +690,12 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_created_at").textContent = "Les champs de date sont ici classés dans un ordre logique. C'est également facile dans le tableau JSON.";
 		document.getElementById("domain_latest_data_mutation_at").textContent = modified + "Niveaux de mutation distincts : objet domaine (registre) vs objet contact (registrar).";
 		document.getElementById("domain_expiration_at").textContent = "Limite d’expiration du domaine, après laquelle les droits du registrar diminuent.";
-		document.getElementById("domain_lifecycle_phase").textContent = modified + "Le statut 'redemptionPeriod' de l’EPP peut être modifié en 'pending_redemption' dans RDAPv2.";
+		document.getElementById("domain_lifecycle_phase").textContent = modified + "EPP → RDAPv2: 'redemptionPeriod' → 'recoverable'; 'pendingDelete' → 'pending_release'.";
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modélisé comme après l’arrêt de publication DNS + TLD pending_redemption_days.";
-		document.getElementById("domain_deletion_at").textContent = "Date et heure prévues pour la suppression complète. Une phase de suppression finale peut exister.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Modélisé comme après l’arrêt de publication DNS + TLD recoverable_days.";
+		document.getElementById("domain_release_at").textContent = "Date et heure prévues auxquelles le nom de domaine sera de nouveau disponible à l’enregistrement.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility' : comment le domaine répond aux exigences spécifiques de la zone racine TLD.";
 		document.getElementById("sponsor_part").textContent = "Utilisé lorsqu’une partie assure une supervision liée à l’abonnement du nom de domaine.";
 		document.getElementById("registrant_part").textContent = "Le titulaire est la partie principale responsable ; d’autres parties peuvent être contactées selon le contexte.";
@@ -903,7 +903,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="3012" style="display:none"><td>domain_applicable_grace</td><td>'.$data[$pd]['registry']['domain']['applicable_grace'].'</td><td id="domain_applicable_grace"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace'].'</td></tr>';
 	$html_text .= '<tr id="3013" style="display:none"><td>domain_applicable_grace_until</td><td>'.$data[$pd]['registry']['domain']['applicable_grace_until'].'</td><td id="domain_applicable_grace_until"></td><td>'.$data[$pd]['registrar']['domain']['applicable_grace_until'].'</td></tr>';
 	$html_text .= '<tr id="3014" style="display:none"><td>domain_recoverable_until</td><td>'.$data[$pd]['registry']['domain']['recoverable_until'].'</td><td id="domain_recoverable_until"></td><td>'.$data[$pd]['registrar']['domain']['recoverable_until'].'</td></tr>';
-	$html_text .= '<tr id="3015" style="display:none"><td>domain_deletion_at</td><td>'.$data[$pd]['registry']['domain']['deletion_at'].'</td><td id="domain_deletion_at"></td><td>'.$data[$pd]['registrar']['domain']['deletion_at'].'</td></tr>';
+	$html_text .= '<tr id="3015" style="display:none"><td>domain_release_at</td><td>'.$data[$pd]['registry']['domain']['release_at'].'</td><td id="domain_release_at"></td><td>'.$data[$pd]['registrar']['domain']['release_at'].'</td></tr>';
 	if (!empty($data[$pd]['registry']['domain']['statuses']))	{
 		if (!empty($data[$pd]['registry']['domain']['lifecycle_phase']))	{
 			if (str_contains($data[$pd]['registry']['domain']['lifecycle_phase'], ','))	{
@@ -928,32 +928,32 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 			}
 		}		
 		if (str_contains($data[$pd]['registry']['domain']['statuses'], 'redemption period'))	{
-			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['deletion_at'])) {
+			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['release_at'])) {
 				$html_text .= '<tr id="3020" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"redemption" without date-time provided</td><td></td><td></td></tr>';
 			}	
 		}
 		elseif (str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
-			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['deletion_at'])) {
+			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['release_at'])) {
 				$html_text .= '<tr id="3021" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"pending delete" without date-time provided</td><td></td><td></td></tr>';
 			}	
 		}
 	}
-	if (!empty($data[$pd]['registry']['domain']['expiration_at']) and !empty($data[$pd]['registry']['domain']['deletion_at'])) {
+	if (!empty($data[$pd]['registry']['domain']['expiration_at']) and !empty($data[$pd]['registry']['domain']['release_at'])) {
     	$expiration = strtotime($data[$pd]['registry']['domain']['expiration_at']);
-    	$deletion = strtotime($data[$pd]['registry']['domain']['deletion_at']);
+    	$deletion = strtotime($data[$pd]['registry']['domain']['release_at']);
     	if ($expiration !== false and $deletion !== false)	{
 			$days_before = floor(($expiration - $deletion) / (60 * 60 * 24));
 			if ($days_before > 0) {
-       			$html_text .= '<tr id="3022" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" '.$days_before.' days before "expiration_at"</td><td></td><td></td></tr>';
+       			$html_text .= '<tr id="3022" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"release_at" '.$days_before.' days before "expiration_at"</td><td></td><td></td></tr>';
 			}	
     	}
 	}
-	if (!empty($data[$pd]['registry']['domain']['deletion_at'])) {
+	if (!empty($data[$pd]['registry']['domain']['release_at'])) {
 		$current = strtotime($datetime->format('Y-m-d H:i:s'));
-		$deletion = strtotime($data[$pd]['registry']['domain']['deletion_at']);
+		$deletion = strtotime($data[$pd]['registry']['domain']['release_at']);
     	if ($current !== false and $deletion !== false and $current > $deletion) {
 			$days_ago = floor(($current - $deletion) / (60 * 60 * 24));
-        	$html_text .= '<tr id="3023" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"deletion_at" was '.$days_ago.' days ago?</td><td></td><td></td></tr>';
+        	$html_text .= '<tr id="3023" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"release_at" was '.$days_ago.' days ago?</td><td></td><td></td></tr>';
 		}
 	}	
 	$html_text .= '<tr id="3024" style="display:none"><td>domain_extensions</td><td>'.$data[$pd]['registry']['domain']['extensions'].'</td><td id="domain_extensions"></td><td>'.$data[$pd]['registrar']['domain']['extensions'].'</td></tr>';
