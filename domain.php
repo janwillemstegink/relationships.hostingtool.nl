@@ -929,7 +929,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 		}		
 		if (str_contains($data[$pd]['registry']['domain']['statuses'], 'redemption period'))	{
 			if (empty($data[$pd]['registry']['domain']['expiration_at']) and empty($data[$pd]['registry']['domain']['release_at'])) {
-				$html_text .= '<tr id="3020" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"redemption" without date-time provided</td><td></td><td></td></tr>';
+				$html_text .= '<tr id="3020" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"redemption period" without date-time provided</td><td></td><td></td></tr>';
 			}	
 		}
 		elseif (str_contains($data[$pd]['registry']['domain']['statuses'], 'pending delete'))	{
@@ -939,10 +939,10 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 		}
 	}
 	if (!empty($data[$pd]['registry']['domain']['expiration_at']) and !empty($data[$pd]['registry']['domain']['release_at'])) {
-    	$expiration = strtotime($data[$pd]['registry']['domain']['expiration_at']);
-    	$deletion = strtotime($data[$pd]['registry']['domain']['release_at']);
-    	if ($expiration !== false and $deletion !== false)	{
-			$days_before = floor(($expiration - $deletion) / (60 * 60 * 24));
+    	$expiration_at = strtotime($data[$pd]['registry']['domain']['expiration_at']);
+    	$release_at = strtotime($data[$pd]['registry']['domain']['release_at']);
+    	if ($expiration_at !== false and $release_at !== false)	{
+			$days_before = floor(($expiration_at - $release_at) / (60 * 60 * 24));
 			if ($days_before > 0) {
        			$html_text .= '<tr id="3022" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"release_at" '.$days_before.' days before "expiration_at"</td><td></td><td></td></tr>';
 			}	
@@ -950,9 +950,9 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	}
 	if (!empty($data[$pd]['registry']['domain']['release_at'])) {
 		$current = strtotime($datetime->format('Y-m-d H:i:s'));
-		$deletion = strtotime($data[$pd]['registry']['domain']['release_at']);
-    	if ($current !== false and $deletion !== false and $current > $deletion) {
-			$days_ago = floor(($current - $deletion) / (60 * 60 * 24));
+		$release_at = strtotime($data[$pd]['registry']['domain']['release_at']);
+    	if ($current !== false and $release_at !== false and $current > $release_at) {
+			$days_ago = floor(($current - $release_at) / (60 * 60 * 24));
         	$html_text .= '<tr id="3023" style="display:none"><td>(Global table definition addresses ccTLD variation)</td><td>"release_at" was '.$days_ago.' days ago?</td><td></td><td></td></tr>';
 		}
 	}	
