@@ -101,39 +101,39 @@ function SwitchDisplay(type) {
 	}
 	else if (type == 39)	{ // sponsor
 		var pre = '39';
-		var max = 25
+		var max = 26
 	}
 	else if (type == 40)	{ // registrant
 		var pre = '40';
-		var max = 21
+		var max = 22
 	}
 	else if (type == 41)	{ // actor
 		var pre = '41';
-		var max = 9
+		var max = 10
 	}
 	else if (type == 42)	{ // request handling
 		var pre = '42';
-		var max = 19
+		var max = 20
 	}
 	else if (type == 43)	{ // issue_reporting
 		var pre = '43';
-		var max = 19
+		var max = 20
 	}
 	else if (type == 44)	{ // billing
 		var pre = '44';
-		var max = 21
+		var max = 22
 	}
 	else if (type == 45)	{ // escalation
 		var pre = '45';
-		var max = 10
+		var max = 11
 	}
 	else if (type == 50)	{ // reseller
 		var pre = '50';
-		var max = 25
+		var max = 26
 	}	
 	else if (type == 60)	{ // registrar
 		var pre = '60';
-		var max = 25
+		var max = 26
 	}
 	else if (type == 61)	{ // registrar abuse
 		var pre = '61';
@@ -295,7 +295,7 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
 		document.getElementById("domain_recoverable_until").textContent = proposed;
-		document.getElementById("domain_release_at").textContent = "";
+		document.getElementById("domain_release_at").textContent = modified;
 		document.getElementById("domain_extensions").textContent = "";		
 		document.getElementById("sponsor_part").textContent = "";
 		document.getElementById("registrant_part").textContent = "";
@@ -394,8 +394,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Gemodelleerd als na stop van DNS-publicatie + TLD recoverable_days.";
-		document.getElementById("domain_release_at").textContent = "Datum en tijd waarop de domeinnaam volgens planning opnieuw beschikbaar komt voor registratie.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Datum en tijd tot wanneer de domeinregistratie kan worden hersteld.";
+		document.getElementById("domain_release_at").textContent = modified + "Geplande datum en tijd van domeinnaamvrijgave.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': Hoe het domein voldoet aan specifieke eisen van de TLD-rootzone.";
 		document.getElementById("sponsor_part").textContent = "Gebruikt wanneer een partij toezicht houdt op het domeinabonnement.";
 		document.getElementById("registrant_part").textContent = "De registrant is primair verantwoordelijk; andere partijen kunnen afhankelijk van de context worden benaderd.";
@@ -494,8 +494,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modeled as after DNS publication stop + TLD recoverable_days.";
-		document.getElementById("domain_release_at").textContent = "Date and time scheduled for the domain name to become available for subsequent registration.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Date and time until which the domain registration can be recovered.";
+		document.getElementById("domain_release_at").textContent = modified + "Scheduled date and time of domain name release.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': How the domain meets specific TLD root zone requirements.";
 		document.getElementById("sponsor_part").textContent = "Used when a party provides oversight related to the domain subscription.";
 		document.getElementById("registrant_part").textContent = "The registrant is the primary accountable party; other parties may be addressed depending on context.";
@@ -594,8 +594,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modelliert als nach Ende der DNS-Veröffentlichung + TLD recoverable_days.";
-		document.getElementById("domain_release_at").textContent = "Datum und Uhrzeit, zu denen der Domainname planmäßig wieder zur Registrierung verfügbar wird.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Datum und Uhrzeit, bis zu denen die Domainregistrierung wiederhergestellt werden kann.";
+		document.getElementById("domain_release_at").textContent = modified + "Geplantes Datum und Uhrzeit der Domainfreigabe.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility': Wie die Domain die spezifischen Anforderungen der TLD-Rootzone erfüllt.";
 		document.getElementById("sponsor_part").textContent = "Wird verwendet, wenn eine Partei die Aufsicht über das Domain-Abonnement wahrnimmt.";
 		document.getElementById("registrant_part").textContent = "Der Registrant ist die primär verantwortliche Partei; andere Parteien können je nach Kontext angesprochen werden.";
@@ -694,8 +694,8 @@ function SwitchTranslation(translation)	{
 		document.getElementById("domain_lifecycle_phase_until").textContent = modified;
 		document.getElementById("domain_applicable_grace").textContent = modified;
 		document.getElementById("domain_applicable_grace_until").textContent = modified;		
-		document.getElementById("domain_recoverable_until").textContent = proposed + "Modélisé comme après l’arrêt de publication DNS + TLD recoverable_days.";
-		document.getElementById("domain_release_at").textContent = "Date et heure prévues auxquelles le nom de domaine sera de nouveau disponible à l’enregistrement.";
+		document.getElementById("domain_recoverable_until").textContent = proposed + "Date et heure jusqu’auxquelles l’enregistrement du nom de domaine peut être rétabli.";
+		document.getElementById("domain_release_at").textContent = modified + "Date et heure prévues de libération du nom de domaine.";
 		document.getElementById("domain_extensions").textContent = "'Eligibility' : comment le domaine répond aux exigences spécifiques de la zone racine TLD.";
 		document.getElementById("sponsor_part").textContent = "Utilisé lorsqu’une partie assure une supervision liée à l’abonnement du nom de domaine.";
 		document.getElementById("registrant_part").textContent = "Le titulaire est la partie principale responsable ; d’autres parties peuvent être contactées selon le contexte.";
@@ -991,6 +991,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="3923" style="display:none"><td>sponsor_remarks</td><td>'.$data[$pd]['registry']['sponsor']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="3924" style="display:none"><td>sponsor_links</td><td colspan="2">'.$data[$pd]['registry']['sponsor']['links'].'</td><td>'.$data[$pd]['registrar']['sponsor']['links'].'</td></tr>';
 	$html_text .= '<tr id="3925" style="display:none"><td>sponsor_data_uri</td><td>'.$data[$pd]['registry']['sponsor']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="3926" style="display:none"><td>sponsor_ended_at</td><td>'.$data[$pd]['registry']['sponsor']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['sponsor']['ended_at'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(40)">Registrant +/-</button></td><td></td><td id="registrant_part"></td><td></td></tr>';
 	$html_text .= '<tr id="401" style="display:none"><td>registrant_tld_global_handle</td><td>'.$data[$pd]['registry']['registrant']['tld_global_handle'].'</td><td id="registrant_tld_global_handle"></td><td>'.$data[$pd]['registrar']['registrant']['tld_global_handle'].'</td></tr>';
 	$html_text .= '<tr id="402" style="display:none"><td>registrant_source_handle</td><td>'.$data[$pd]['registry']['registrant']['source_handle'].'</td><td id="registrant_source_handle"></td><td>'.$data[$pd]['registrar']['registrant']['source_handle'].'</td></tr>';
@@ -1018,7 +1019,8 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="4018" style="display:none"><td>registrant_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrant']['verification_revoked_at'].'</td><td id="registrant_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrant']['verification_revoked_at'].'</td></tr>';
 	$html_text .= '<tr id="4019" style="display:none"><td>registrant_remarks</td><td>'.$data[$pd]['registry']['registrant']['remarks'].'</td><td id="registrant_remarks"></td><td>'.$data[$pd]['registrar']['registrant']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="4020" style="display:none"><td>registrant_links</td><td colspan="2">'.$data[$pd]['registry']['registrant']['links'].'</td><td>'.$data[$pd]['registrar']['registrant']['links'].'</td></tr>';
-	$html_text .= '<tr id="4021" style="display:none"><td>registrant_data_uri</td><td>'.$data[$pd]['registry']['registrant']['data_uri'].'</td><td id="registrant_data_uri"></td><td>'.$data[$pd]['registrar']['registrant']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="4021" style="display:none"><td>registrant_data_uri</td><td>'.$data[$pd]['registry']['registrant']['data_uri'].'</td><td id="registrant_data_uri"></td><td>'.$data[$pd]['registrar']['registrant']['data_uri'].'</td></tr>';
+	$html_text .= '<tr id="4022" style="display:none"><td>registrant_ended_at</td><td>'.$data[$pd]['registry']['registrant']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['ended_at'].'</td></tr>';
 	$html_text .= '<tr id="152" style="display:none"><td colspan="2">registrant_publication_state'.$data[$pd]['registry']['registrant']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['registrant']['publication_state'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(41)">Actor (On Behalf) +/-</button></td><td></td><td id="actor_part"></td><td></td></tr>';
 	$html_text .= '<tr id="411" style="display:none"><td>actor_tld_global_handle</td><td>'.$data[$pd]['registry']['actor']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['tld_global_handle'].'</td></tr>';
@@ -1032,6 +1034,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr><td>actor_contact_uri</td><td>'.$data[$pd]['registry']['actor']['contact_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['contact_uri'].'</td></tr>';
 	$html_text .= '<tr id="418" style="display:none"><td>actor_phone</td><td>'.$data[$pd]['registry']['actor']['phone'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['phone'].'</td></tr>';
 	$html_text .= '<tr id="419" style="display:none"><td>actor_country_code</td><td>'.$data[$pd]['registry']['actor']['country_code'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['country_code'].'</td></tr>';
+	$html_text .= '<tr id="4110" style="display:none"><td>actor_ended_at</td><td>'.$data[$pd]['registry']['actor']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['ended_at'].'</td></tr>';
 	$html_text .= '<tr id="153" style="display:none"><td colspan="2">actor_publication_state'.$data[$pd]['registry']['actor']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['actor']['publication_state'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(42)">Request Handling (Administrative) +/-</button></td><td></td><td id="request_handling_part"></td><td></td></tr>';
 	$html_text .= '<tr id="421" style="display:none"><td>request_handling_tld_global_handle</td><td>'.$data[$pd]['registry']['request_handling']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['request_handling']['tld_global_handle'].'</td></tr>';
@@ -1055,6 +1058,7 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="4217" style="display:none"><td>request_handling_remarks</td><td>'.$data[$pd]['registry']['request_handling']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['request_handling']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="4218" style="display:none"><td>request_handling_links</td><td colspan="2">'.$data[$pd]['registry']['request_handling']['links'].'</td><td>'.$data[$pd]['registrar']['request_handling']['links'].'</td></tr>';
 	$html_text .= '<tr id="4219" style="display:none"><td>request_handling_data_uri</td><td>'.$data[$pd]['registry']['request_handling']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['request_handling']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="4220" style="display:none"><td>request_handling_ended_at</td><td>'.$data[$pd]['registry']['request_handling']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['request_handling']['ended_at'].'</td></tr>';	
 	$html_text .= '<tr id="154" style="display:none"><td colspan="2">request_handling_publication_state'.$data[$pd]['registry']['request_handling']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['request_handling']['publication_state'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(43)">Issue Reporting (Technical) +/-</button></td><td></td><td id="issue_reporting_part"></td><td></td></tr>';
 	$html_text .= '<tr id="431" style="display:none"><td>issue_reporting_tld_global_handle</td><td>'.$data[$pd]['registry']['issue_reporting']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['tld_global_handle'].'</td></tr>';
@@ -1077,7 +1081,8 @@ if (true or $pd == mb_strtolower($data[$pd]['registry']['domain']['ascii_name'])
 	$html_text .= '<tr id="4316" style="display:none"><td>issue_reporting_preferred_languages</td><td>'.$data[$pd]['registry']['issue_reporting']['preferred_languages'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['preferred_languages'].'</td></tr>';
 	$html_text .= '<tr id="4317" style="display:none"><td>issue_reporting_remarks</td><td>'.$data[$pd]['registry']['issue_reporting']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="4318" style="display:none"><td>issue_reporting_links</td><td colspan="2">'.$data[$pd]['registry']['issue_reporting']['links'].'</td><td>'.$data[$pd]['registrar']['issue_reporting']['links'].'</td></tr>';
-	$html_text .= '<tr id="4319" style="display:none"><td>issue_reporting_data_uri</td><td>'.$data[$pd]['registry']['issue_reporting']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="4319" style="display:none"><td>issue_reporting_data_uri</td><td>'.$data[$pd]['registry']['issue_reporting']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['data_uri'].'</td></tr>';
+	$html_text .= '<tr id="4320" style="display:none"><td>issue_reporting_ended_at</td><td>'.$data[$pd]['registry']['issue_reporting']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['ended_at'].'</td></tr>';
 	$html_text .= '<tr id="155" style="display:none"><td colspan="2">issue_reporting_publication_state'.$data[$pd]['registry']['issue_reporting']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['issue_reporting']['publication_state'].'</td></tr>';	
 $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(44)">Billing +/-</button></td><td></td><td id="billing_part"></td><td></td></tr>';
 	$html_text .= '<tr id="441" style="display:none"><td>billing_tld_global_handle</td><td>'.$data[$pd]['registry']['billing']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['billing']['tld_global_handle'].'</td></tr>';
@@ -1101,6 +1106,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="4419" style="display:none"><td>billing_remarks</td><td>'.$data[$pd]['registry']['billing']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['billing']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="4420" style="display:none"><td>billing_links</td><td colspan="2">'.$data[$pd]['registry']['billing']['links'].'</td><td>'.$data[$pd]['registrar']['billing']['links'].'</td></tr>';
 	$html_text .= '<tr id="4421" style="display:none"><td>billing_data_uri</td><td>'.$data[$pd]['registry']['billing']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['billing']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="4422" style="display:none"><td>billing_ended_at</td><td>'.$data[$pd]['registry']['billing']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['billing']['ended_atended_at'].'</td></tr>';
 	$html_text .= '<tr id="156" style="display:none"><td colspan="2">billing_publication_state'.$data[$pd]['registry']['billing']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['billing']['publication_state'].'</td></tr>';		
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(45)">Escalation +/-</button></td><td></td><td id="escalation_part"></td><td></td></tr>';
 	$html_text .= '<tr id="451" style="display:none"><td>escalation_tld_global_handle</td><td>'.$data[$pd]['registry']['escalation']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['tld_global_handle'].'</td></tr>';
@@ -1113,6 +1119,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="458" style="display:none"><td>escalation_contact_uri</td><td>'.$data[$pd]['registry']['escalation']['contact_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['contact_uri'].'</td></tr>';
 	$html_text .= '<tr id="459" style="display:none"><td>escalation_phone</td><td>'.$data[$pd]['registry']['escalation']['phone'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['phone'].'</td></tr>';
 	$html_text .= '<tr id="4510" style="display:none"><td>escalation_country_code</td><td>'.$data[$pd]['registry']['escalation']['country_code'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['country_code'].'</td></tr>';
+	$html_text .= '<tr id="4511" style="display:none"><td>escalation_ended_at</td><td>'.$data[$pd]['registry']['escalation']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['ended_at'].'</td></tr>';
 	$html_text .= '<tr id="157" style="display:none"><td colspan="2">escalation_publication_state'.$data[$pd]['registry']['escalation']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['escalation']['publication_state'].'</td></tr>';		
 	$html_text .= '<tr><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(50)">Reseller (Conditional) +/-</button></td><td><b>'.$vd.'</b></td><td id="reseller_part"></td><td></td></tr>';
@@ -1143,6 +1150,7 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="5023" style="display:none"><td>reseller_remarks</td><td>'.$data[$pd]['registry']['reseller']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="5024" style="display:none"><td>reseller_links</td><td colspan="2">'.$data[$pd]['registry']['reseller']['links'].'</td><td>'.$data[$pd]['registrar']['reseller']['links'].'</td></tr>';
 	$html_text .= '<tr id="5025" style="display:none"><td>reseller_data_uri</td><td>'.$data[$pd]['registry']['reseller']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="5026" style="display:none"><td>reseller_ended_at</td><td>'.$data[$pd]['registry']['reseller']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['ended_at'].'</td></tr>';	
 	$html_text .= '<tr id="158" style="display:none"><td colspan="2">reseller_publication_state'.$data[$pd]['registry']['reseller']['publication_state'].'</td><td></td><td>'.$data[$pd]['registrar']['reseller']['publication_state'].'</td></tr>';	
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(60)">Registrar +/-</button></td><td></td><td id="registrar_part"></td><td></td></tr>';
 	$html_text .= '<tr id="601" style="display:none"><td>registrar_tld_global_handle</td><td>'.$data[$pd]['registry']['registrar']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['tld_global_handle'].'</td></tr>';
@@ -1171,7 +1179,8 @@ $html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="
 	$html_text .= '<tr id="6022" style="display:none"><td>registrar_verification_revoked_at</td><td>'.$data[$pd]['registry']['registrar']['verification_revoked_at'].'</td><td id="registrar_verification_revoked_at"></td><td>'.$data[$pd]['registrar']['registrar']['verification_revoked_at'].'</td></tr>';
 	$html_text .= '<tr id="6023" style="display:none"><td>registrar_remarks</td><td>'.$data[$pd]['registry']['registrar']['remarks'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['remarks'].'</td></tr>';
 	$html_text .= '<tr id="6024" style="display:none"><td>registrar_links</td><td colspan="2">'.$data[$pd]['registry']['registrar']['links'].'</td><td>'.$data[$pd]['registrar']['registrar']['links'].'</td></tr>';
-	$html_text .= '<tr id="6025" style="display:none"><td>registrar_domain_uri</td><td>'.$data[$pd]['registry']['registrar']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['data_uri'].'</td></tr>';	
+	$html_text .= '<tr id="6025" style="display:none"><td>registrar_domain_uri</td><td>'.$data[$pd]['registry']['registrar']['data_uri'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['data_uri'].'</td></tr>';
+	$html_text .= '<tr id="6026" style="display:none"><td>registrar_ended_at</td><td>'.$data[$pd]['registry']['registrar']['ended_at'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar']['ended_at'].'</td></tr>';
 	$html_text .= '<tr><td><button style="cursor:pointer;font-size:0.8rem" onclick="SwitchDisplay(61)">Abuse Contact +/-</button> <button type="button" onclick="pronounce(\'abuse contact\')" title="Pronounce Registrar Abuse" aria-label="Pronounce Registrar Abuse" style="border:0;background:none;cursor:pointer;padding:0 2px;">pronounce:🔊</button></td><td></td><td id="registrar_abuse_part"></td><td></td></tr>';
 	$html_text .= '<tr id="611" style="display:none"><td>registrar_abuse_tld_global_handle</td><td>'.$data[$pd]['registry']['registrar_abuse']['tld_global_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar_abuse']['tld_global_handle'].'</td></tr>';
 	$html_text .= '<tr id="612" style="display:none"><td>registrar_abuse_source_handle</td><td>'.$data[$pd]['registry']['registrar_abuse']['source_handle'].'</td><td></td><td>'.$data[$pd]['registrar']['registrar_abuse']['source_handle'].'</td></tr>';

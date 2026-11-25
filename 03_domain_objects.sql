@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS domains (
 	domain_applicable_grace TEXT[],
 	domain_applicable_grace_until TIMESTAMPTZ,
     domain_recoverable_until TIMESTAMPTZ,
-    domain_deletion_at TIMESTAMPTZ,
+    domain_release_at TIMESTAMPTZ,
 	domain_metadata_registrar BIGINT REFERENCES metadata_registrar(mr_id),
     domain_extensions JSONB DEFAULT '[]',
     domain_remarks JSONB DEFAULT '[]'
