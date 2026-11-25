@@ -997,6 +997,7 @@ $redacted = '';
 $interface_notice = '';	
 $resource_upload_at = null;
 $object_type = $obj['objectClassName'];
+$rdap_software_version = '';	
 $rdap_protocol_version = '';	
 if (is_array($obj['rdapConformance'])) {
     usort($obj['rdapConformance'], function ($a, $b) {
@@ -1009,6 +1010,11 @@ if (is_array($obj['rdapConformance'])) {
     });
 }
 $rdap_conformance = (is_array($obj['rdapConformance'])) ? implode(",<br />", $obj['rdapConformance']) : $obj['rdapConformance'];
+$rdap_data_layer = '';
+$rdap_disclosure = '';
+$rdap_region_uri = '';
+$rdap_issue_uri = '';
+$rdap_supplier_uri = '';
 $language_codes = (is_array($obj['lang'])) ? implode(",<br />", $obj['lang']) : $obj['lang'];
 $registrar_identifiers = '';
 $registrar_identifier = null;
@@ -1231,7 +1237,12 @@ $entity_key4_registrar = -1;
 $entity_key4_registrar_abuse = -1;	
 
 $raw_rdap_data = '';
-	
+
+if ($inputtld == 'nl')	{
+	$rdap_supplier_uri = 'moving to https://helloregistry.nl';
+	$rdap_issue_uri = 'https://www.sidn.nl';
+}
+
 foreach($obj as $key1 => $value1) {
 	$raw_rdap_data .= $key1 . ': ' . $value1 . "\n";
     foreach($value1 as $key2 => $value2) {
@@ -2072,8 +2083,11 @@ $arr['interface_notice'] = $interface_notice;
 $arr['metadata']['object_type'] = $object_type;
 $arr['metadata']['rdap_protocol_version'] = $rdap_protocol_version;
 $arr['metadata']['rdap_conformance'] = $rdap_conformance;
-$arr['metadata']['registry_geo_location'] = '';
-$arr['metadata']['global_domain_uri'] = '';	
+$arr['metadata']['rdap_disclosure'] = $rdap_disclosure;
+$arr['metadata']['rdap_region_uri'] = $rdap_region_uri;
+$arr['metadata']['rdap_issue_uri'] = $rdap_issue_uri;
+$arr['metadata']['rdap_supplier_uri'] = $rdap_supplier_uri;		
+$arr['metadata']['global_domain_uri'] = $global_domain_uri;	
 $arr['metadata']['registry_domain_uri'] = $registry_domain_uri;
 $arr['metadata']['registrar_domain_uri'] = $registrar_domain_uri;
 $arr['metadata']['registry_tld_uri'] = '';	
